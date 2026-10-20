@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEWAVE® STUDIO — Official Brand Hub & Graphic Archive</title>
+  <meta name="description" content="Official Brand Hub for Newave® Studio [NWS]. Minimalist streetwear archive, sarcastic cat humor, cozy introvert goods & contemporary graphic apparel.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090a0d;
+      --card-bg: #12141a;
+      --card-border: #222631;
+      --text: #f3f4f6;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-pink: #f472b6;
+      --accent-gold: #fbbf24;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 10, 13, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px 0;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--card-border);
+      object-fit: cover;
+    }
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 19px;
+      letter-spacing: -0.02em;
+    }
+    .brand-tag {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #1e293b;
+      color: var(--accent);
+      font-weight: 600;
+      margin-left: 4px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--text); }
+    .btn-pill-primary {
+      background: #ffffff;
+      color: #000000;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn-pill-primary:hover {
+      background: #e2e8f0;
+      transform: translateY(-1px);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 70px 0 50px 0;
+      text-align: center;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #171b26;
+      border: 1px solid #2d3748;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 24px;
+    }
+    .hero-badge .dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #10b981;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 5.5vw, 62px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      max-width: 900px;
+      margin: 0 auto 20px auto;
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 36px auto;
+      font-weight: 400;
+    }
+
+    /* Marketplaces Direct Link Strip */
+    .store-strip {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text);
+      transition: all 0.25s;
+    }
+    .store-btn:hover {
+      border-color: #475569;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+    }
+    .store-btn.zazzle { border-color: #a855f755; }
+    .store-btn.zazzle:hover { border-color: #a855f7; background: #2e106522; }
+    .store-btn.teepublic { border-color: #3b82f655; }
+    .store-btn.teepublic:hover { border-color: #3b82f6; background: #1e3a8a22; }
+    .store-btn.redbubble { border-color: #ef444455; }
+    .store-btn.redbubble:hover { border-color: #ef4444; background: #7f1d1d22; }
+    .store-btn.pinterest { border-color: #e11d4855; }
+    .store-btn.pinterest:hover { border-color: #e11d48; background: #88133722; }
+
+    /* Section Headers */
+    .section-head {
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    /* Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 32px;
+      scrollbar-width: none;
+    }
+    .filter-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      background: #171a22;
+      color: var(--text-muted);
+      border: 1px solid var(--card-border);
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { color: var(--text); border-color: #475569; }
+    .tab-btn.active {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 26px;
+      margin-bottom: 70px;
+    }
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: #3b82f688;
+      box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.6);
+    }
+    .card-img-wrap {
+      aspect-ratio: 2 / 3;
+      overflow: hidden;
+      position: relative;
+      background: #0d0e12;
+    }
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+    .product-card:hover .card-img-wrap img {
+      transform: scale(1.03);
+    }
+    .card-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .card-info {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-cat {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .card-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .card-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+    .card-action-row {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+    }
+    .btn-card-buy {
+      flex: 1;
+      text-align: center;
+      background: #1e293b;
+      color: #f1f5f9;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+      border: 1px solid #334155;
+      transition: all 0.2s;
+    }
+    .btn-card-buy:hover {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+    }
+
+    /* Featured Streetwear Banner */
+    .streetwear-feature {
+      background: linear-gradient(135deg, #10131a 0%, #171b24 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 70px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (max-width: 800px) {
+      .streetwear-feature { grid-template-columns: 1fr; padding: 26px; gap: 24px; }
+    }
+    .feature-tag {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .feature-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .feature-p {
+      color: var(--text-muted);
+      font-size: 14.5px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .feature-mockup {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #334155;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .feature-mockup img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 50px 0 30px 0;
+      color: var(--text-muted);
+      font-size: 13.5px;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-link {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .footer-link:hover { color: var(--accent); }
+    .footer-note {
+      font-size: 12px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-inner">
+      <a href="#" class="brand-lockup">
+        <img src="assets/logo.jpg" alt="Newave Studio Logo" class="brand-logo" onerror="this.style.display='none'">
+        <div>
+          <span class="brand-name">NEWAVE® STUDIO</span>
+          <span class="brand-tag">[NWS]</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#collections" class="nav-link">Collections</a>
+        <a href="#archive" class="nav-link">Streetwear</a>
+        <a href="https://www.pinterest.com/TheNewaveStudio/" target="_blank" class="nav-link">Pinterest</a>
+        <a href="https://www.teepublic.com/user/thenewavestudio" target="_blank" class="btn-pill-primary">Visit Store →</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span>CONTEMPORARY GRAPHIC ARCHIVE & APPAREL • EST. 2026</span>
+      </div>
+      <h1 class="hero-title">WEAR THE ATTITUDE.<br>EMBRACE THE CHAOS.</h1>
+      <p class="hero-subtitle">
+        An independent graphic studio crafting minimalist streetwear, relatable cat humor, retro 70s cartoons & cozy introvert essentials for everyday life.
+      </p>
+
+      <!-- Store Strip Buttons -->
+      <div class="store-strip">
+        <a href="https://www.teepublic.com/user/thenewavestudio" target="_blank" class="store-btn teepublic">
+          <span>🔵</span>
+          <span>Shop on TeePublic</span>
+        </a>
+        <a href="https://www.zazzle.com/store/newavestudio" target="_blank" class="store-btn zazzle">
+          <span>🟣</span>
+          <span>Shop on Zazzle</span>
+        </a>
+        <a href="https://www.redbubble.com/people/TheNewaveStudio/shop" target="_blank" class="store-btn redbubble">
+          <span>🔴</span>
+          <span>Shop on Redbubble</span>
+        </a>
+        <a href="https://www.pinterest.com/TheNewaveStudio/" target="_blank" class="store-btn pinterest">
+          <span>📌</span>
+          <span>Follow Pinterest</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Collections Showcase -->
+  <section class="container" id="collections">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Curated Collections</h2>
+        <p class="section-desc">Explore original illustrations across five signature aesthetic clubs.</p>
+      </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+      <button class="tab-btn active" onclick="filterGallery('all', this)">All Collections (7)</button>
+      <button class="tab-btn" onclick="filterGallery('kawaii', this)">🎀 Kawaii Pastel Chibi</button>
+      <button class="tab-btn" onclick="filterGallery('streetwear', this)">🌊 Streetwear Archive</button>
+      <button class="tab-btn" onclick="filterGallery('cats', this)">🐱 Funny Cat Club</button>
+      <button class="tab-btn" onclick="filterGallery('introvert', this)">☕ Cozy Introvert</button>
+      <button class="tab-btn" onclick="filterGallery('office', this)">💼 Sarcastic Office</button>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="products-grid" id="productGrid">
+      
+      <!-- Card 1: Kawaii Tree Asking For It -->
+      <div class="product-card" data-category="kawaii">
+        <div class="card-img-wrap">
+          <span class="card-badge" style="background:#db2777bb;">🎀 Holiday Bestseller</span>
+          <img src="assets/PIN_01_Kawaii_ChristmasTreeAskingForIt_1000x1500.jpg" alt="The Christmas Tree Was Asking For It">
+        </div>
+        <div class="card-info">
+          <span class="card-cat" style="color:#f472b6;">Kawaii Pastel Chibi</span>
+          <h3 class="card-title">The Christmas Tree Was Asking For It</h3>
+          <p class="card-desc">An adorably grumpy calico chibi cat triumphantly tangled in Christmas lights. Perfect on pastel hoodies & holiday mugs.</p>
+          <div class="card-action-row">
+            <a href="https://www.teepublic.com/user/thenewavestudio" target="_blank" class="btn-card-buy">Shop TeePublic →</a>
+            <a href="https://www.zazzle.com/store/newavestudio" target="_blank" class="btn-card-buy">Zazzle →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Silently Judge Everyone -->
+      <div class="product-card" data-category="kawaii cats">
+        <div class="card-img-wrap">
+          <span class="card-badge" style="background:#059669bb;">🌿 Year-Round Core</span>
+          <img src="assets/PIN_02_Kawaii_SilentlyJudgeEveryone_1000x1500.jpg" alt="My Cat and I Silently Judge Everyone">
+        </div>
+        <div class="card-info">
+          <span class="card-cat" style="color:#34d399;">Kawaii Pastel Chibi</span>
+          <h3 class="card-title">My Cat & I Silently Judge Everyone</h3>
+          <p class="card-desc">Chubby grumpy Scottish fold kitten holding a matcha daisy cup with an unhinged judgmental side-eye. 365-day evergreen.</p>
+          <div class="card-action-row">
+            <a href="https://www.zazzle.com/store/newavestudio" target="_blank" class="btn-card-buy">Shop Zazzle →</a>
+            <a href="https://www.teepublic.com/user/thenewavestudio" target="_blank" class="btn-card-buy">TeePublic →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Dear Santa Cat -->
+      <div class="product-card" data-category="kawaii cats">
+        <div class="card-img-wrap">
+          <span class="card-badge" style="background:#ea580cbb;">🎁 Holiday Gift Pick</span>
+          <img src="assets/PIN_03_Kawaii_DearSantaCat_1000x1500.jpg" alt="Dear Santa I Can Explain">
+        </div>
+        <div class="card-info">
+          <span class="card-cat" style="color:#fb923c;">Holiday Cat Humor</span>
+          <h3 class="card-title">Dear Santa, I Can Explain...</h3>
+          <p class="card-desc">"But first, what did my cat tell you?" Smug ginger tabby with a crooked Santa hat beside a North Pole letter & broken ornament.</p>
+          <div class="card-action-row">
+            <a href="https://www.zazzle.com/store/newavestudio" target="_blank" class="btn-card-buy">Shop Zazzle →</a>
+            <a href="https://www.teepublic.com/user/thenewavestudio" target="_blank" class="btn-card-buy">TeePublic →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Everything is Festive Meme Cat -->
+      <div class="product-card" data-category="cats introvert">
+        <div class="card-img-wrap">
+          <span class="card-badge" style="background:#dc2626bb;">🔥 Internet Meme Icon</span>
+          <img src="assets/PIN_04_MemeCat_EverythingIsFestive_1000x1500.jpg" alt="It's Fine I'm Fine Everything is Festive">
+        </div>
+        <div class="card-info">
+          <span class="card-cat" style="color:#f87171;">Unhinged Meme Doodle</span>
+          <h3 class="card-title">It's Fine. I'm Fine. Everything Is Festive.</h3>
+          <p class="card-desc">Calmly sipping iced coffee while the tree burns. Available on thermal tumblers, apparel, and stickers.</p>
+          <div class="card-action-row">
+            <a href="https://www.zazzle.com/store/newavestudio" target="_blank" class="btn-card-buy">Shop Tumbler →</a>
+            <a href="https://www.teepublic.com/user/thenewavestudio" target="_blank" class="btn-card-buy">TeePublic →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Streetwear Archive -->
+      <div class="product-card" data-category="streetwear">
+        <div class="card-img-wrap">
+          <span class="card-badge" style="background:#2563ebbb;">🌊 Studio Archive [NWS]</span>
+          <img src="assets/PIN_05_Streetwear_OutbraveMovingArchive_1000x1500.jpg" alt="Streetwear Archive">
+        </div>
+        <div class="card-info">
+          <span class="card-cat" style="color:#60a5fa;">Contemporary Streetwear</span>
+          <h3 class="card-title">Outbrave • Moving • Archive</h3>
+          <p class="card-desc">Contemporary minimalist Japanese & Asian streetwear aesthetics. Pure geometric typography for heavyweight hoodies.</p>
+          <div class="card-action-row">
+            <a href="https://www.teepublic.com/user/thenewavestudio" target="_blank" class="btn-card-buy">Shop Hoodie →</a>
+            <a href="https://www.redbubble.com/people/TheNewaveStudio/shop" target="_blank" class="btn-card-buy">Redbubble →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Canceling Plans -->
+      <div class="product-card" data-category="introvert">
+        <div class="card-img-wrap">
+          <span class="card-badge" style="background:#7c3aedbb;">☕ Cozy Homebody</span>
+          <img src="assets/PIN_06_Introvert_CancelingPlans_1000x1500.jpg" alt="My Favorite Holiday Tradition Is Canceling Plans">
+        </div>
+        <div class="card-info">
+          <span class="card-cat" style="color:#c084fc;">Introvert Club</span>
+          <h3 class="card-title">Tradition: Canceling Plans</h3>
+          <p class="card-desc">Cozy winter socks, a warm fireplace mug, and low social battery. The ultimate relatable introvert aesthetic statement.</p>
+          <div class="card-action-row">
+            <a href="https://www.teepublic.com/user/thenewavestudio" target="_blank" class="btn-card-buy">Shop TeePublic →</a>
+            <a href="https://www.redbubble.com/people/TheNewaveStudio/shop" target="_blank" class="btn-card-buy">Redbubble →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7: Per My Last Email -->
+      <div class="product-card" data-category="office">
+        <div class="card-img-wrap">
+          <span class="card-badge" style="background:#059669bb;">💼 Corporate Survival</span>
+          <img src="assets/PIN_07_Office_PerMyLastEmail_1000x1500.jpg" alt="Per My Last Email Please Do Not Perceive Me">
+        </div>
+        <div class="card-info">
+          <span class="card-cat" style="color:#34d399;">Sarcastic Office</span>
+          <h3 class="card-title">Per My Last Email: Do Not Perceive Me</h3>
+          <p class="card-desc">90s retro OS warning popup with exhausted coffee cup. Best-selling desk mug and laptop sticker for WFH coworkers.</p>
+          <div class="card-action-row">
+            <a href="https://www.teepublic.com/user/thenewavestudio" target="_blank" class="btn-card-buy">Shop Mug →</a>
+            <a href="https://www.redbubble.com/people/TheNewaveStudio/shop" target="_blank" class="btn-card-buy">Redbubble →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Featured Streetwear Showcase Section -->
+  <section class="container" id="archive">
+    <div class="streetwear-feature">
+      <div>
+        <div class="feature-tag">NEWAVE® ARCHIVE RELEASE</div>
+        <h2 class="feature-title">Ultra-Minimalist Heavyweight Streetwear</h2>
+        <p class="feature-p">
+          Crafted with architectural precision. Our signature Twin-Wave capsule emblem fuses fluid organic motion with brutalist typography. Available worldwide on premium organic heavyweight cotton hoodies, oversized tees, and accessories.
+        </p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="https://www.teepublic.com/user/thenewavestudio" target="_blank" class="btn-pill-primary">Shop Streetwear Collection →</a>
+          <a href="https://www.pinterest.com/TheNewaveStudio/" target="_blank" class="btn-card-buy" style="padding:10px 18px; border-radius:999px;">View on Pinterest</a>
+        </div>
+      </div>
+      <div class="feature-mockup">
+        <img src="assets/streetwear_hoodie_mockup.jpg" alt="Streetwear Hoodie Mockup" onerror="this.src='assets/PIN_05_Streetwear_OutbraveMovingArchive_1000x1500.jpg'">
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://www.teepublic.com/user/thenewavestudio" target="_blank" class="footer-link">TeePublic Store</a>
+        <a href="https://www.zazzle.com/store/newavestudio" target="_blank" class="footer-link">Zazzle Store</a>
+        <a href="https://www.redbubble.com/people/TheNewaveStudio/shop" target="_blank" class="footer-link">Redbubble Store</a>
+        <a href="https://www.pinterest.com/TheNewaveStudio/" target="_blank" class="footer-link">Pinterest (@TheNewaveStudio)</a>
+      </div>
+      <p style="margin-bottom:8px;">© 2026 NEWAVE® STUDIO. All Rights Reserved. Independent Graphic & Apparel Archive.</p>
+      <p class="footer-note">Hosted globally via GitHub Pages • 0-Baht High Performance Architecture</p>
+    </div>
+  </footer>
+
+  <script>
+    function filterGallery(category, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        const cats = card.getAttribute('data-category');
+        if (category === 'all' || cats.includes(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
