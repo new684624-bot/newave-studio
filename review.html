@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Newave Studio® — Design Approval Buffer (1-Click Review)</title>
+    <style>
+        :root {
+            --bg: #0b0f19;
+            --surface: #151d30;
+            --surface-card: #1c2742;
+            --border: #283756;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent: #38bdf8;
+            --green: #10b981;
+            --red: #ef4444;
+            --gold: #f59e0b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body {
+            background: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 12px 60px;
+        }
+        .header {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 8px;
+            margin-bottom: 12px;
+        }
+        .brand-logo {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+        .stats-badge {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+        .review-card-container {
+            width: 100%;
+            max-width: 480px;
+            perspective: 1000px;
+            margin-bottom: 20px;
+        }
+        .review-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s ease;
+        }
+        .preview-img-box {
+            width: 100%;
+            height: 380px;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .preview-img-box img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        }
+        .badge-bar {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .badge-green { color: var(--green); border-color: rgba(16, 185, 129, 0.4); }
+        .badge-gold { color: var(--gold); border-color: rgba(245, 158, 11, 0.4); }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .card-quote {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+        .card-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            background: var(--surface-card);
+            padding: 12px;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            font-size: 0.8rem;
+        }
+        .meta-label { color: var(--text-sub); font-size: 0.72rem; margin-bottom: 2px; }
+        .meta-val { font-weight: 700; color: #fff; }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            width: 100%;
+            max-width: 480px;
+        }
+        .btn {
+            border: none;
+            outline: none;
+            border-radius: 18px;
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform 0.15s ease, filter 0.15s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .btn:active { transform: scale(0.96); }
+        .btn-skip {
+            background: #232d42;
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .btn-approve {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            box-shadow: 0 10px 24px rgba(16, 185, 129, 0.35);
+        }
+        .empty-state {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 480px;
+            border: 1px dashed var(--border);
+        }
+        .nav-links {
+            margin-top: 30px;
+            display: flex;
+            gap: 16px;
+            font-size: 0.85rem;
+        }
+        .nav-links a {
+            color: var(--accent);
+            text-decoration: none;
+            padding: 8px 14px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="brand-logo">NEWAVE STUDIO®</div>
+        <div class="stats-badge" id="statsBadge">Pending: 4</div>
+    </div>
+
+    <div class="review-card-container" id="cardContainer">
+        <!-- Card injected by JS -->
+    </div>
+
+    <div class="action-buttons" id="actionButtons">
+        <button class="btn btn-skip" onclick="handleDecision(false)">
+            <span>❌</span> ข้าม (SKIP)
+        </button>
+        <button class="btn btn-approve" onclick="handleDecision(true)">
+            <span>✅</span> เอาลายนี้ (APPROVE)
+        </button>
+    </div>
+
+    <div class="empty-state" id="emptyState">
+        <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
+        <h2 style="font-size: 1.3rem; margin-bottom: 8px;">ตรวจครบทุกแบบแล้ว!</h2>
+        <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 24px;">ระบบบันทึกลายที่คุณกด APPROVE ไว้เรียบร้อย พร้อมนำไปตัดพื้นหลังและอัปเดตเข้า Dashboard 4500x5400</p>
+        <a href="dashboard.html" style="display: inline-block; background: var(--accent); color: #0b0f19; font-weight: 800; padding: 12px 24px; border-radius: 14px; text-decoration: none;">
+            ไปที่หน้า Upload Dashboard ➔
+        </a>
+    </div>
+
+    <div class="nav-links">
+        <a href="dashboard.html">📱 Upload Dashboard</a>
+        <a href="index.html">🌐 เว็บไซต์แบรนด์</a>
+    </div>
+
+    <script>
+        const pendingQueue = [{"id": "P01", "title": "Fueled by Iced Coffee and Mild Panic", "category": "☕ Coffee & Work Humor", "style": "Vintage 70s Groovy Mascot", "quote": "Fueled by Iced Coffee and Mild Panic", "raw_img": "08_DearSantaCat_RetroGroovy_Holiday_RAW.jpg", "trademark_safe": true, "flagged_terms": [], "seo_rank": "Top #1 SEO POD Trend", "suggested_products": "Thermal Tumbler, T-Shirt, Laptop Sticker"}, {"id": "P02", "title": "I Have No Desire to Be Perceived Today", "category": "🐱 Introvert Cat Club", "style": "Kawaii Pastel Chibi", "quote": "I Have No Desire to Be Perceived Today", "raw_img": "Cat_Judge_Gemini_2.png", "trademark_safe": true, "flagged_terms": [], "seo_rank": "Top #2 SEO POD Trend", "suggested_products": "Oversized Hoodie, Ceramic Mug, Tote Bag"}, {"id": "P03", "title": "SILENT PROTEST // DISCONNECTED", "category": "🌊 Contemporary Streetwear [NWS]", "style": "Brutalist Architectural Typography", "quote": "NEWAVE® STUDIO // ARCHIVE 02", "raw_img": "25_UltraMinimal_StreetwearArchive_Raw.png", "trademark_safe": true, "flagged_terms": [], "seo_rank": "Top #3 High-Margin Streetwear", "suggested_products": "Heavyweight Black Hoodie, Boxy Tee"}, {"id": "P04", "title": "Emotional Support Iced Matcha", "category": "🍵 Cozy Aesthetic", "style": "Minimalist Fine-Line Vector", "quote": "Emotional Support Matcha Latte", "raw_img": "06A_PTO_Calendar_NanoBanana_RAW.jpg", "trademark_safe": true, "flagged_terms": [], "seo_rank": "Top #4 Aesthetic Drink Trend", "suggested_products": "Tumbler, Canvas Tote, Sticker"}];
+        let currentIndex = 0;
+        let approvedList = JSON.parse(localStorage.getItem('nws_approved_designs') || '[]');
+
+        function updateUI() {
+            const badge = document.getElementById('statsBadge');
+            const remaining = pendingQueue.length - currentIndex;
+            badge.innerText = `Pending: ${remaining} | Approved: ${approvedList.length}`;
+
+            if (currentIndex >= pendingQueue.length) {
+                document.getElementById('cardContainer').style.display = 'none';
+                document.getElementById('actionButtons').style.display = 'none';
+                document.getElementById('emptyState').style.display = 'block';
+                return;
+            }
+
+            const item = pendingQueue[currentIndex];
+            const container = document.getElementById('cardContainer');
+            container.innerHTML = `
+                <div class="review-card">
+                    <div class="preview-img-box">
+                        <div class="badge-bar">
+                            <span class="badge badge-green">🛡️ Trademark Clean</span>
+                            <span class="badge badge-gold">${item.seo_rank}</span>
+                        </div>
+                        <img src="assets/thumbs/thumb_28.jpg" alt="${item.title}">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">${item.title}</div>
+                        <div class="card-quote">"${item.quote}"</div>
+                        <div class="card-meta">
+                            <div>
+                                <div class="meta-label">หมวดหมู่ & สไตล์</div>
+                                <div class="meta-val">${item.style}</div>
+                            </div>
+                            <div>
+                                <div class="meta-label">สินค้าแนะนำทำเงิน</div>
+                                <div class="meta-val">${item.suggested_products}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function handleDecision(approved) {
+            const currentItem = pendingQueue[currentIndex];
+            if (approved) {
+                if (!approvedList.some(d => d.id === currentItem.id)) {
+                    approvedList.push(currentItem);
+                    localStorage.setItem('nws_approved_designs', JSON.stringify(approvedList));
+                }
+            }
+            currentIndex++;
+            updateUI();
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>

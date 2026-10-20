@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newave Studio® — Marketing & Social Promotion Hub (3 Pillars)</title>
+<style>
+    :root {
+        --bg: #090a0f;
+        --card: #131722;
+        --border: #232a3b;
+        --text: #f8fafc;
+        --muted: #94a3b8;
+        --accent: #38bdf8;
+        --pin-red: #e60023;
+        --tiktok-teal: #00f2fe;
+        --reddit-orange: #ff4500;
+        --green: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding: 20px 14px 80px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .top-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .brand { font-size: 1.3rem; font-weight: 800; }
+    .top-links a { color: var(--accent); text-decoration: none; margin-left: 12px; font-size: 0.85rem; font-weight: 700; }
+    
+    .pillar-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px; }
+    .tab-btn { background: var(--card); border: 1px solid var(--border); padding: 14px; border-radius: 14px; text-align: center; color: var(--text); font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .tab-btn.active { background: #1e293b; border-color: var(--accent); color: var(--accent); }
+    
+    .promo-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; margin-bottom: 30px; display: grid; grid-template-columns: 340px 1fr; }
+    @media(max-width: 768px) { .promo-card { grid-template-columns: 1fr; } }
+    
+    .promo-img-box { background: #000; padding: 14px; display: flex; align-items: center; justify-content: center; }
+    .promo-img-box img { max-width: 100%; max-height: 480px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    
+    .promo-content { padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+    .promo-title { font-size: 1.3rem; font-weight: 800; }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; width: fit-content; }
+    .badge-pin { background: rgba(230,0,35,0.15); color: #f87171; border: 1px solid rgba(230,0,35,0.4); }
+    .badge-tiktok { background: rgba(0,242,254,0.15); color: #38bdf8; border: 1px solid rgba(0,242,254,0.4); }
+    .badge-reddit { background: rgba(255,69,0,0.15); color: #fb923c; border: 1px solid rgba(255,69,0,0.4); }
+    
+    .copy-block { background: #0d111a; border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+    .copy-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 4px; font-weight: 700; text-transform: uppercase; }
+    .copy-text { font-size: 0.85rem; line-height: 1.5; color: #cbd5e1; user-select: all; }
+    .btn-copy { margin-top: 8px; background: #1e293b; color: #38bdf8; border: 1px solid #334155; padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; }
+    .btn-copy:active { background: #10b981; color: #fff; }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="top-head">
+        <div class="brand">🌊 NEWAVE STUDIO® MARKETING HUB</div>
+        <div class="top-links">
+            <a href="dashboard.html">📱 Upload Dashboard</a>
+            <a href="review.html">✨ 1-Click Review</a>
+            <a href="index.html">🌐 Website</a>
+        </div>
+    </div>
+    
+    <div style="margin-bottom: 20px;">
+        <h1 style="font-size: 1.6rem; margin-bottom: 6px;">3-Pillar Autonomous Promotion Machine</h1>
+        <p style="color: var(--muted); font-size: 0.9rem;">คลังคอนเทนต์พร้อมโพสต์สำหรับ Pinterest, TikTok/Reels และ Reddit ผลิตอัตโนมัติ 100%</p>
+    </div>
+
+    <!-- Cards -->
+
+    <!-- Design #30 -->
+    <div class="promo-card">
+        <div class="promo-img-box">
+            <img src="assets/marketing/PIN_30_FueledByIcedCoffeeAndMildPanic_1000x1500.jpg" alt="Fueled by Iced Coffee & Mild Panic">
+        </div>
+        <div class="promo-content">
+            <span class="badge badge-pin">📌 PILLAR 1: PINTEREST PIN (1000x1500)</span>
+            <div class="promo-title">Fueled by Iced Coffee & Mild Panic</div>
+            
+            <div class="copy-block">
+                <div class="copy-label">Pin Title (ก๊อปไปวางหัวข้อ Pin)</div>
+                <div class="copy-text" id="pt_30">Fueled By Iced Coffee And Mild Panic Sarcastic Retro Cat Shirt & Tumbler</div>
+                <button class="btn-copy" onclick="copyText('pt_30')">📋 คัดลอก Pin Title</button>
+            </div>
+            
+            <div class="copy-block">
+                <div class="copy-label">Pin Description & SEO Hashtags</div>
+                <div class="copy-text" id="pd_30">Fueled by Iced Coffee & Mild Panic! The ultimate everyday mood for tired coffee addicts, cat lovers, and chaotic overthinkers. Graphic tees, hoodies & tumblers by Newave Studio. #icedcoffee #funnycat #chaoticgood #relatablehumor</div>
+                <button class="btn-copy" onclick="copyText('pd_30')">📋 คัดลอก Description & Tags</button>
+            </div>
+            
+            <span class="badge badge-tiktok" style="margin-top:10px;">🎵 PILLAR 2: TIKTOK / REELS SCRIPT</span>
+            <div class="copy-block">
+                <div class="copy-label">Viral On-Screen Hook & Caption</div>
+                <div class="copy-text" id="tk_30"><strong>HOOK:</strong> POV: YOUR BLOOD TYPE IS ICED COFFEE AND MILD PANIC<br><br><strong>CAPTION:</strong> POV: YOUR BLOOD TYPE IS ICED COFFEE AND MILD PANIC ☕🐱 Honest mood on a hoodie. Grab yours in bio! #relatablememes #catlovers #introvertclub #hoodieseason #newavestudio</div>
+                <button class="btn-copy" onclick="copyText('tk_30')">📋 คัดลอก TikTok Hook & Caption</button>
+            </div>
+            
+            <span class="badge badge-reddit" style="margin-top:10px;">🟠 PILLAR 3: REDDIT ORGANIC STORY</span>
+            <div class="copy-block">
+                <div class="copy-label">Post Title & Body (แบ่งปันงานศิลปะ ไม่ดูขายของ)</div>
+                <div class="copy-text" id="rd_30"><strong>TITLE:</strong> Drew this little guy after another chaotic Monday... thought you guys might relate lol<br><br>Hey everyone! I've been experimenting with some indie illustration designs inspired by my grumpy cat.
+
+This one is called 'Fueled by Iced Coffee & Mild Panic'. Hope it brings a little smile to anyone running low on social battery today!
+
+Would love to hear your thoughts on the typography / colors!</div>
+                <button class="btn-copy" onclick="copyText('rd_30')">📋 คัดลอก Reddit Post</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Design #31 -->
+    <div class="promo-card">
+        <div class="promo-img-box">
+            <img src="assets/marketing/PIN_31_NoDesireToBePerceived_1000x1500.jpg" alt="I Have No Desire to Be Perceived Today">
+        </div>
+        <div class="promo-content">
+            <span class="badge badge-pin">📌 PILLAR 1: PINTEREST PIN (1000x1500)</span>
+            <div class="promo-title">I Have No Desire to Be Perceived Today</div>
+            
+            <div class="copy-block">
+                <div class="copy-label">Pin Title (ก๊อปไปวางหัวข้อ Pin)</div>
+                <div class="copy-text" id="pt_31">I Have No Desire To Be Perceived Today Introvert Cat Shirt & Mug</div>
+                <button class="btn-copy" onclick="copyText('pt_31')">📋 คัดลอก Pin Title</button>
+            </div>
+            
+            <div class="copy-block">
+                <div class="copy-label">Pin Description & SEO Hashtags</div>
+                <div class="copy-text" id="pd_31">I Have No Desire to Be Perceived Today. Cozy deadpan pastel cat giving side-eye. For everyone running low on social battery. #introverthumor #socialbattery #deadpancat #kawaiiaesthetic</div>
+                <button class="btn-copy" onclick="copyText('pd_31')">📋 คัดลอก Description & Tags</button>
+            </div>
+            
+            <span class="badge badge-tiktok" style="margin-top:10px;">🎵 PILLAR 2: TIKTOK / REELS SCRIPT</span>
+            <div class="copy-block">
+                <div class="copy-label">Viral On-Screen Hook & Caption</div>
+                <div class="copy-text" id="tk_31"><strong>HOOK:</strong> POV: WHEN SOMEONE ASKS HOW YOUR SOCIAL BATTERY IS DOING<br><br><strong>CAPTION:</strong> POV: WHEN SOMEONE ASKS HOW YOUR SOCIAL BATTERY IS DOING ☕🐱 Honest mood on a hoodie. Grab yours in bio! #relatablememes #catlovers #introvertclub #hoodieseason #newavestudio</div>
+                <button class="btn-copy" onclick="copyText('tk_31')">📋 คัดลอก TikTok Hook & Caption</button>
+            </div>
+            
+            <span class="badge badge-reddit" style="margin-top:10px;">🟠 PILLAR 3: REDDIT ORGANIC STORY</span>
+            <div class="copy-block">
+                <div class="copy-label">Post Title & Body (แบ่งปันงานศิลปะ ไม่ดูขายของ)</div>
+                <div class="copy-text" id="rd_31"><strong>TITLE:</strong> Drew this little guy after another chaotic Monday... thought you guys might relate lol<br><br>Hey everyone! I've been experimenting with some indie illustration designs inspired by my grumpy cat.
+
+This one is called 'I Have No Desire to Be Perceived Today'. Hope it brings a little smile to anyone running low on social battery today!
+
+Would love to hear your thoughts on the typography / colors!</div>
+                <button class="btn-copy" onclick="copyText('rd_31')">📋 คัดลอก Reddit Post</button>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script>
+function copyText(id) {
+    const el = document.getElementById(id);
+    navigator.clipboard.writeText(el.innerText).then(() => {
+        alert('คัดลอกข้อความสำเร็จ! 📋 พร้อมนำไปวางโพสต์ได้ทันที');
+    });
+}
+</script>
+</body>
+</html>
