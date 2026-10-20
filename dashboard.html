@@ -38,7 +38,7 @@
   /* Main Responsive Container */
   .app-container {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1440px;
     margin: 0 auto;
     padding: 16px 20px;
     transition: max-width 0.3s ease;
@@ -46,7 +46,7 @@
 
   /* Forced Mobile Simulator View Mode */
   body.force-mobile .app-container {
-    max-width: 520px;
+    max-width: 540px;
     padding: 12px 14px;
     border-left: 1px solid var(--border);
     border-right: 1px solid var(--border);
@@ -57,7 +57,7 @@
     max-width: 1440px;
   }
 
-  /* Sticky Header */
+  /* Sticky Top Header */
   .top-bar {
     position: sticky; top: 0; z-index: 100;
     background: rgba(9, 10, 15, 0.94); backdrop-filter: blur(16px);
@@ -65,12 +65,12 @@
     padding: 14px 20px;
   }
   .top-bar-inner {
-    max-width: 1400px; margin: 0 auto;
+    max-width: 1440px; margin: 0 auto;
     display: flex; justify-content: space-between; align-items: center;
     gap: 12px; flex-wrap: wrap;
   }
   body.force-mobile .top-bar-inner {
-    max-width: 520px;
+    max-width: 540px;
   }
   
   .brand-group {
@@ -298,9 +298,9 @@
     display: flex; align-items: center; gap: 5px; cursor: pointer; font-weight: 600;
   }
 
-  /* Copy Buttons: 2 columns on desktop, 1 on mobile */
+  /* Interactive Copy Field Boxes (Visible Text to Select & Drag + Copy Button) */
   .copy-stack {
-    padding: 12px; display: grid; grid-template-columns: 1fr; gap: 8px; flex: 1;
+    padding: 12px; display: grid; grid-template-columns: 1fr; gap: 10px; flex: 1;
   }
   @media (min-width: 768px) {
     .copy-stack {
@@ -317,17 +317,64 @@
     grid-column: auto !important;
   }
 
-  .btn-tap-copy {
-    background: #1a2233; color: #f8fafc; border: 1px solid #2d3b55;
-    padding: 10px 12px; border-radius: 10px; font-size: 12px; font-weight: 700;
-    cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center;
-    transition: background 0.15s, border-color 0.15s; min-height: 40px;
+  .field-box {
+    background: #0d111a; border: 1px solid #232b3d; border-radius: 12px;
+    padding: 8px 10px; display: flex; flex-direction: column; gap: 5px;
+    transition: border-color 0.15s;
   }
-  .btn-tap-copy:hover { background: #222d44; border-color: var(--accent); }
-  .btn-tap-copy:active { background: #3b82f6; color: #fff; }
-  .btn-tap-copy.copied { background: #10b981 !important; color: #fff !important; border-color: #10b981 !important; }
-  .btn-tap-copy.zazzle { border-color: rgba(168, 85, 247, 0.4); }
-  .btn-tap-copy.zazzle:hover { border-color: var(--purple); }
+  .field-box:focus-within {
+    border-color: var(--accent);
+  }
+  .field-box.zazzle {
+    border-color: rgba(168, 85, 247, 0.35);
+  }
+  .field-box.zazzle:focus-within {
+    border-color: var(--purple);
+  }
+
+  .field-top {
+    display: flex; justify-content: space-between; align-items: center; gap: 6px;
+  }
+  .field-label {
+    font-size: 11px; font-weight: 700; color: #cbd5e1;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .field-box.zazzle .field-label {
+    color: #e9d5ff;
+  }
+
+  .btn-copy-action {
+    background: #1e293b; color: #38bdf8; border: 1px solid #334155;
+    padding: 4px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 800;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
+    white-space: nowrap; transition: all 0.15s;
+  }
+  .btn-copy-action:hover {
+    background: #2563eb; color: #fff; border-color: #3b82f6;
+  }
+  .btn-copy-action.zazzle {
+    color: #c084fc; border-color: rgba(168, 85, 247, 0.4);
+  }
+  .btn-copy-action.zazzle:hover {
+    background: #9333ea; color: #fff;
+  }
+  .btn-copy-action.copied {
+    background: #10b981 !important; color: #fff !important; border-color: #10b981 !important;
+  }
+
+  /* Real Text Input / Textarea for Easy Drag, Select All, and Copy */
+  .field-input, .field-textarea {
+    width: 100%; background: #161b26; border: 1px solid #2a3449;
+    border-radius: 8px; color: #f8fafc; font-family: inherit; font-size: 12px;
+    font-weight: 600; padding: 7px 10px; outline: none; cursor: text;
+    user-select: all; -webkit-user-select: all; transition: border-color 0.15s, background 0.15s;
+  }
+  .field-input:focus, .field-textarea:focus {
+    border-color: var(--accent); background: #1a2233;
+  }
+  .field-textarea {
+    resize: vertical; min-height: 48px; line-height: 1.4;
+  }
 
   /* Toast Notification */
   #toast {
@@ -532,6 +579,16 @@ function makeZazzle10Tags(mainTag, supportingStr) {
   return all10.map(t => t.includes(' ') ? `"${t}"` : t).join(' ');
 }
 
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function loadState() {
   const saved = localStorage.getItem('nws_mobile_state_v1');
   let state = saved ? JSON.parse(saved) : {};
@@ -552,16 +609,64 @@ function togglePlat(id, plat, checked) {
   renderAll();
 }
 
-function copyText(text, label) {
-  navigator.clipboard.writeText(text);
-  showToast('✅ ก๊อป ' + label + ' แล้ว!');
+// Robust Dual-Method Copy Function with Visual State
+function copyFromInput(inputId, label, btnEl) {
+  const el = document.getElementById(inputId);
+  if (!el) return;
+
+  // Auto-focus and select all text
+  el.focus();
+  el.select();
+  if (el.setSelectionRange) {
+    el.setSelectionRange(0, 99999);
+  }
+
+  const textToCopy = el.value;
+
+  // Primary: Modern Async Clipboard API
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      onCopySuccess(btnEl, label);
+    }).catch(err => {
+      fallbackExecCopy(el, btnEl, label);
+    });
+  } else {
+    // Fallback: execCommand copy
+    fallbackExecCopy(el, btnEl, label);
+  }
+}
+
+function fallbackExecCopy(el, btnEl, label) {
+  try {
+    const ok = document.execCommand('copy');
+    if (ok) {
+      onCopySuccess(btnEl, label);
+    } else {
+      showToast('⚠️ คัดลอกอัตโนมัติไม่สำเร็จ ให้กด Ctrl+C เพื่อก็อปปี้ข้อความที่ไฮไลท์ไว้');
+    }
+  } catch (e) {
+    showToast('⚠️ คัดลอกอัตโนมัติไม่สำเร็จ ให้กด Ctrl+C เพื่อก็อปปี้ข้อความที่ไฮไลท์ไว้');
+  }
+}
+
+function onCopySuccess(btnEl, label) {
+  showToast('✅ ก๊อป ' + label + ' สำเร็จ!');
+  if (btnEl) {
+    const orig = btnEl.innerHTML;
+    btnEl.classList.add('copied');
+    btnEl.innerHTML = '✅ ก็อปแล้ว!';
+    setTimeout(() => {
+      btnEl.classList.remove('copied');
+      btnEl.innerHTML = orig;
+    }, 1500);
+  }
 }
 
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.innerText = msg;
   t.style.display = 'block';
-  setTimeout(() => { t.style.display = 'none'; }, 1400);
+  setTimeout(() => { t.style.display = 'none'; }, 1600);
 }
 
 function setFilter(f) {
@@ -612,7 +717,7 @@ function renderAll() {
             </div>
             <div class="meta">
               <div class="badge-row">${badges}</div>
-              <div class="card-title">${d.title}</div>
+              <div class="card-title">${escapeHtml(d.title)}</div>
               <div class="card-subtext">📁 ${d.files[0]}</div>
               <a href="${thumb}" download="NewaveStudio_${d.id}.jpg" class="btn-download-img">📥 เซฟรูป</a>
             </div>
@@ -627,40 +732,58 @@ function renderAll() {
 
           <div class="copy-stack">
             <!-- Title -->
-            <button class="btn-tap-copy" onclick="copyText(${JSON.stringify(d.title)}, 'Title')">
-              <span>📋 Copy Title (RB/TP)</span>
-              <span style="font-size:11px; opacity:0.6;">กดแตะ</span>
-            </button>
+            <div class="field-box">
+              <div class="field-top">
+                <span class="field-label">📋 Title (RB/TP)</span>
+                <button class="btn-copy-action" onclick="copyFromInput('in_title_${d.id}', 'Title', this)">📋 คัดลอก</button>
+              </div>
+              <input type="text" readonly class="field-input" id="in_title_${d.id}" value="${escapeHtml(d.title)}" onclick="this.select()">
+            </div>
 
             <!-- Zazzle Title -->
-            <button class="btn-tap-copy zazzle" onclick="copyText(${JSON.stringify(zzTitle)}, 'Zazzle Title (≤48)')">
-              <span style="color:#e9d5ff;">🟣 Zazzle Title (≤48)</span>
-              <span style="font-size:11px; opacity:0.6;">กดแตะ</span>
-            </button>
+            <div class="field-box zazzle">
+              <div class="field-top">
+                <span class="field-label">🟣 Zazzle Title (≤48)</span>
+                <button class="btn-copy-action zazzle" onclick="copyFromInput('in_zztitle_${d.id}', 'Zazzle Title', this)">🟣 คัดลอก</button>
+              </div>
+              <input type="text" readonly class="field-input" id="in_zztitle_${d.id}" value="${escapeHtml(zzTitle)}" onclick="this.select()">
+            </div>
 
             <!-- Main Tag -->
-            <button class="btn-tap-copy" onclick="copyText(${JSON.stringify(d.main_tag)}, 'Main Tag')">
-              <span>🏷️ Main: <b>${d.main_tag}</b></span>
-              <span style="font-size:11px; opacity:0.6;">กดแตะ</span>
-            </button>
+            <div class="field-box">
+              <div class="field-top">
+                <span class="field-label">🏷️ Main Tag</span>
+                <button class="btn-copy-action" onclick="copyFromInput('in_mtag_${d.id}', 'Main Tag', this)">📋 คัดลอก</button>
+              </div>
+              <input type="text" readonly class="field-input" id="in_mtag_${d.id}" value="${escapeHtml(d.main_tag)}" onclick="this.select()">
+            </div>
 
             <!-- Zazzle 10 Tags -->
-            <button class="btn-tap-copy zazzle" onclick="copyText(${JSON.stringify(zzTags)}, 'Zazzle 10 Tags')">
-              <span style="color:#e9d5ff;">🟣 Zazzle 10 Tags</span>
-              <span style="font-size:11px; opacity:0.6;">กดแตะ</span>
-            </button>
+            <div class="field-box zazzle">
+              <div class="field-top">
+                <span class="field-label">🟣 Zazzle 10 Tags</span>
+                <button class="btn-copy-action zazzle" onclick="copyFromInput('in_zztags_${d.id}', 'Zazzle Tags', this)">🟣 คัดลอก</button>
+              </div>
+              <input type="text" readonly class="field-input" id="in_zztags_${d.id}" value="${escapeHtml(zzTags)}" onclick="this.select()">
+            </div>
 
             <!-- 14 Tags -->
-            <button class="btn-tap-copy full-width" onclick="copyText(${JSON.stringify(d.supporting_tags)}, '14 Tags')">
-              <span>🏷️ Copy 14 Tags (RB/TP)</span>
-              <span style="font-size:11px; opacity:0.6;">กดแตะ</span>
-            </button>
+            <div class="field-box full-width">
+              <div class="field-top">
+                <span class="field-label">🏷️ 14 Tags (RB/TP)</span>
+                <button class="btn-copy-action" onclick="copyFromInput('in_tags14_${d.id}', '14 Tags', this)">📋 คัดลอก</button>
+              </div>
+              <input type="text" readonly class="field-input" id="in_tags14_${d.id}" value="${escapeHtml(d.supporting_tags)}" onclick="this.select()">
+            </div>
 
             <!-- Description -->
-            <button class="btn-tap-copy full-width" onclick="copyText(${JSON.stringify(d.desc)}, 'Description')">
-              <span>📝 Copy Description (ทุกแพลตฟอร์ม)</span>
-              <span style="font-size:11px; opacity:0.6;">กดแตะ</span>
-            </button>
+            <div class="field-box full-width">
+              <div class="field-top">
+                <span class="field-label">📝 Description (ทุกเว็บ)</span>
+                <button class="btn-copy-action" onclick="copyFromInput('in_desc_${d.id}', 'Description', this)">📋 คัดลอก</button>
+              </div>
+              <textarea readonly class="field-textarea" id="in_desc_${d.id}" rows="2" onclick="this.select()">${escapeHtml(d.desc)}</textarea>
+            </div>
           </div>
         </div>
       `;
@@ -674,8 +797,8 @@ function renderAll() {
             <p>${col.col_title}</p>
           </div>
           <div class="col-btn-row">
-            <button class="btn-col-copy" onclick="copyText(${JSON.stringify(col.col_title)}, 'ชื่อ Collection')">📋 ก๊อปชื่อ Collection</button>
-            <button class="btn-col-copy" onclick="copyText(${JSON.stringify(col.col_tags)}, '5 Tags')">🟣 ก๊อป 5 Tags</button>
+            <button class="btn-col-copy" onclick="copyTextDirect(${JSON.stringify(col.col_title)}, 'ชื่อ Collection')">📋 ก๊อปชื่อ Collection</button>
+            <button class="btn-col-copy" onclick="copyTextDirect(${JSON.stringify(col.col_tags)}, '5 Tags')">🟣 ก๊อป 5 Tags</button>
           </div>
         </div>
         <div class="cards-grid">
@@ -684,6 +807,28 @@ function renderAll() {
       </div>
     `;
   }).join('');
+}
+
+function copyTextDirect(text, label) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => showToast('✅ ก๊อป ' + label + ' สำเร็จ!'))
+      .catch(() => fallbackDirect(text, label));
+  } else {
+    fallbackDirect(text, label);
+  }
+}
+
+function fallbackDirect(text, label) {
+  const t = document.createElement('textarea');
+  t.value = text;
+  t.style.position = 'fixed';
+  t.style.left = '-9999px';
+  document.body.appendChild(t);
+  t.focus();
+  t.select();
+  document.execCommand('copy');
+  document.body.removeChild(t);
+  showToast('✅ ก๊อป ' + label + ' สำเร็จ!');
 }
 
 renderAll();
