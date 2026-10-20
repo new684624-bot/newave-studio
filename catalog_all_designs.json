@@ -1155,5 +1155,45 @@
     "supporting_tags": "emotional support strawberry milk, kawaii strawberry cat, pastel japanese drink, cute chibi kitten, pink aesthetic tee, cute drink tumbler, strawberry lover gift, funny emotional support, kawaii sticker, pastel aesthetic hoodie, newave studio",
     "desc": "Emotional Support Strawberry Milk! An adorably chubby pastel calico chibi kitten joyfully cuddling an oversized vintage Japanese strawberry milk carton box with daisies and floating hearts. The sweetest gift for anime and comfort drink lovers on tumblers, tees, and stickers.",
     "web_thumb": "assets/thumbs/thumb_57.jpg"
+  },
+  {
+    "id": "58",
+    "cid": "cats",
+    "files": [
+      "58_FeralButPolite_RetroPossum_4500x5400.png"
+    ],
+    "img": "58_FeralButPolite_RetroPossum_4500x5400.png",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "style": "70s Retro Groovy Mascot",
+    "bg": "#FAF5ED",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด (พอสซัมจิบชาสุภาพแต่ดุดัน)",
+    "title": "Feral But Polite Funny Retro Possum Teacup Sarcastic Opossum",
+    "main_tag": "funny possum",
+    "supporting_tags": "feral but polite, funny possum shirt, retro groovy opossum, teacup pinky out, chaotic good humor, sarcastic tea mug, introvert animal gift, trash animal meme, cottagecore possum, funny vintage cartoon, cute unhinged gift, newave studio",
+    "desc": "Feral But Polite! Featuring an adorably chaotic 70s retro groovy opossum wearing a vintage floral bandana and round spectacles, daintily sipping tea with its pinky extended. The perfect funny gift for tea lovers, chaotic introverts, and sarcastic animal fans on mugs, shirts, and stickers.",
+    "web_thumb": "assets/thumbs/thumb_58.jpg"
+  },
+  {
+    "id": "59",
+    "cid": "kawaii",
+    "files": [
+      "59_EmotionalSupportCinnamonRoll_Kawaii_4500x5400.png"
+    ],
+    "img": "59_EmotionalSupportCinnamonRoll_Kawaii_4500x5400.png",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "style": "Kawaii Pastel Chibi",
+    "bg": "#FAF5EE",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด (ซินนามอนโรลแมวอ้วนพาสเทล)",
+    "title": "Emotional Support Cinnamon Roll Cute Kawaii Bakery Chibi Cat",
+    "main_tag": "cinnamon roll",
+    "supporting_tags": "emotional support cinnamon roll, kawaii bakery cat, pastry chibi kitten, cinnamon bun lover, bakery canvas tote, cute foodie shirt, cream cheese glaze, baking lover gift, funny emotional support, kawaii sticker, cozy aesthetic hoodie, newave studio",
+    "desc": "Emotional Support Cinnamon Roll! An adorably chubby, super blissful pastel calico chibi kitten comfortably curled up sleeping inside a freshly baked warm cinnamon roll with dripping cream cheese glaze. The sweetest gift for bakers, pastry lovers, and cozy aesthetic fans on tote bags, mugs, and tees.",
+    "web_thumb": "assets/thumbs/thumb_59.jpg"
   }
 ]
