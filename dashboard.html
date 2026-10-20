@@ -3,18 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Newave Studio® — Mobile Upload Dashboard</title>
+<title>Newave Studio® — Universal Upload Dashboard (Mobile & Desktop View)</title>
 <meta name="theme-color" content="#090a0f">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="apple-touch-icon" href="assets/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #090a0f;
     --card: #131722;
+    --card-hover: #191f2e;
     --border: #232a3b;
     --text: #f8fafc;
     --muted: #94a3b8;
@@ -22,143 +23,318 @@
     --btn: #2563eb;
     --green: #10b981;
     --purple: #a855f7;
+    --gold: #f59e0b;
+    --red: #ef4444;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--bg); color: var(--text);
-    padding: 12px; padding-bottom: 90px;
+    padding: 0; padding-bottom: 90px;
     line-height: 1.5;
+    transition: background 0.3s;
   }
 
-  /* Sticky Top Bar */
+  /* Main Responsive Container */
+  .app-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    transition: max-width 0.3s ease;
+  }
+
+  /* Forced Mobile Simulator View Mode */
+  body.force-mobile .app-container {
+    max-width: 520px;
+    padding: 12px 14px;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    background: #0c0e14;
+    min-height: 100vh;
+  }
+  body.force-desktop .app-container {
+    max-width: 1440px;
+  }
+
+  /* Sticky Header */
   .top-bar {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(9, 10, 15, 0.92); backdrop-filter: blur(14px);
+    background: rgba(9, 10, 15, 0.94); backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
-    margin: -12px -12px 14px -12px; padding: 12px 16px;
+    padding: 14px 20px;
+  }
+  .top-bar-inner {
+    max-width: 1400px; margin: 0 auto;
     display: flex; justify-content: space-between; align-items: center;
+    gap: 12px; flex-wrap: wrap;
+  }
+  body.force-mobile .top-bar-inner {
+    max-width: 520px;
+  }
+  
+  .brand-group {
+    display: flex; align-items: center; gap: 12px;
   }
   .brand-title {
-    font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700;
-    display: flex; align-items: center; gap: 8px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700;
+    display: flex; align-items: center; gap: 8px; color: #fff; text-decoration: none;
+  }
+
+  /* View Mode Switcher (Mobile / Desktop / Auto) */
+  .view-switch {
+    display: inline-flex; background: #161b26; border: 1px solid var(--border);
+    border-radius: 999px; padding: 3px; gap: 2px;
+  }
+  .v-btn {
+    background: transparent; border: none; color: var(--muted);
+    font-size: 11.5px; font-weight: 700; padding: 5px 12px; border-radius: 999px;
+    cursor: pointer; display: flex; align-items: center; gap: 4px; transition: 0.15s;
+  }
+  .v-btn.active {
+    background: #1e293b; color: var(--accent); box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+
+  /* Header Navigation Links */
+  .nav-group {
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
   }
   .btn-site-link {
-    background: #1e293b; color: #38bdf8; border: 1px solid #334155;
-    padding: 6px 12px; border-radius: 999px; font-size: 11.5px; font-weight: 700;
-    text-decoration: none;
+    background: #1e293b; color: #e2e8f0; border: 1px solid #334155;
+    padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: 0.15s;
+  }
+  .btn-site-link:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-site-link.highlight {
+    background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.4);
   }
 
-  /* Mobile Quick Action Buttons */
+  /* Quick Actions (Upload Links + Template Link) */
   .quick-links {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;
   }
+  @media (max-width: 680px) {
+    .quick-links { grid-template-columns: repeat(2, 1fr); }
+  }
+  body.force-mobile .quick-links {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
   .link-pill {
     background: var(--card); border: 1px solid var(--border);
-    border-radius: 12px; padding: 10px 6px; text-align: center;
-    text-decoration: none; font-size: 12px; font-weight: 700;
-    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    border-radius: 14px; padding: 12px 10px; text-align: center;
+    text-decoration: none; font-size: 12.5px; font-weight: 700;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    transition: transform 0.15s, border-color 0.15s;
   }
-  .link-pill.rb { color: #f87171; border-color: #ef444455; }
+  .link-pill:hover { transform: translateY(-2px); }
   .link-pill.tp { color: #60a5fa; border-color: #3b82f655; }
   .link-pill.zz { color: #c084fc; border-color: #a855f755; }
+  .link-pill.rb { color: #f87171; border-color: #ef444455; }
+  .link-pill.tpl { color: #34d399; border-color: #10b98155; }
 
-  /* Sticky Filter Bar */
+  /* Product Template Guide Banner */
+  .template-banner {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 16px;
+    padding: 14px 18px; margin-bottom: 18px;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .template-info h3 {
+    font-size: 14px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;
+  }
+  .template-info p {
+    font-size: 12px; color: var(--muted);
+  }
+  .template-actions {
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+  }
+  .btn-template-drive {
+    background: #10b981; color: #0b0f19; font-weight: 800; font-size: 12px;
+    padding: 8px 14px; border-radius: 10px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px; transition: 0.15s;
+  }
+  .btn-template-drive:hover { background: #34d399; }
+  .btn-template-sheet {
+    background: #1e293b; color: var(--accent); border: 1px solid rgba(56, 189, 248, 0.4);
+    font-weight: 700; font-size: 12px; padding: 7px 12px; border-radius: 10px; cursor: pointer;
+  }
+
+  /* Sizing Cheat Sheet Modal */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px); z-index: 999; justify-content: center; align-items: center; padding: 16px;
+  }
+  .modal-box {
+    background: #111521; border: 1px solid var(--border); border-radius: 20px;
+    width: 100%; max-width: 650px; max-height: 85vh; overflow-y: auto; padding: 24px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.6); position: relative;
+  }
+  .modal-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+  .modal-close {
+    background: #1e293b; border: none; color: #fff; width: 32px; height: 32px;
+    border-radius: 50%; font-size: 16px; cursor: pointer; font-weight: bold;
+  }
+  .size-table {
+    width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 10px;
+  }
+  .size-table th, .size-table td {
+    padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+  }
+  .size-table th {
+    background: #161b26; color: var(--accent); font-weight: 700;
+  }
+
+  /* Filter Bar */
   .filter-scroll {
-    display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px;
-    margin-bottom: 14px; scrollbar-width: none;
+    display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px;
+    margin-bottom: 16px; scrollbar-width: none;
   }
   .filter-scroll::-webkit-scrollbar { display: none; }
   .f-btn {
     background: #161b26; color: #94a3b8; border: 1px solid var(--border);
-    padding: 8px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600;
-    white-space: nowrap; cursor: pointer; flex-shrink: 0;
+    padding: 9px 16px; border-radius: 999px; font-size: 13px; font-weight: 600;
+    white-space: nowrap; cursor: pointer; flex-shrink: 0; transition: 0.15s;
   }
-  .f-btn.active { background: #fff; color: #000; border-color: #fff; }
+  .f-btn:hover { border-color: var(--accent); color: #fff; }
+  .f-btn.active { background: #fff; color: #000; border-color: #fff; font-weight: 700; }
 
-  /* Collection Header Banner */
+  /* Collection Banner */
   .col-banner {
     background: #151a24; border: 1px solid var(--border);
-    border-radius: 14px; padding: 14px; margin-bottom: 14px;
+    border-radius: 16px; padding: 16px 20px; margin-bottom: 16px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
   }
-  .col-banner h2 { font-size: 16px; margin-bottom: 4px; }
-  .col-banner p { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
-  .col-btn-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .col-banner h2 { font-size: 16px; margin-bottom: 4px; color: #fff; }
+  .col-banner p { font-size: 12px; color: var(--muted); }
+  .col-btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
   .btn-col-copy {
     background: #1e293b; color: #e2e8f0; border: 1px solid #334155;
-    padding: 6px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 600;
-    cursor: pointer;
+    padding: 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 600;
+    cursor: pointer; transition: 0.15s;
+  }
+  .btn-col-copy:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Cards Grid: 1 Col on Mobile, 2 Cols on Tablet, 3 Cols on Desktop */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+  @media (min-width: 768px) {
+    .cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .cards-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+  }
+  body.force-mobile .cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+  body.force-desktop .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)) !important;
   }
 
-  /* Product Card for Mobile */
+  /* Product Card */
   .card {
     background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; margin-bottom: 16px; overflow: hidden;
+    border-radius: 18px; overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25); transition: border-color 0.2s, transform 0.2s;
   }
+  .card:hover {
+    border-color: rgba(56, 189, 248, 0.4);
+  }
+
   .card-top {
-    display: flex; gap: 12px; padding: 12px; border-bottom: 1px solid var(--border);
+    display: flex; gap: 14px; padding: 14px; border-bottom: 1px solid var(--border);
   }
   .thumb-wrap {
-    width: 100px; height: 120px; border-radius: 10px; overflow: hidden;
-    flex-shrink: 0; background: #000; border: 1px solid #333; position: relative;
+    width: 110px; height: 130px; border-radius: 12px; overflow: hidden;
+    flex-shrink: 0; background: #000; border: 1px solid #334155; position: relative;
+    cursor: pointer;
   }
   .thumb-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
+    width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s;
   }
-  .meta { flex: 1; min-width: 0; }
-  .badge-row { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 6px; }
+  .thumb-wrap:hover img { transform: scale(1.05); }
+  
+  .meta { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; }
+  .badge-row { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 6px; }
   .badge {
-    font-size: 10px; padding: 2px 6px; border-radius: 4px;
+    font-size: 10px; padding: 2px 7px; border-radius: 6px;
     background: #1e2433; color: #cbd5e1; font-weight: 700;
   }
   .card-title {
     font-size: 13.5px; font-weight: 700; line-height: 1.35; margin-bottom: 4px;
+    color: #fff;
   }
   .card-subtext {
-    font-size: 11px; color: var(--muted);
+    font-size: 11px; color: var(--muted); margin-bottom: 6px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
-  
-  /* Status Row */
-  .status-row {
-    background: #0d1017; padding: 8px 12px; border-bottom: 1px solid var(--border);
-    display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 11.5px;
-  }
-  .status-row label {
-    display: flex; align-items: center; gap: 4px; cursor: pointer; font-weight: 600;
-  }
-
-  /* Copy Buttons Stack (Mobile Optimized Big Touch Area) */
-  .copy-stack {
-    padding: 12px; display: flex; flex-direction: column; gap: 8px;
-  }
-  .copy-btn-block {
-    display: flex; gap: 6px; align-items: stretch;
-  }
-  .btn-tap-copy {
-    flex: 1; background: #1e293b; color: #f8fafc; border: 1px solid #334155;
-    padding: 11px 12px; border-radius: 10px; font-size: 12.5px; font-weight: 700;
-    cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center;
-    transition: background 0.15s;
-  }
-  .btn-tap-copy:active { background: #3b82f6; color: #fff; }
-  .btn-tap-copy.copied { background: #10b981 !important; color: #fff !important; }
-  .btn-tap-copy.zazzle { border-color: #a855f766; }
-  .btn-tap-copy.zazzle:active { background: #a855f7; }
-
-  /* Download Image Button */
   .btn-download-img {
     background: #0f172a; color: #38bdf8; border: 1px solid #1e3a8a;
-    padding: 8px 12px; border-radius: 8px; font-size: 11.5px; font-weight: 700;
+    padding: 7px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 700;
     text-decoration: none; text-align: center; display: inline-flex;
-    align-items: center; justify-content: center; gap: 4px; margin-top: 4px;
+    align-items: center; justify-content: center; gap: 4px; width: fit-content;
   }
+  .btn-download-img:hover { background: #1e293b; }
+
+  /* Status Row */
+  .status-row {
+    background: #0c0f16; padding: 9px 14px; border-bottom: 1px solid var(--border);
+    display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 11.5px;
+  }
+  .status-row label {
+    display: flex; align-items: center; gap: 5px; cursor: pointer; font-weight: 600;
+  }
+
+  /* Copy Buttons: 2 columns on desktop, 1 on mobile */
+  .copy-stack {
+    padding: 12px; display: grid; grid-template-columns: 1fr; gap: 8px; flex: 1;
+  }
+  @media (min-width: 768px) {
+    .copy-stack {
+      grid-template-columns: 1fr 1fr;
+    }
+    .copy-stack .full-width {
+      grid-column: span 2;
+    }
+  }
+  body.force-mobile .copy-stack {
+    grid-template-columns: 1fr !important;
+  }
+  body.force-mobile .copy-stack .full-width {
+    grid-column: auto !important;
+  }
+
+  .btn-tap-copy {
+    background: #1a2233; color: #f8fafc; border: 1px solid #2d3b55;
+    padding: 10px 12px; border-radius: 10px; font-size: 12px; font-weight: 700;
+    cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.15s, border-color 0.15s; min-height: 40px;
+  }
+  .btn-tap-copy:hover { background: #222d44; border-color: var(--accent); }
+  .btn-tap-copy:active { background: #3b82f6; color: #fff; }
+  .btn-tap-copy.copied { background: #10b981 !important; color: #fff !important; border-color: #10b981 !important; }
+  .btn-tap-copy.zazzle { border-color: rgba(168, 85, 247, 0.4); }
+  .btn-tap-copy.zazzle:hover { border-color: var(--purple); }
 
   /* Toast Notification */
   #toast {
-    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-    background: #10b981; color: #fff; padding: 10px 20px; border-radius: 999px;
-    font-size: 13px; font-weight: 700; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    display: none; z-index: 1000;
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: #10b981; color: #fff; padding: 10px 22px; border-radius: 999px;
+    font-size: 13.5px; font-weight: 700; box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    display: none; z-index: 10000;
   }
 </style>
 </head>
@@ -166,37 +342,138 @@
 
   <!-- Sticky Top Header -->
   <div class="top-bar">
-    <div class="brand-title">
-      <span>🌊</span>
-      <span>NEWAVE® STUDIO</span>
-    </div>
-    <div style="display: flex; gap: 8px;">
-      <a href="review.html" class="btn-site-link" style="color: #10b981; border-color: rgba(16, 185, 129, 0.4);">✨ 1-Click Review</a>
-      <a href="index.html" class="btn-site-link">🌐 เว็บไซต์แบรนด์</a>
+    <div class="top-bar-inner">
+      <div class="brand-group">
+        <a href="index.html" class="brand-title">
+          <span>🌊</span>
+          <span>NEWAVE® STUDIO</span>
+        </a>
+
+        <!-- View Mode Switcher -->
+        <div class="view-switch" title="สลับมุมมองหน้าจอสำหรับคอมพิวเตอร์และมือถือ">
+          <button class="v-btn active" id="btnAuto" onclick="setViewMode('auto')">🔄 ออโต้</button>
+          <button class="v-btn" id="btnDesktop" onclick="setViewMode('desktop')">💻 คอม</button>
+          <button class="v-btn" id="btnMobile" onclick="setViewMode('mobile')">📱 มือถือ</button>
+        </div>
+      </div>
+
+      <div class="nav-group">
+        <button class="btn-site-link" onclick="openTemplateModal()" style="color:#34d399; border-color:rgba(16,185,129,0.4);">
+          📐 ไซส์ Template สินค้า
+        </button>
+        <a href="review.html" class="btn-site-link highlight">✨ 1-Click Review</a>
+        <a href="marketing.html" class="btn-site-link">🚀 Marketing Hub</a>
+        <a href="index.html" class="btn-site-link">🌐 เว็บไซต์</a>
+      </div>
     </div>
   </div>
 
-  <!-- Direct Upload Links (กดเปิดหน้าอัปโหลดบนมือถือได้ทันที) -->
-  <div class="quick-links">
-    <a href="https://www.teepublic.com/design/quick_create" target="_blank" class="link-pill tp">
-      <span>🔵</span>
-      <span>อัป TeePublic</span>
-    </a>
-    <a href="https://www.zazzle.com/my/stores" target="_blank" class="link-pill zz">
-      <span>🟣</span>
-      <span>อัป Zazzle</span>
-    </a>
-    <a href="https://www.redbubble.com/portfolio/images/new" target="_blank" class="link-pill rb">
-      <span>🔴</span>
-      <span>อัป Redbubble</span>
-    </a>
+  <div class="app-container">
+
+    <!-- Direct Upload & Templates Bar -->
+    <div class="quick-links">
+      <a href="https://www.teepublic.com/design/quick_create" target="_blank" class="link-pill tp">
+        <span style="font-size:16px;">🔵</span>
+        <span>อัป TeePublic</span>
+      </a>
+      <a href="https://www.zazzle.com/my/stores" target="_blank" class="link-pill zz">
+        <span style="font-size:16px;">🟣</span>
+        <span>อัป Zazzle</span>
+      </a>
+      <a href="https://www.redbubble.com/portfolio/images/new" target="_blank" class="link-pill rb">
+        <span style="font-size:16px;">🔴</span>
+        <span>อัป Redbubble</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/0B23wTS8TZ_xnc1ByVFRSVTB6dnM?resourcekey=0-vfPecK-mMQq1XPnKopQdJQ" target="_blank" class="link-pill tpl">
+        <span style="font-size:16px;">📁</span>
+        <span>Redbubble Templates ➔</span>
+      </a>
+    </div>
+
+    <!-- Redbubble Product Template Drive Quick Access Banner -->
+    <div class="template-banner">
+      <div class="template-info">
+        <h3>📁 Redbubble Official Product Templates (Google Drive)</h3>
+        <p>โฟลเดอร์เทมเพลตทางการสำหรับพิมพ์สินค้า เช่น เสื้อยืด, กระเป๋าเป้, แก้วน้ำ, เคสมือถือ และของแต่งบ้าน (ไฟล์ Newave Studio® ทุกชิ้นเป็น 4500x5400 px มาตรฐานพิมพ์ได้คมชัด 100%)</p>
+      </div>
+      <div class="template-actions">
+        <button class="btn-template-sheet" onclick="openTemplateModal()">📐 ดูสเปกขนาดพิกเซล</button>
+        <a href="https://drive.google.com/drive/folders/0B23wTS8TZ_xnc1ByVFRSVTB6dnM?resourcekey=0-vfPecK-mMQq1XPnKopQdJQ" target="_blank" class="btn-template-drive">
+          เปิด Google Drive โฟลเดอร์ ➔
+        </a>
+      </div>
+    </div>
+
+    <!-- Filter Pills -->
+    <div class="filter-scroll" id="filterBar"></div>
+
+    <!-- Cards Container -->
+    <div id="cardsContainer"></div>
+
   </div>
 
-  <!-- Filter Pills -->
-  <div class="filter-scroll" id="filterBar"></div>
+  <!-- Sizing Cheat Sheet Modal -->
+  <div class="modal-overlay" id="templateModal" onclick="closeTemplateModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2 style="font-size:17px; font-weight:800; color:#fff; display:flex; align-items:center; gap:8px;">
+          <span>📐</span> คู่มือขนาด Product Templates & DPI มาตรฐาน
+        </h2>
+        <button class="modal-close" onclick="closeTemplateModal()">&times;</button>
+      </div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:14px;">
+        ไฟล์ Artwork ต้นฉบับทั้งหมดของ <b>Newave Studio®</b> ถูกผลิตที่ความละเอียดสูงสุด <b>4500 x 5400 px (300 DPI)</b> พื้นหลังโปร่งใส ซึ่งครอบคลุมมากกว่า 95% ของสินค้าทุกหมวดหมู่บน Redbubble, TeePublic และ Zazzle โดยอัตโนมัติ:
+      </p>
 
-  <!-- Cards Container -->
-  <div id="cardsContainer"></div>
+      <table class="size-table">
+        <thead>
+          <tr>
+            <th>หมวดหมู่สินค้า</th>
+            <th>ขนาดพิกเซลที่แนะนำ</th>
+            <th>คำแนะนำในการจัดวาง</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>👕 เสื้อยืด & ฮู้ดดี้ (Tees / Hoodies)</b></td>
+            <td><code style="color:#38bdf8;">4500 x 5400 px</code></td>
+            <td>มาตรฐานหลัก วางกึ่งกลางหน้าอกหรือกลางหลัง</td>
+          </tr>
+          <tr>
+            <td><b>🎒 กระเป๋าเป้ (Backpacks)</b></td>
+            <td><code style="color:#38bdf8;">4575 x 5900 px</code></td>
+            <td>ใช้ไฟล์เทมเพลตใน Google Drive เพื่อเว้นขอบซิป</td>
+          </tr>
+          <tr>
+            <td><b>☕ แก้วกาแฟ & Tumbler (Mugs)</b></td>
+            <td><code style="color:#38bdf8;">2700 x 1800 px</code></td>
+            <td>วางลาย 2 ฝั่ง (ซ้าย-ขวา) หรือลายเดียวตรงกลาง</td>
+          </tr>
+          <tr>
+            <td><b>🖼️ พรมแขวน / ผ้าห่ม (Tapestries)</b></td>
+            <td><code style="color:#38bdf8;">7632 x 6480 px</code></td>
+            <td>ลายแนวนอนขนาดใหญ่พิเศษ</td>
+          </tr>
+          <tr>
+            <td><b>📱 เคสโทรศัพท์มือถือ (Phone Cases)</b></td>
+            <td><code style="color:#38bdf8;">1600 x 2800 px</code></td>
+            <td>ระวังช่องเจาะรูกล้องด้านบนซ้าย/กลาง</td>
+          </tr>
+          <tr>
+            <td><b>🏷️ สติ๊กเกอร์ (Stickers / Decals)</b></td>
+            <td><code style="color:#38bdf8;">ตัดขอบตามไฟล์ PNG</code></td>
+            <td>ระบบ Redbubble จะ Die-Cut ขอบขาวให้อัตโนมัติ</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:20px; display:flex; justify-content:flex-end;">
+        <a href="https://drive.google.com/drive/folders/0B23wTS8TZ_xnc1ByVFRSVTB6dnM?resourcekey=0-vfPecK-mMQq1XPnKopQdJQ" target="_blank" class="btn-template-drive">
+          📁 เปิดดาวน์โหลดเทมเพลตใน Google Drive ➔
+        </a>
+      </div>
+    </div>
+  </div>
 
   <div id="toast">✅ ก๊อปปี้ข้อความแล้ว!</div>
 
@@ -204,6 +481,36 @@
 const COLLECTIONS = [{"cid": "kawaii", "icon": "🎀", "name": "Collection 1: Kawaii Pastel Chibi Club (เซ็ตแมวอ้วนพาสเทลสุดคิ้วท์)", "color": "#f472b6", "col_title": "Kawaii Pastel Chibi Cats & Cozy Aesthetic Gifts", "col_desc": "Adorably grumpy-cute kawaii pastel chibi cat illustrations, cozy matcha and coffee lovers art, and soft pastel aesthetic gifts by Newave® Studio on shirts, hoodies, mugs, tumblers, tote bags, and stickers.", "col_tags": "\"kawaii pastel cat\" \"chibi cat aesthetic\" \"cute grumpy cat\" \"kawaii cat mom gift\" \"pastel anime kitty\""}, {"cid": "streetwear", "icon": "🌊", "name": "Collection 2: Newave® Studio Streetwear Archive [NWS] (ขายได้ทั้งปี)", "color": "#38bdf8", "col_title": "Newave Studio Streetwear & Future Graphic Archive", "col_desc": "Contemporary minimalist streetwear, geometric emblems, and urban gorpcore graphic apparel from the official Newave® Studio [NWS] archive. Designed for heavyweight hoodies, tees, caps, and everyday essentials.", "col_tags": "\"minimalist streetwear\" \"newave studio\" \"urban graphic hoodie\" \"modern geometric logo\" \"gorpcore streetwear\""}, {"cid": "cats", "icon": "🐱", "name": "Collection 3: Funny Cat & Pet Lover Club (ทาสแมวกวนๆ & สัตว์เลี้ยง)", "color": "#fbbf24", "col_title": "Funny Sarcastic Cat Lover & Chaotic Pet Gifts", "col_desc": "Hilarious judgmental cats, unhinged internet meme kittens, 3D art toy cats, and festive pet puns by Newave® Studio. Perfect gifts for cat moms, cat dads, and pet lovers.", "col_tags": "\"funny cat lover\" \"sarcastic cat mom\" \"chaotic christmas cat\" \"judgmental cat meme\" \"funny pet gift\""}, {"cid": "introvert", "icon": "☕", "name": "Collection 4: Cozy Introvert & Iced Coffee Club (คนโลกส่วนตัวสูง & ทาสกาแฟเย็น)", "color": "#a78bfa", "col_title": "Cozy Introvert, Low Social Battery & Iced Coffee", "col_desc": "Relatable designs for homebodies, introverts with 1% social battery, and year-round iced coffee addicts. Featuring cozy winter aesthetics, lo-fi anime vibes, tarot cards, and cancelling plans humor.", "col_tags": "\"introvert humor\" \"low social battery\" \"iced coffee addict\" \"canceling plans\" \"cozy homebody gift\""}, {"cid": "office", "icon": "💼", "name": "Collection 5: Sarcastic Office & WFH Burnout (มุกประชดงาน & เพื่อนร่วมงาน)", "color": "#34d399", "col_title": "Sarcastic Office Humor, Coworker & WFH Gifts", "col_desc": "Witty corporate survival gear, passive-aggressive email humor, PTO countdowns, and mandatory office party icebreakers. Ideal for desk mugs, thermal tumblers, laptop stickers, and Secret Santa gifts for coworkers.", "col_tags": "\"sarcastic office humor\" \"funny coworker gift\" \"work from home mug\" \"per my last email\" \"secret santa office\""}];
 const DESIGNS = [{"id": "24", "cid": "kawaii", "files": ["24A_ChristmasTreeAskingForIt_UserKawaiiArch_LightShirt_4500x5400.png", "24B_ChristmasTreeAskingForIt_UserKawaiiArch_DarkShirt_4500x5400.png", "23A_ChristmasTreeAskingForIt_KawaiiPastelChibi_LightShirt_4500x5400.png", "23B_ChristmasTreeAskingForIt_KawaiiPastelChibi_DarkShirt_4500x5400.png"], "img": "24A_ChristmasTreeAskingForIt_UserKawaiiArch_LightShirt_4500x5400.png", "season": "Holiday Q4", "style": "Kawaii Pastel Chibi", "bg": "#FAF6F0", "rb_done": true, "tp_done": false, "zz_done": false, "status_note": "🔴 Redbubble: อัปโหลดแล้ว (1 ใน 5 ลายแรก)", "title": "The Christmas Tree Was Asking For It Signed The Cat Kawaii Pastel Chibi Cat", "main_tag": "christmas cat", "supporting_tags": "kawaii christmas cat, the christmas tree was asking for it, signed the cat, funny christmas cat, cat in christmas tree, naughty cat christmas, cat tangled in christmas lights, pastel chibi cat, calico cat christmas, funny cat mom gift, cute grumpy cat, chaotic cat holiday, kawaii cat sticker, pastel holiday", "desc": "The Christmas Tree Was Asking For It (Signed, The Cat)! An adorably grumpy-cute kawaii pastel chibi calico cat sitting triumphantly tangled inside a pastel mint Christmas tree with fairy lights and ornaments. Perfect for cat moms, kawaii aesthetic lovers, stickers, mugs, and cozy holiday hoodies!", "web_thumb": "assets/thumbs/thumb_24.jpg"}, {"id": "28", "cid": "kawaii", "files": ["28A_CatJudge_KawaiiPastelChibi_LightShirt_4500x5400.png", "28B_CatJudge_KawaiiPastelChibi_DarkShirt_4500x5400.png"], "img": "28A_CatJudge_KawaiiPastelChibi_LightShirt_4500x5400.png", "season": "Evergreen (ขายทั้งปี 365 วัน)", "style": "Kawaii Pastel Chibi", "bg": "#FAF6F0", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด (ลายใหม่ล่าสุดสไตล์ Kawaii)", "title": "My Cat And I Silently Judge Everyone Kawaii Pastel Chibi Grumpy Cat", "main_tag": "kawaii cat", "supporting_tags": "kawaii grumpy cat, my cat and i silently judge everyone, silently judge everyone, judgmental cat meme, cute pastel chibi cat, funny cat mom gift, sarcastic cat lover, scottish fold chibi cat, matcha mug cute cat, introvert cat shirt, sassy kitty sticker, pastel aesthetic cat, deadpan side eye cat, funny pet mug", "desc": "My Cat And I Silently Judge Everyone! Featuring an adorably chubby, grumpy-cute kawaii pastel chibi cat giving the ultimate judgmental side-eye while holding a pastel daisy matcha mug. Perfect year-round gift for cat moms, cat dads, introverts, and kawaii aesthetic lovers on shirts, mugs, tumblers, tote bags, and stickers!", "web_thumb": "assets/thumbs/thumb_28.jpg"}, {"id": "29", "cid": "kawaii", "files": ["29A_DearSantaCat_KawaiiPastelChibi_LightShirt_4500x5400.png", "29B_DearSantaCat_KawaiiPastelChibi_DarkShirt_4500x5400.png"], "img": "29A_DearSantaCat_KawaiiPastelChibi_LightShirt_4500x5400.png", "season": "Holiday Q4", "style": "Kawaii Pastel Chibi", "bg": "#FAF6F0", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด (ลายใหม่ล่าสุดสไตล์ Kawaii)", "title": "Dear Santa I Can Explain But First What Did My Cat Tell You Kawaii Cat", "main_tag": "dear santa", "supporting_tags": "what did my cat tell you, dear santa i can explain, kawaii christmas cat, pastel chibi cat, funny christmas cat, snitch cat humor, naughty cat christmas, ginger tabby cat, cat mom christmas gift, broken christmas ornament, north pole letter cat, cute grumpy christmas cat, kawaii cat sticker, pastel holiday", "desc": "Dear Santa, I Can Explain. But First, What Did My Cat Tell You? Featuring an adorably smug, grumpy-cute kawaii pastel chibi cat in a crooked Santa hat with crossed paws sitting beside a paw-stamped SANTA envelope and a broken ornament. Perfect for cat moms, cat dads, mugs, tumblers, stickers, and cozy holiday shirts!", "web_thumb": "assets/thumbs/thumb_29.jpg"}, {"id": "10_Kawaii", "cid": "kawaii", "files": ["10_Style5_KawaiiPastelChibi_FestiveExhausted_4500x5400.png"], "img": "10_Style5_KawaiiPastelChibi_FestiveExhausted_4500x5400.png", "season": "Holiday Q4", "style": "Kawaii Pastel Chibi", "bg": "#FAF6F0", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Festive On The Outside Exhausted On The Inside Kawaii Pastel Chibi Cat", "main_tag": "kawaii christmas", "supporting_tags": "festive on the outside, exhausted on the inside, sleepy chibi cat, pastel reindeer hoodie, hot cocoa marshmallow mug, tired christmas cat, cute introvert christmas, low social battery, kawaii holiday sticker, cozy winter kitty, pastel aesthetic christmas, funny tired coffee, cute sleepy kitten, holiday burnout", "desc": "Festive On The Outside, Exhausted On The Inside! An adorably sleepy kawaii pastel chibi cat wearing an oversized pastel reindeer hoodie and resting on a marshmallow hot cocoa mug. Perfect for cozy introverts and pastel lovers!", "web_thumb": "assets/thumbs/thumb_10_Kawaii.jpg"}, {"id": "25", "cid": "streetwear", "files": ["25A_NewaveStudio_StreetwearArchive_LightHoodie_4500x5400.png", "25B_NewaveStudio_StreetwearArchive_DarkHoodie_4500x5400.png"], "img": "25A_NewaveStudio_StreetwearArchive_LightHoodie_4500x5400.png", "season": "Evergreen (ขายทั้งปี 365 วัน)", "style": "3-Brand Hybrid Streetwear Archive (Crying Center x FPA x OWOX)", "bg": "#F2F2F0", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด (ลายประจำแบรนด์ Newave Studio)", "title": "Newave Studio Outbrave Moving Archive Modern Geometric Y2K Streetwear", "main_tag": "streetwear", "supporting_tags": "newave studio, modern streetwear graphic, gorpcore streetwear, future pattern archive, urban fashion hoodie, y2k geometric logo, negative space star, asian streetwear aesthetic, minimal graphic tee, outbrave moving, contemporary design archive, hypebeast hoodie print, abstract monogram art, pastel streetwear", "desc": "Newave Studio® — Outbrave • Moving • Archive [ 2026 ]. A contemporary urban streetwear and gorpcore graphic lockup combining bold geometric ribbon typography, a negative-space four-point star, and technical archive coordinates in muted periwinkle lavender, acid lime, and warm coral.", "web_thumb": "assets/thumbs/thumb_25.jpg"}, {"id": "26", "cid": "streetwear", "files": ["26A_NewaveStudio_CoreEmblemLogo_BlackInk_4500x5400.png", "26B_NewaveStudio_CoreEmblemLogo_WhiteInk_4500x5400.png", "27A_NewaveStudio_TwinWaveLogo_BlackInk_4500x5400.png", "27B_NewaveStudio_TwinWaveLogo_WhiteInk_4500x5400.png"], "img": "26A_NewaveStudio_CoreEmblemLogo_BlackInk_4500x5400.png", "season": "Evergreen (ขายทั้งปี 365 วัน)", "style": "Minimalist Streetwear Brand Emblem", "bg": "#F2F2F0", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด (โลโก้หลัก Newave Studio)", "title": "Newave Studio Future Graphic Archive Minimalist Geometric Star Wave Emblem", "main_tag": "minimalist", "supporting_tags": "minimalist streetwear, newave studio, geometric wave logo, negative space star emblem, minimal designer hoodie, modern brutalist logo, future graphic archive, monochrome streetwear, clean aesthetic shirt, urban outdoor label, contemporary graphic design, black and white emblem, minimalist brand logo, studio archive tee", "desc": "Newave® Studio — Future Graphic Archive. An iconic minimalist streetwear emblem fusing sweeping geometric wave capsules with a central negative-space four-point star and clean modern typography. Timeless monochrome statement piece for hoodies, t-shirts, caps, and laptop stickers.", "web_thumb": "assets/thumbs/thumb_26.jpg"}, {"id": "01", "cid": "cats", "files": ["01_CatJudge_Gemini_Evergreen_4500x5400.png", "01b_CatJudge_Grok_Evergreen_4500x5400.png"], "img": "01_CatJudge_Gemini_Evergreen_4500x5400.png", "season": "Evergreen (ขายทั้งปี 365 วัน)", "style": "Retro Groovy Cat", "bg": "#191919", "rb_done": true, "tp_done": false, "zz_done": false, "status_note": "🔴 Redbubble: อัปโหลดแล้ว (1 ใน 5 ลายแรก)", "title": "My Cat And I Silently Judge Everyone Funny Retro Cat Lover", "main_tag": "funny cat", "supporting_tags": "judgmental cat, im not judging you, my cat is judging you, grumpy retro cat, sarcastic cat mom, funny cat dad gift, deadpan cat humor, vintage 70s cat art, chubby black cat, introvert cat lover, sassy feline meme, cute attitude cat, cat staring meme, retro groovy cat", "desc": "My Cat And I Silently Judge Everyone! Featuring an unbothered chubby retro cat holding a coffee mug with the ultimate judgmental stare. Perfect everyday sarcastic gift for cat moms, cat dads, and introverts.", "web_thumb": "assets/thumbs/thumb_01.jpg"}, {"id": "21", "cid": "cats", "files": ["21_EverythingIsFestive_UnhingedMemeCat_Holiday_4500x5400.png"], "img": "21_EverythingIsFestive_UnhingedMemeCat_Holiday_4500x5400.png", "season": "Holiday Q4", "style": "2020–2026 Unhinged Meme Doodle", "bg": "#191919", "rb_done": true, "tp_done": true, "zz_done": true, "status_note": "🟣 Zazzle: ตีพิมพ์แล้วบน Thermal Tumbler | 🔵 TeePublic: อยู่ใน Bulk Uploader | 🔴 Redbubble: อัปโหลดแล้ว", "title": "Its Fine Im Fine Everything Is Festive Chaotic Meme Cat Burning Christmas Tree", "main_tag": "christmas cat", "supporting_tags": "its fine im fine, everything is festive, chaotic meme cat, poorly drawn cat doodle, unhinged christmas meme, burning christmas tree, funny this is fine parody, derpy cat iced coffee, sarcastic holiday chaos, funny white elephant gift, relatable holiday stress, millennial meme shirt, gen z internet humor, iced coffee christmas", "desc": "It's Fine. I'm Fine. Everything Is Festive! A hilarious chaotic internet meme doodle featuring a wide-eyed derpy cat in a Santa hat calmly sipping iced coffee while a Christmas tree burns in the background. The ultimate relatable holiday stress t-shirt, coffee mug, tote bag, and sticker.", "web_thumb": "assets/thumbs/thumb_21.jpg"}, {"id": "18", "cid": "cats", "files": ["18_OverstimulatedClayCat_3DVinylToy_Holiday_4500x5400.png"], "img": "18_OverstimulatedClayCat_3DVinylToy_Holiday_4500x5400.png", "season": "Holiday Q4", "style": "2020–2026 3D Claymorphism Vinyl Toy", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Overstimulated Undercaffeinated And Forced To Be Festive 3D Clay Toy Cat", "main_tag": "overstimulated", "supporting_tags": "overstimulated shirt, undercaffeinated coffee, forced to be festive, 3d clay cat aesthetic, blind box vinyl toy style, cute grumpy crying cat, puffer jacket cat christmas, funny introvert holiday, sensory overload humor, iced coffee christmas, sarcastic holiday sweatshirt, designer art toy aesthetic, claymorphism cute cat, tired coffee addict", "desc": "Overstimulated, Undercaffeinated, & Forced To Be Festive! Adorable 3D matte clay vinyl designer toy style illustration of a teary-eyed chubby cat in a cozy red winter puffer jacket clutching an iced coffee and tangled in Christmas lights.", "web_thumb": "assets/thumbs/thumb_18.jpg"}, {"id": "19", "cid": "cats", "files": ["19_ChronicallyTired_Y2KCyberChrome_Holiday_4500x5400.png"], "img": "19_ChronicallyTired_Y2KCyberChrome_Holiday_4500x5400.png", "season": "Holiday Q4", "style": "2000s/2020s Y2K Cyber Chrome", "bg": "#121212", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Chronically Tired Festively Dressed Y2K Cyber Chrome Cool Black Cat", "main_tag": "black cat", "supporting_tags": "chronically tired, festively dressed, y2k cyber chrome, liquid metal aesthetic, 2000s streetwear shirt, cool black cat sunglasses, metallic chrome stars, alt christmas fashion, sarcastic tired holiday, gen z y2k graphic tee, edgy christmas cat, cyber y2k sticker, chronically exhausted, grunge y2k holiday", "desc": "Chronically Tired, Festively Dressed! A bold 2000s Y2K cyber-chrome and liquid metal graphic featuring an unbothered black cat in futuristic silver Y2K sunglasses and a Santa hat with metallic tribal stars and crimson accents.", "web_thumb": "assets/thumbs/thumb_19.jpg"}, {"id": "02", "cid": "cats", "files": ["02_CatChristmas_Gemini_Holiday_4500x5400.png", "02b_CatChristmas_Grok_Holiday_4500x5400.png"], "img": "02_CatChristmas_Gemini_Holiday_4500x5400.png", "season": "Holiday Q4", "style": "Retro Chaotic Cat", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Silent Night Not With This Cat Funny Chaotic Christmas Cat Tangled In Lights", "main_tag": "christmas cat", "supporting_tags": "silent night not with this cat, funny christmas cat, cat tangled in christmas lights, naughty cat knocks tree, chaotic cat holiday, retro christmas cat shirt, cat mom holiday gift, funny feline christmas, orange tabby christmas, broken christmas ornament, sarcastic christmas pet, vintage holiday cat, crazy cat lover gift, festive cat meme", "desc": "Silent Night? Not With This Cat! Every cat owner knows December means flying ornaments and cats tangled in Christmas tree lights. A hilarious retro holiday design for cat lovers.", "web_thumb": "assets/thumbs/thumb_02.jpg"}, {"id": "08", "cid": "cats", "files": ["08_DearSantaCat_RetroGroovy_Holiday_4500x5400.png", "Batch2_Minimal_Holiday_NanoBanana/08A_DearSantaCat_Envelope_NanoBanana_4500x5400.png", "Batch2_Minimal_Holiday_NanoBanana/08B_DearSantaCat_Snitch_NanoBanana_4500x5400.png"], "img": "08_DearSantaCat_RetroGroovy_Holiday_4500x5400.png", "season": "Holiday Q4", "style": "70s Retro Groovy Cat & Minimalist Line Art", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Dear Santa I Can Explain But First What Did My Cat Tell You Funny Cat", "main_tag": "dear santa", "supporting_tags": "what did my cat tell you, dear santa i can explain, funny christmas cat, snitch cat humor, naughty cat christmas, retro groovy cat art, judgmental tabby cat, cat mom christmas shirt, funny feline holiday, north pole letter cat, broken ornament cat, sarcastic pet owner gift, cute guilty cat meme, festive cat lover mug", "desc": "Dear Santa, I Can Explain. But First, What Did My Cat Tell You? Don't trust the cat—they are definitely snitching to the North Pole. A hilarious holiday gift for cat moms and cat dads!", "web_thumb": "assets/thumbs/thumb_08.jpg"}, {"id": "04", "cid": "cats", "files": ["04_Dachshund_Gemini_Holiday_4500x5400.png", "04b_Dachshund_Grok_Holiday_4500x5400.png"], "img": "04_Dachshund_Gemini_Holiday_4500x5400.png", "season": "Holiday Q4 (Dog Lover)", "style": "Retro Vintage Dachshund", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Dachshund Through The Snow Funny Wiener Dog Christmas Sausage Dog Holiday", "main_tag": "dachshund", "supporting_tags": "dachshund through the snow, wiener dog christmas, sausage dog holiday, doxie mom christmas gift, funny dog christmas pun, retro dachshund santa hat, cute dachshund winter scarf, dachshund lover shirt, dashing through the snow pun, small dog christmas, vintage dog illustration, doxie dad gift, festive wiener dog, pet lover holiday mug", "desc": "Dachshund Through The Snow! An adorable retro holiday pun featuring a festive wiener dog bundled up in a Santa hat and winter scarf. The perfect Christmas gift for dachshund moms, doxie dads, and sausage dog lovers.", "web_thumb": "assets/thumbs/thumb_04.jpg"}, {"id": "09B", "cid": "introvert", "files": ["Batch2_Minimal_Holiday_NanoBanana/09B_CancelingPlans_CozySocks_NanoBanana_4500x5400.png", "09_CancelingPlans_RetroCat_Holiday_4500x5400.png", "Batch2_Minimal_Holiday_NanoBanana/09A_CancelingPlans_CatBurrito_NanoBanana_4500x5400.png"], "img": "Batch2_Minimal_Holiday_NanoBanana/09B_CancelingPlans_CozySocks_NanoBanana_4500x5400.png", "season": "Holiday Q4", "style": "Minimalist Fine-Line / Retro Cat", "bg": "#FFFFFF", "rb_done": true, "tp_done": false, "zz_done": false, "status_note": "🔴 Redbubble: อัปโหลดแล้ว (1 ใน 5 ลายแรก)", "title": "My Favorite Holiday Tradition Is Canceling Plans Cozy Introvert Christmas", "main_tag": "introvert", "supporting_tags": "canceling plans, my favorite holiday tradition, introvert christmas, cozy winter socks, staying home christmas, anti social holiday, funny introvert gift, homebody christmas, jomo joy of missing out, cozy fireplace aesthetic, minimalist holiday art, funny texting excuse, low social battery, sarcastic christmas shirt", "desc": "My Favorite Holiday Tradition Is Canceling Plans! Featuring a minimalist smartphone screen reading 'So sorry, can't make it tonight!' alongside cozy holiday socks propped up by a warm fireplace with a steaming mug. The ultimate relatable holiday shirt, mug, tote bag, and sticker for introverts and homebodies.", "web_thumb": "assets/thumbs/thumb_09B.jpg"}, {"id": "17", "cid": "introvert", "files": ["17_HolidayWrapped_ModernUI_Holiday_4500x5400.png"], "img": "17_HolidayWrapped_ModernUI_Holiday_4500x5400.png", "season": "Holiday Q4", "style": "2018–2026 Modern UI / Spotify Wrapped", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "My Holiday Wrapped 99 Percent Iced Coffee 1 Percent Social Energy Cat", "main_tag": "iced coffee", "supporting_tags": "my holiday wrapped, 99 percent iced coffee, 1 percent social energy, music wrapped parody, funny spotify wrapped style, iced coffee addict christmas, introvert social battery, cat wearing headphones, modern ui card aesthetic, gen z holiday humor, millennial coffee lover, sarcastic christmas shirt, year in review parody, dark mode aesthetic", "desc": "My Holiday Wrapped: 99% Iced Coffee, 1% Social Energy! A sleek modern dark-mode music streaming summary card parody featuring a deadpan cat wearing noise-canceling headphones and sipping iced coffee. Perfect for iced coffee addicts and introverts surviving the holidays.", "web_thumb": "assets/thumbs/thumb_17.jpg"}, {"id": "22", "cid": "introvert", "files": ["22B_CozyWinterEra_LoFiAnime_DarkShirt_4500x5400.png", "22A_CozyWinterEra_LoFiAnime_LightShirt_4500x5400.png"], "img": "22B_CozyWinterEra_LoFiAnime_DarkShirt_4500x5400.png", "season": "Winter / Evergreen", "style": "2018–2026 Lo-Fi Anime Aesthetic", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Do Not Disturb In My Cozy Winter Era LoFi Anime Cat Chillhop Window", "main_tag": "lofi", "supporting_tags": "in my cozy winter era, do not disturb, lofi anime aesthetic, chillhop study girl vibe, sleeping cat window, cozy winter hoodie, anime room aesthetic, vaporwave sunset snow, introvert winter shirt, aesthetic coffee mug, lofi beats cat lover, pastel anime illustration, cozy gamer gift, peaceful winter night", "desc": "Do Not Disturb: In My Cozy Winter Era. A dreamy lo-fi anime aesthetic illustration featuring a cozy cat wearing headphones and a warm steaming coffee mug by a snowy twilight window with glowing fairy lights. Perfect for introverts, anime lovers, and cozy winter nights.", "web_thumb": "assets/thumbs/thumb_22.jpg"}, {"id": "07", "cid": "introvert", "files": ["07_IcedCoffeePanic_RetroCat_Holiday_4500x5400.png", "Batch2_Minimal_Holiday_NanoBanana/07A_IcedCoffeePanic_Cup_NanoBanana_4500x5400.png", "Batch2_Minimal_Holiday_NanoBanana/07B_IcedCoffeePanic_Cat_NanoBanana_4500x5400.png"], "img": "07_IcedCoffeePanic_RetroCat_Holiday_4500x5400.png", "season": "Holiday Q4", "style": "70s Retro Groovy Cat & Minimalist Line Art", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Fueled By Iced Coffee And Holiday Panic Funny Caffeinated Christmas Cat", "main_tag": "iced coffee", "supporting_tags": "iced coffee christmas, fueled by iced coffee, and holiday panic, caffeinated cat christmas, cold brew lover gift, funny december stress, chaotic holiday shopping, retro 70s groovy cat, tangled in christmas lights, barista christmas shirt, coffee addict holiday, sarcastic winter humor, iced coffee even in winter, millennial coffee shirt", "desc": "Fueled By Iced Coffee & Holiday Panic! For everyone who drinks iced coffee even in freezing December weather while rushing through last-minute holiday chaos.", "web_thumb": "assets/thumbs/thumb_07.jpg"}, {"id": "12", "cid": "introvert", "files": ["12_SurvivingHolidays_UkiyoeWave_Holiday_4500x5400.png"], "img": "12_SurvivingHolidays_UkiyoeWave_Holiday_4500x5400.png", "season": "Holiday Q4", "style": "Japanese Ukiyo-e Woodblock Wave", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Surviving The Holidays On Iced Coffee And Spite Japanese Ukiyoe Wave Cat", "main_tag": "great wave", "supporting_tags": "iced coffee christmas, surviving the holidays, on iced coffee and spite, japanese ukiyoe cat, great wave parody, black cat santa hat, funny coffee addict, sarcastic christmas shirt, woodblock print cat, cold brew lover gift, chaotic holiday wave, vintage japanese art cat, funny barista christmas, grumpy cat coffee", "desc": "Surviving The Holidays On Iced Coffee & Spite! A hilarious parody of the classic Japanese Ukiyo-e Great Wave woodblock print featuring an unbothered black cat in a Santa hat surfing a giant wave of iced coffee and ice cubes.", "web_thumb": "assets/thumbs/thumb_12.jpg"}, {"id": "13", "cid": "introvert", "files": ["13B_TextInsteadOfCalling_Botanical_DarkShirt_4500x5400.png", "13A_TextInsteadOfCalling_Botanical_LightShirt_4500x5400.png"], "img": "13B_TextInsteadOfCalling_Botanical_DarkShirt_4500x5400.png", "season": "Holiday Q4 / Introvert", "style": "Vintage Botanical Cottagecore Wreath", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "All I Want For Christmas Is For You To Text Instead Of Calling Botanical", "main_tag": "introvert", "supporting_tags": "text instead of calling, all i want for christmas, introvert christmas shirt, anti phone call humor, vintage botanical wreath, cottagecore christmas, dark academia holiday, sarcastic floral wreath, social anxiety humor, funny millennial gift, gen z introvert shirt, botanical holly pine, polite sarcastic quote, homebody holiday gift", "desc": "All I Want For Christmas Is For You To Text Instead Of Calling. Framed inside an elegant vintage botanical wreath of winter pine, crimson holly berries, and golden stars. The perfect cottagecore sarcastic gift for introverts who dread phone calls.", "web_thumb": "assets/thumbs/thumb_13.jpg"}, {"id": "14", "cid": "introvert", "files": ["14_SilentNightLockedRoom_HeavyMetal_Holiday_4500x5400.png"], "img": "14_SilentNightLockedRoom_HeavyMetal_Holiday_4500x5400.png", "season": "Holiday Q4 / Goth Introvert", "style": "80s Heavy Metal Band Parody", "bg": "#121212", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Silent Night Because I Locked Myself In My Room Heavy Metal Black Cat", "main_tag": "heavy metal", "supporting_tags": "heavy metal christmas, silent night, locked myself in my room, death metal cat shirt, goth christmas humor, introvert metalhead, black cat skull santa, brutal holiday parody, anti social christmas, punk rock cat lover, dark humor christmas, spooky christmas shirt, metal band font parody, funny alt holiday", "desc": "Silent Night — Because I Locked Myself In My Room! A hilarious 80s heavy metal band shirt parody featuring spiky chrome lettering, gothic lightning, and a badass black cat in a Santa hat.", "web_thumb": "assets/thumbs/thumb_14.jpg"}, {"id": "15", "cid": "introvert", "files": ["15_HoHoNoBatteryZero_KnittedSweater_Holiday_4500x5400.png"], "img": "15_HoHoNoBatteryZero_KnittedSweater_Holiday_4500x5400.png", "season": "Holiday Q4 (Ugly Sweater)", "style": "Faux Knitted Ugly Christmas Sweater", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Ho Ho No My Social Battery Is Zero Faux Knitted Ugly Christmas Sweater Cat", "main_tag": "ugly christmas sweater", "supporting_tags": "ho ho no, my social battery is zero, ugly christmas sweater cat, faux knit christmas shirt, introvert ugly sweater, grumpy cat santa hat, low social battery holiday, funny christmas party shirt, sarcastic holiday sweater, pixel knit cat pattern, anti social christmas, tired holiday coffee, office ugly sweater party, drained battery christmas", "desc": "Ho Ho No — My Social Battery Is Zero! Designed in a classic Fair Isle knitted ugly Christmas sweater pattern featuring pixelated grumpy cats, empty 0% battery icons, and steaming coffee mugs. Perfect for ugly sweater parties and introverts.", "web_thumb": "assets/thumbs/thumb_15.jpg"}, {"id": "16", "cid": "introvert", "files": ["16_TheFestiveIntrovert_TarotCard_Holiday_4500x5400.png"], "img": "16_TheFestiveIntrovert_TarotCard_Holiday_4500x5400.png", "season": "Holiday Q4 / Tarot Cat", "style": "Vintage Mystical Tarot Card", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "The Festive Introvert Tarot Card Came For The Snacks Leaving At 8 PM Cat", "main_tag": "tarot card", "supporting_tags": "the festive introvert, introvert tarot card, came for the snacks, leaving at 8 pm, funny christmas tarot, black cat santa hat, 1 percent social battery, gothic christmas cat, mystical tarot shirt, witchy holiday gift, grumpy cat cookies coffee, sarcastic party shirt, cozy introvert humor, occult cat lover gift", "desc": "1% — The Festive Introvert: Came For The Snacks, Leaving At 8 PM! An ornate vintage tarot card illustration featuring an unbothered black cat in a Santa hat wrapped in a cozy blanket with holiday cookies and coffee.", "web_thumb": "assets/thumbs/thumb_16.jpg"}, {"id": "10", "cid": "introvert", "files": ["10_Style1_70sRetroGroovy_FestiveExhausted_4500x5400.png", "10_Style2_1930sRubberHose_FestiveExhausted_4500x5400.png", "10_Style3_MinimalistFineLine_FestiveExhausted_4500x5400.png", "10_Style4_Y2KRetroOS_User_FestiveExhausted_4500x5400.png", "10_Style6_VintageSunsetBadge_FestiveExhausted_4500x5400.png", "10_Style7_BoldTypography_FestiveExhausted_4500x5400.png"], "img": "10_Style1_70sRetroGroovy_FestiveExhausted_4500x5400.png", "season": "Holiday Q4 (6 สไตล์ให้เลือก)", "style": "Retro Groovy / Rubber-Hose / Minimal / 90s OS / Sunset / Bold Type", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Festive On The Outside Exhausted On The Inside Funny Tired Holiday Cat", "main_tag": "funny christmas", "supporting_tags": "festive on the outside, exhausted on the inside, funny tired christmas, low social battery holiday, sarcastic christmas cat, tired coffee lover gift, holiday burnout humor, introvert christmas shirt, sleepy cat santa hat, surviving the holidays, funny december mood, relatable holiday quote, chronic fatigue christmas, caffeine and christmas", "desc": "Festive On The Outside, Exhausted On The Inside! The ultimate relatable holiday mood for anyone running on 1% social battery and iced coffee this December.", "web_thumb": "assets/thumbs/thumb_10.jpg"}, {"id": "05", "cid": "office", "files": ["05_PerMyLastEmail_Retro_Evergreen_4500x5400.png", "05b_PerMyLastEmail_Spill_Evergreen_4500x5400.png"], "img": "05_PerMyLastEmail_Retro_Evergreen_4500x5400.png", "season": "Evergreen (ขายทั้งปี 365 วัน)", "style": "90s Retro OS Error", "bg": "#FFFFFF", "rb_done": true, "tp_done": false, "zz_done": false, "status_note": "🔴 Redbubble: อัปโหลดแล้ว (1 ใน 5 ลายแรก)", "title": "Per My Last Email Please Do Not Perceive Me Retro Computer Error", "main_tag": "office humor", "supporting_tags": "per my last email, please do not perceive me, passive aggressive office, funny coworker mug, work from home humor, corporate sarcasm, office email joke, retro computer warning, spilled coffee aesthetic, funny desk accessory, remote worker shirt, corporate survival, sarcastic office quote, 90s retro os", "desc": "Per My Last Email — Please Do Not Perceive Me! A nostalgic 90s retro computer error window featuring an exhausted coffee mug character. Ideal for office mugs, laptop stickers, work-from-home t-shirts, and gifts for your favorite coworker.", "web_thumb": "assets/thumbs/thumb_05.jpg"}, {"id": "20", "cid": "office", "files": ["20_OutOfOffice2027_NeoBrutalism_Evergreen_4500x5400.png"], "img": "20_OutOfOffice2027_NeoBrutalism_Evergreen_4500x5400.png", "season": "Evergreen / New Year 2027", "style": "2021–2026 Neo-Brutalism Sticker Collage", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Out Of Office Mentally Already In 2027 Neo Brutalism Sticker Work Burnout", "main_tag": "out of office", "supporting_tags": "mentally already in 2027, neo brutalism graphic, funny office burnout, corporate humor shirt, 404 motivation not found, work from home sticker, sarcastic coworker gift, unbothered cat sunglasses, paid time off pto, new year 2027 joke, modern swiss grid design, tech worker humor, anti work aesthetic, funny laptop decal", "desc": "Out Of Office: Mentally Already In 2027! A trendy Neo-Brutalist layered UI sticker collage complete with low battery warning tags, an iced coffee icon, and an unbothered cat in pixel sunglasses. Perfect for office mugs, laptop stickers, and coworkers counting down to PTO.", "web_thumb": "assets/thumbs/thumb_20.jpg"}, {"id": "03", "cid": "office", "files": ["03_AvoidHR_Grok_Holiday_4500x5400.png", "03b_AvoidHR_Modern_Holiday_4500x5400.png"], "img": "03_AvoidHR_Grok_Holiday_4500x5400.png", "season": "Holiday Q4 (Office Party)", "style": "1930s Rubber-Hose Cartoon Mug", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "Im Only Here To Avoid HR Funny Sarcastic Office Christmas Party Work Humor", "main_tag": "office humor", "supporting_tags": "im only here to avoid hr, office christmas party, funny coworker gift, corporate holiday humor, sarcastic work shirt, secret santa coworker, human resources joke, mandatory fun party, retro coffee mug mascot, ugly christmas sweater party, funny employee shirt, work christmas party, adult office humor, 1930s rubber hose cartoon", "desc": "I'm Only Here To Avoid HR! The ultimate icebreaker shirt and coffee mug for mandatory company holiday parties, Secret Santa gift exchanges, and sarcastic coworkers.", "web_thumb": "assets/thumbs/thumb_03.jpg"}, {"id": "06", "cid": "office", "files": ["06_PTO_RetroMug_Holiday_4500x5400.png", "Batch2_Minimal_Holiday_NanoBanana/06A_PTO_Calendar_NanoBanana_4500x5400.png", "Batch2_Minimal_Holiday_NanoBanana/06B_PTO_Checklist_NanoBanana_4500x5400.png"], "img": "06_PTO_RetroMug_Holiday_4500x5400.png", "season": "Holiday Q4 (Office / PTO)", "style": "Retro Mascot & Minimalist Calendar", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "All I Want For Christmas Is PTO Paid Time Off Funny Office Work Holiday", "main_tag": "office christmas", "supporting_tags": "all i want for christmas is pto, paid time off, funny coworker christmas, office holiday humor, corporate christmas gift, out of office december, secret santa coworker, tired employee shirt, work from home christmas, retro coffee mug character, vacation days humor, sarcastic boss gift, december calendar pto, funny desk mug", "desc": "All I Want For Christmas Is PTO (Paid Time Off)! Forget ugly sweaters and office small talk—give us approved vacation days. Perfect for coworkers, Secret Santa exchanges, and office coffee mugs.", "web_thumb": "assets/thumbs/thumb_06.jpg"}, {"id": "11", "cid": "office", "files": ["11_ComicBonusCheck_PopArt_Holiday_4500x5400.png"], "img": "11_ComicBonusCheck_PopArt_Holiday_4500x5400.png", "season": "Holiday Q4 (Office Humor)", "style": "1950s Pop Art Comic Book", "bg": "#191919", "rb_done": false, "tp_done": false, "zz_done": false, "status_note": "⏳ พร้อมอัปโหลด", "title": "This Holiday Party Could Have Been A Bonus Check Retro Pop Art Comic", "main_tag": "office christmas party", "supporting_tags": "this holiday party, could have been a bonus check, funny office christmas, sarcastic coworker gift, 1950s pop art comic, vintage comic book humor, corporate christmas joke, funny employee shirt, holiday bonus humor, retro halftone comic, secret santa office gift, work christmas party, passive aggressive office, funny boss gift", "desc": "This Holiday Party Could Have Been A Bonus Check! Illustrated in classic 1950s vintage pop-art comic book style with bold halftone dots. The ultimate funny icebreaker for mandatory office holiday parties and Secret Santa exchanges.", "web_thumb": "assets/thumbs/thumb_11.jpg"}];
 let ACTIVE_FILTER = 'all';
+
+// VIEW MODE CONTROLLER (Auto, Desktop, Mobile)
+function setViewMode(mode) {
+  document.body.classList.remove('force-mobile', 'force-desktop');
+  document.getElementById('btnAuto').classList.remove('active');
+  document.getElementById('btnDesktop').classList.remove('active');
+  document.getElementById('btnMobile').classList.remove('active');
+
+  if (mode === 'mobile') {
+    document.body.classList.add('force-mobile');
+    document.getElementById('btnMobile').classList.add('active');
+  } else if (mode === 'desktop') {
+    document.body.classList.add('force-desktop');
+    document.getElementById('btnDesktop').classList.add('active');
+  } else {
+    document.getElementById('btnAuto').classList.add('active');
+  }
+  localStorage.setItem('nws_dash_view_mode', mode);
+}
+
+// Initialize view mode from storage
+const savedView = localStorage.getItem('nws_dash_view_mode') || 'auto';
+setViewMode(savedView);
+
+function openTemplateModal() {
+  document.getElementById('templateModal').style.display = 'flex';
+}
+function closeTemplateModal(e) {
+  document.getElementById('templateModal').style.display = 'none';
+}
 
 function makeZazzleTitle(fullTitle) {
   if (fullTitle.length <= 48) return fullTitle;
@@ -307,7 +614,7 @@ function renderAll() {
               <div class="badge-row">${badges}</div>
               <div class="card-title">${d.title}</div>
               <div class="card-subtext">📁 ${d.files[0]}</div>
-              <a href="${thumb}" download="NewaveStudio_${d.id}.jpg" class="btn-download-img">📥 เซฟรูปลงมือถือ</a>
+              <a href="${thumb}" download="NewaveStudio_${d.id}.jpg" class="btn-download-img">📥 เซฟรูป</a>
             </div>
           </div>
 
@@ -327,31 +634,31 @@ function renderAll() {
 
             <!-- Zazzle Title -->
             <button class="btn-tap-copy zazzle" onclick="copyText(${JSON.stringify(zzTitle)}, 'Zazzle Title (≤48)')">
-              <span style="color:#e9d5ff;">🟣 Copy Zazzle Title (≤48)</span>
+              <span style="color:#e9d5ff;">🟣 Zazzle Title (≤48)</span>
               <span style="font-size:11px; opacity:0.6;">กดแตะ</span>
             </button>
 
             <!-- Main Tag -->
             <button class="btn-tap-copy" onclick="copyText(${JSON.stringify(d.main_tag)}, 'Main Tag')">
-              <span>🏷️ Main Tag: <b>${d.main_tag}</b></span>
-              <span style="font-size:11px; opacity:0.6;">กดแตะ</span>
-            </button>
-
-            <!-- 14 Tags -->
-            <button class="btn-tap-copy" onclick="copyText(${JSON.stringify(d.supporting_tags)}, '14 Tags')">
-              <span>🏷️ Copy 14 Tags (RB/TP)</span>
+              <span>🏷️ Main: <b>${d.main_tag}</b></span>
               <span style="font-size:11px; opacity:0.6;">กดแตะ</span>
             </button>
 
             <!-- Zazzle 10 Tags -->
             <button class="btn-tap-copy zazzle" onclick="copyText(${JSON.stringify(zzTags)}, 'Zazzle 10 Tags')">
-              <span style="color:#e9d5ff;">🟣 Copy Zazzle 10 Tags</span>
+              <span style="color:#e9d5ff;">🟣 Zazzle 10 Tags</span>
+              <span style="font-size:11px; opacity:0.6;">กดแตะ</span>
+            </button>
+
+            <!-- 14 Tags -->
+            <button class="btn-tap-copy full-width" onclick="copyText(${JSON.stringify(d.supporting_tags)}, '14 Tags')">
+              <span>🏷️ Copy 14 Tags (RB/TP)</span>
               <span style="font-size:11px; opacity:0.6;">กดแตะ</span>
             </button>
 
             <!-- Description -->
-            <button class="btn-tap-copy" onclick="copyText(${JSON.stringify(d.desc)}, 'Description')">
-              <span>📝 Copy Description (ทุกเว็บ)</span>
+            <button class="btn-tap-copy full-width" onclick="copyText(${JSON.stringify(d.desc)}, 'Description')">
+              <span>📝 Copy Description (ทุกแพลตฟอร์ม)</span>
               <span style="font-size:11px; opacity:0.6;">กดแตะ</span>
             </button>
           </div>
@@ -360,16 +667,20 @@ function renderAll() {
     }).join('');
 
     return `
-      <div style="margin-bottom:24px;">
+      <div style="margin-bottom:28px;">
         <div class="col-banner">
-          <h2>${col.icon} ${col.name.split('(')[0]}</h2>
-          <p>${col.col_title}</p>
+          <div>
+            <h2>${col.icon} ${col.name.split('(')[0]}</h2>
+            <p>${col.col_title}</p>
+          </div>
           <div class="col-btn-row">
             <button class="btn-col-copy" onclick="copyText(${JSON.stringify(col.col_title)}, 'ชื่อ Collection')">📋 ก๊อปชื่อ Collection</button>
             <button class="btn-col-copy" onclick="copyText(${JSON.stringify(col.col_tags)}, '5 Tags')">🟣 ก๊อป 5 Tags</button>
           </div>
         </div>
-        ${cardsHtml}
+        <div class="cards-grid">
+          ${cardsHtml}
+        </div>
       </div>
     `;
   }).join('');

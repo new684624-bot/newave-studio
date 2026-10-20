@@ -29,7 +29,7 @@
         }
         .header {
             width: 100%;
-            max-width: 480px;
+            max-width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -57,9 +57,9 @@
         }
         .tab-bar {
             display: flex;
-            gap: 6px;
+            gap: 8px;
             width: 100%;
-            max-width: 480px;
+            max-width: 100%;
             margin-bottom: 12px;
         }
         .tab-btn {
@@ -81,20 +81,114 @@
             color: var(--accent);
         }
         
-        .review-card-container {
+        /* Responsive Container */
+        .review-wrapper {
             width: 100%;
             max-width: 480px;
-            margin-bottom: 14px;
+            transition: max-width 0.3s ease;
+            margin: 0 auto;
+        }
+        body.force-desktop .review-wrapper {
+            max-width: 960px !important;
+        }
+        body.force-mobile .review-wrapper {
+            max-width: 480px !important;
+        }
+        @media (min-width: 860px) {
+            .review-wrapper {
+                max-width: 960px;
+            }
+        }
+
+        .review-card-container {
+            width: 100%;
+            margin-bottom: 16px;
         }
         .review-card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 22px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.45);
             display: flex;
             flex-direction: column;
             position: relative;
+            transition: all 0.3s ease;
+        }
+        @media (min-width: 860px) {
+            .review-card {
+                flex-direction: row;
+                min-height: 480px;
+            }
+            .preview-img-box {
+                width: 48% !important;
+                height: auto !important;
+                min-height: 480px !important;
+                border-right: 1px solid var(--border);
+            }
+            .card-body {
+                width: 52% !important;
+                padding: 28px !important;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .card-title {
+                font-size: 1.45rem !important;
+            }
+            .controls-grid {
+                grid-template-columns: 1fr 1fr 2fr !important;
+                gap: 12px !important;
+            }
+            .btn-undo {
+                grid-column: span 3 !important;
+            }
+        }
+        body.force-desktop .review-card {
+            flex-direction: row !important;
+            min-height: 480px !important;
+        }
+        body.force-desktop .preview-img-box {
+            width: 48% !important;
+            height: auto !important;
+            min-height: 480px !important;
+            border-right: 1px solid var(--border);
+        }
+        body.force-desktop .card-body {
+            width: 52% !important;
+            padding: 28px !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        body.force-desktop .card-title {
+            font-size: 1.45rem !important;
+        }
+        body.force-desktop .controls-grid {
+            grid-template-columns: 1fr 1fr 2fr !important;
+            gap: 12px !important;
+        }
+        body.force-desktop .btn-undo {
+            grid-column: span 3 !important;
+        }
+
+        body.force-mobile .review-card {
+            flex-direction: column !important;
+        }
+        body.force-mobile .preview-img-box {
+            width: 100% !important;
+            height: 360px !important;
+            border-right: none !important;
+        }
+        body.force-mobile .card-body {
+            width: 100% !important;
+            padding: 16px !important;
+        }
+        body.force-mobile .controls-grid {
+            grid-template-columns: 1fr 1fr !important;
+        }
+        body.force-mobile .btn-undo {
+            grid-column: span 2 !important;
         }
         .preview-img-box {
             width: 100%;
@@ -164,7 +258,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             width: 100%;
-            max-width: 480px;
+            max-width: 100%;
             margin-bottom: 8px;
         }
         .btn {
@@ -255,11 +349,24 @@
 
     <div class="toast" id="toastNotice"></div>
 
-    <div class="header">
-        <div class="brand-logo">🌊 NEWAVE STUDIO®</div>
-        <button class="sync-btn" onclick="forceSyncServer()">
-            <span>🔄</span> ดึงลายใหม่ (<span id="totalServerCount">8</span>)
-        </button>
+    <div class="review-wrapper">
+    <div class="header" style="max-width:100%;">
+        <div class="brand-logo" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <span>🌊 NEWAVE STUDIO®</span>
+            <div style="display:inline-flex; background:#161b26; border:1px solid var(--border); border-radius:999px; padding:3px; gap:2px; font-size:11.5px;">
+                <button id="rBtnAuto" onclick="setReviewView('auto')" style="background:transparent; border:none; color:var(--text-sub); padding:4px 10px; border-radius:999px; cursor:pointer; font-weight:700;">🔄 ออโต้</button>
+                <button id="rBtnDesktop" onclick="setReviewView('desktop')" style="background:transparent; border:none; color:var(--text-sub); padding:4px 10px; border-radius:999px; cursor:pointer; font-weight:700;">💻 คอม</button>
+                <button id="rBtnMobile" onclick="setReviewView('mobile')" style="background:transparent; border:none; color:var(--text-sub); padding:4px 10px; border-radius:999px; cursor:pointer; font-weight:700;">📱 มือถือ</button>
+            </div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+            <a href="https://drive.google.com/drive/folders/0B23wTS8TZ_xnc1ByVFRSVTB6dnM?resourcekey=0-vfPecK-mMQq1XPnKopQdJQ" target="_blank" class="sync-btn" style="color:#34d399; border-color:rgba(16,185,129,0.4);" title="เปิดโฟลเดอร์ Product Templates บน Google Drive">
+                📁 Templates
+            </a>
+            <button class="sync-btn" onclick="forceSyncServer()" title="ดึงข้อมูลลายล่าสุดจาก Server ทันที">
+                <span>🔄</span> ดึงลายใหม่
+            </button>
+        </div>
     </div>
 
     <!-- Status Tabs -->
@@ -304,6 +411,7 @@
         </div>
     </div>
 
+    </div><!-- close .review-wrapper -->
     <div class="nav-links">
         <a href="dashboard.html">📱 Upload Dashboard</a>
         <a href="marketing.html">🚀 Marketing Hub</a>
@@ -544,6 +652,30 @@
         }
 
         // Run sync on page load
+        
+        function setReviewView(mode) {
+            document.body.classList.remove('force-mobile', 'force-desktop');
+            const bA = document.getElementById('rBtnAuto');
+            const bD = document.getElementById('rBtnDesktop');
+            const bM = document.getElementById('rBtnMobile');
+            if (bA) bA.style.background = 'transparent';
+            if (bD) bD.style.background = 'transparent';
+            if (bM) bM.style.background = 'transparent';
+
+            if (mode === 'desktop') {
+                document.body.classList.add('force-desktop');
+                if (bD) { bD.style.background = '#1e293b'; bD.style.color = 'var(--accent)'; }
+            } else if (mode === 'mobile') {
+                document.body.classList.add('force-mobile');
+                if (bM) { bM.style.background = '#1e293b'; bM.style.color = 'var(--accent)'; }
+            } else {
+                if (bA) { bA.style.background = '#1e293b'; bA.style.color = 'var(--accent)'; }
+            }
+            localStorage.setItem('nws_review_view_mode', mode);
+        }
+        const savedRevView = localStorage.getItem('nws_review_view_mode') || 'auto';
+        setReviewView(savedRevView);
+
         syncServerDesigns(true);
     </script>
 </body>
