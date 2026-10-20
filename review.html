@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Newave Studio® — Design Approval Buffer (1-Click Review)</title>
+    <title>Newave Studio® — 1-Click Design Review</title>
     <style>
         :root {
             --bg: #0b0f19;
@@ -16,6 +16,7 @@
             --green: #10b981;
             --red: #ef4444;
             --gold: #f59e0b;
+            --purple: #a855f7;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body {
@@ -25,52 +26,68 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 16px 12px 60px;
+            padding: 14px 10px 70px;
         }
         .header {
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 8px;
-            margin-bottom: 12px;
+            padding: 10px 4px;
+            margin-bottom: 8px;
         }
         .brand-logo {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 800;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             color: #fff;
         }
-        .stats-badge {
-            background: rgba(56, 189, 248, 0.15);
-            color: var(--accent);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            border: 1px solid rgba(56, 189, 248, 0.3);
+        .tab-bar {
+            display: flex;
+            gap: 6px;
+            width: 100%;
+            max-width: 480px;
+            margin-bottom: 14px;
         }
+        .tab-btn {
+            flex: 1;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-sub);
+            padding: 8px 4px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #1e293b;
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
         .review-card-container {
             width: 100%;
             max-width: 480px;
-            perspective: 1000px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
         .review-card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 24px;
+            border-radius: 22px;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             display: flex;
             flex-direction: column;
-            transition: all 0.25s ease;
+            position: relative;
         }
         .preview-img-box {
             width: 100%;
-            height: 380px;
-            background: #1e293b;
+            height: 350px;
+            background: #0f172a;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -85,17 +102,17 @@
         }
         .badge-bar {
             position: absolute;
-            top: 14px;
-            left: 14px;
+            top: 12px;
+            left: 12px;
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
         .badge {
-            background: rgba(15, 23, 42, 0.85);
+            background: rgba(15, 23, 42, 0.88);
             backdrop-filter: blur(8px);
             padding: 4px 10px;
-            border-radius: 12px;
+            border-radius: 10px;
             font-size: 0.72rem;
             font-weight: 700;
             border: 1px solid rgba(255,255,255,0.1);
@@ -103,16 +120,16 @@
         .badge-green { color: var(--green); border-color: rgba(16, 185, 129, 0.4); }
         .badge-gold { color: var(--gold); border-color: rgba(245, 158, 11, 0.4); }
         .card-body {
-            padding: 20px;
+            padding: 16px;
         }
         .card-title {
-            font-size: 1.25rem;
+            font-size: 1.18rem;
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             line-height: 1.3;
         }
         .card-quote {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--accent);
             margin-bottom: 12px;
             font-style: italic;
@@ -123,132 +140,234 @@
             gap: 10px;
             background: var(--surface-card);
             padding: 12px;
-            border-radius: 14px;
-            margin-bottom: 16px;
+            border-radius: 12px;
             font-size: 0.8rem;
         }
-        .meta-label { color: var(--text-sub); font-size: 0.72rem; margin-bottom: 2px; }
+        .meta-label { color: var(--text-sub); font-size: 0.7rem; margin-bottom: 2px; }
         .meta-val { font-weight: 700; color: #fff; }
-        
-        .action-buttons {
+
+        /* 4-Button Controls Grid */
+        .controls-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 14px;
+            gap: 10px;
             width: 100%;
             max-width: 480px;
+            margin-bottom: 8px;
         }
         .btn {
             border: none;
             outline: none;
-            border-radius: 18px;
-            padding: 16px;
-            font-size: 1rem;
+            border-radius: 16px;
+            padding: 14px 10px;
+            font-size: 0.92rem;
             font-weight: 800;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            transition: transform 0.15s ease, filter 0.15s ease;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            gap: 6px;
+            transition: transform 0.1s ease;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
         }
         .btn:active { transform: scale(0.96); }
-        .btn-skip {
-            background: #232d42;
+        
+        .btn-discard {
+            background: #1e2433;
             color: #ef4444;
             border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .btn-hold {
+            background: #1e293b;
+            color: var(--gold);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+        .btn-undo {
+            background: #182030;
+            color: var(--text-sub);
+            border: 1px solid var(--border);
+            grid-column: span 2;
+            padding: 10px;
+            font-size: 0.82rem;
         }
         .btn-approve {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: #ffffff;
             box-shadow: 0 10px 24px rgba(16, 185, 129, 0.35);
         }
+
+        /* Toast Notice */
+        .toast {
+            position: fixed;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            border: 1px solid var(--accent);
+            display: none;
+            z-index: 1000;
+        }
+
         .empty-state {
             display: none;
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 16px;
             background: var(--surface);
-            border-radius: 24px;
+            border-radius: 20px;
             width: 100%;
             max-width: 480px;
             border: 1px dashed var(--border);
         }
         .nav-links {
-            margin-top: 30px;
+            margin-top: 24px;
             display: flex;
-            gap: 16px;
-            font-size: 0.85rem;
+            gap: 12px;
+            font-size: 0.82rem;
         }
         .nav-links a {
             color: var(--accent);
             text-decoration: none;
-            padding: 8px 14px;
+            padding: 8px 12px;
             background: rgba(56, 189, 248, 0.1);
-            border-radius: 12px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
 
+    <div class="toast" id="toastNotice"></div>
+
     <div class="header">
-        <div class="brand-logo">NEWAVE STUDIO®</div>
-        <div class="stats-badge" id="statsBadge">Pending: 4</div>
+        <div class="brand-logo">🌊 NEWAVE STUDIO®</div>
+        <div style="font-size: 0.8rem; color: var(--accent); font-weight: 700;">1-Click Review v2.0</div>
+    </div>
+
+    <!-- Status Tabs -->
+    <div class="tab-bar">
+        <div class="tab-btn active" id="tabPending" onclick="switchTab('pending')">🟡 รอตรวจ (<span id="cPending">0</span>)</div>
+        <div class="tab-btn" id="tabHold" onclick="switchTab('hold')">⏳ เก็บไว้ก่อน (<span id="cHold">0</span>)</div>
+        <div class="tab-btn" id="tabApproved" onclick="switchTab('approved')">🟢 อนุมัติแล้ว (<span id="cApproved">0</span>)</div>
     </div>
 
     <div class="review-card-container" id="cardContainer">
-        <!-- Card injected by JS -->
+        <!-- Injected via JS -->
     </div>
 
-    <div class="action-buttons" id="actionButtons">
-        <button class="btn btn-skip" onclick="handleDecision(false)">
-            <span>❌</span> ข้าม (SKIP)
+    <div class="controls-grid" id="controlsGrid">
+        <button class="btn btn-discard" onclick="handleDecision('discard')">
+            <span>🗑️</span> ไม่เอา (ทิ้ง)
         </button>
-        <button class="btn btn-approve" onclick="handleDecision(true)">
+        <button class="btn btn-hold" onclick="handleDecision('hold')">
+            <span>⏳</span> ข้ามไว้ก่อน (วนต่อคิว)
+        </button>
+        <button class="btn btn-approve" style="grid-column: span 2;" onclick="handleDecision('approve')">
             <span>✅</span> เอาลายนี้ (APPROVE)
+        </button>
+        <button class="btn btn-undo" id="btnUndo" onclick="handleUndo()" style="display:none;">
+            <span>↩️</span> ย้อนกลับไปดูลายก่อนหน้า
         </button>
     </div>
 
     <div class="empty-state" id="emptyState">
-        <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
-        <h2 style="font-size: 1.3rem; margin-bottom: 8px;">ตรวจครบทุกแบบแล้ว!</h2>
-        <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 24px;">ระบบบันทึกลายที่คุณกด APPROVE ไว้เรียบร้อย พร้อมนำไปตัดพื้นหลังและอัปเดตเข้า Dashboard 4500x5400</p>
-        <a href="dashboard.html" style="display: inline-block; background: var(--accent); color: #0b0f19; font-weight: 800; padding: 12px 24px; border-radius: 14px; text-decoration: none;">
+        <div style="font-size: 2.8rem; margin-bottom: 10px;">🎉</div>
+        <h2 style="font-size: 1.25rem; margin-bottom: 8px;" id="emptyTitle">ตรวจครบทุกแบบแล้ว!</h2>
+        <p style="color: var(--text-sub); font-size: 0.85rem; margin-bottom: 20px;" id="emptySub">
+            ไม่มีรายการค้างตรวจในหมวดนี้แล้ว คุณสามารถไปดูคลังสินค้า หรือเปิดแท็บ 'เก็บไว้ก่อน' เพื่อตรวจซ้ำได้ครับ
+        </p>
+        <a href="dashboard.html" style="display: inline-block; background: var(--accent); color: #0b0f19; font-weight: 800; padding: 12px 22px; border-radius: 12px; text-decoration: none; font-size: 0.9rem;">
             ไปที่หน้า Upload Dashboard ➔
         </a>
     </div>
 
     <div class="nav-links">
         <a href="dashboard.html">📱 Upload Dashboard</a>
+        <a href="marketing.html">🚀 Marketing Hub</a>
         <a href="index.html">🌐 เว็บไซต์แบรนด์</a>
     </div>
 
     <script>
-        const pendingQueue = [{"id": "P01", "title": "Fueled by Iced Coffee and Mild Panic", "category": "☕ Coffee & Work Humor", "style": "Vintage 70s Groovy Mascot", "quote": "Fueled by Iced Coffee and Mild Panic", "raw_img": "08_DearSantaCat_RetroGroovy_Holiday_RAW.jpg", "trademark_safe": true, "flagged_terms": [], "seo_rank": "Top #1 SEO POD Trend", "suggested_products": "Thermal Tumbler, T-Shirt, Laptop Sticker"}, {"id": "P02", "title": "I Have No Desire to Be Perceived Today", "category": "🐱 Introvert Cat Club", "style": "Kawaii Pastel Chibi", "quote": "I Have No Desire to Be Perceived Today", "raw_img": "Cat_Judge_Gemini_2.png", "trademark_safe": true, "flagged_terms": [], "seo_rank": "Top #2 SEO POD Trend", "suggested_products": "Oversized Hoodie, Ceramic Mug, Tote Bag"}, {"id": "P03", "title": "SILENT PROTEST // DISCONNECTED", "category": "🌊 Contemporary Streetwear [NWS]", "style": "Brutalist Architectural Typography", "quote": "NEWAVE® STUDIO // ARCHIVE 02", "raw_img": "25_UltraMinimal_StreetwearArchive_Raw.png", "trademark_safe": true, "flagged_terms": [], "seo_rank": "Top #3 High-Margin Streetwear", "suggested_products": "Heavyweight Black Hoodie, Boxy Tee"}, {"id": "P04", "title": "Emotional Support Iced Matcha", "category": "🍵 Cozy Aesthetic", "style": "Minimalist Fine-Line Vector", "quote": "Emotional Support Matcha Latte", "raw_img": "06A_PTO_Calendar_NanoBanana_RAW.jpg", "trademark_safe": true, "flagged_terms": [], "seo_rank": "Top #4 Aesthetic Drink Trend", "suggested_products": "Tumbler, Canvas Tote, Sticker"}];
-        let currentIndex = 0;
+        let currentTab = 'pending';
+        let pendingQueue = JSON.parse(localStorage.getItem('nws_pending_queue') || 'null');
+        if (!pendingQueue) {
+            pendingQueue = [{"id": "P01", "title": "Fueled by Iced Coffee and Mild Panic", "category": "☕ Coffee & Work Humor", "style": "Vintage 70s Groovy Mascot", "quote": "Fueled by Iced Coffee and Mild Panic", "thumb": "assets/thumbs/thumb_28.jpg", "trademark_safe": true, "seo_rank": "Top #1 SEO POD Trend", "suggested_products": "Thermal Tumbler, T-Shirt, Laptop Sticker"}, {"id": "P02", "title": "I Have No Desire to Be Perceived Today", "category": "🐱 Introvert Cat Club", "style": "Kawaii Pastel Chibi", "quote": "I Have No Desire to Be Perceived Today", "thumb": "assets/thumbs/thumb_28.jpg", "trademark_safe": true, "seo_rank": "Top #2 SEO POD Trend", "suggested_products": "Oversized Hoodie, Ceramic Mug, Tote Bag"}, {"id": "P03", "title": "SILENT PROTEST // DISCONNECTED", "category": "🌊 Contemporary Streetwear [NWS]", "style": "Brutalist Architectural Typography", "quote": "NEWAVE® STUDIO // ARCHIVE 02", "thumb": "assets/thumbs/thumb_25.jpg", "trademark_safe": true, "seo_rank": "Top #3 High-Margin Streetwear", "suggested_products": "Heavyweight Black Hoodie, Boxy Tee"}, {"id": "P04", "title": "Emotional Support Iced Matcha", "category": "🍵 Cozy Aesthetic", "style": "Minimalist Fine-Line Vector", "quote": "Emotional Support Matcha Latte", "thumb": "assets/thumbs/thumb_24.jpg", "trademark_safe": true, "seo_rank": "Top #4 Aesthetic Drink Trend", "suggested_products": "Tumbler, Canvas Tote, Sticker"}];
+            localStorage.setItem('nws_pending_queue', JSON.stringify(pendingQueue));
+        }
+        let holdQueue = JSON.parse(localStorage.getItem('nws_hold_queue') || '[]');
         let approvedList = JSON.parse(localStorage.getItem('nws_approved_designs') || '[]');
+        let historyStack = [];
 
-        function updateUI() {
-            const badge = document.getElementById('statsBadge');
-            const remaining = pendingQueue.length - currentIndex;
-            badge.innerText = `Pending: ${remaining} | Approved: ${approvedList.length}`;
+        function showToast(msg) {
+            const t = document.getElementById('toastNotice');
+            t.innerText = msg;
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 2200);
+        }
 
-            if (currentIndex >= pendingQueue.length) {
-                document.getElementById('cardContainer').style.display = 'none';
-                document.getElementById('actionButtons').style.display = 'none';
-                document.getElementById('emptyState').style.display = 'block';
+        function updateCounts() {
+            document.getElementById('cPending').innerText = pendingQueue.length;
+            document.getElementById('cHold').innerText = holdQueue.length;
+            document.getElementById('cApproved').innerText = approvedList.length;
+            document.getElementById('btnUndo').style.display = historyStack.length > 0 ? 'flex' : 'none';
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            document.getElementById('tabPending').className = 'tab-btn' + (tab === 'pending' ? ' active' : '');
+            document.getElementById('tabHold').className = 'tab-btn' + (tab === 'hold' ? ' active' : '');
+            document.getElementById('tabApproved').className = 'tab-btn' + (tab === 'approved' ? ' active' : '');
+            renderCard();
+        }
+
+        function getActiveList() {
+            if (currentTab === 'pending') return pendingQueue;
+            if (currentTab === 'hold') return holdQueue;
+            if (currentTab === 'approved') return approvedList;
+            return [];
+        }
+
+        function renderCard() {
+            updateCounts();
+            const list = getActiveList();
+            const container = document.getElementById('cardContainer');
+            const controls = document.getElementById('controlsGrid');
+            const empty = document.getElementById('emptyState');
+
+            if (list.length === 0) {
+                container.style.display = 'none';
+                controls.style.display = 'none';
+                empty.style.display = 'block';
+                if (currentTab === 'hold') {
+                    document.getElementById('emptyTitle').innerText = 'ไม่มีลายที่เก็บไว้';
+                    document.getElementById('emptySub').innerText = 'เมื่อคุณกด "ข้ามไว้ก่อน" ลายจะมาสะสมอยู่ที่นี่ครับ';
+                } else if (currentTab === 'approved') {
+                    document.getElementById('emptyTitle').innerText = 'ยังไม่มีลายที่อนุมัติ';
+                    document.getElementById('emptySub').innerText = 'กดยืนยัน APPROVE เพื่อส่งลายไปขายจริง';
+                } else {
+                    document.getElementById('emptyTitle').innerText = 'ตรวจครบทุกแบบแล้ว!';
+                    document.getElementById('emptySub').innerText = 'ระบบบันทึกลายที่ผ่านเข้าคิวผลิตเรียบร้อย';
+                }
                 return;
             }
 
-            const item = pendingQueue[currentIndex];
-            const container = document.getElementById('cardContainer');
+            container.style.display = 'block';
+            controls.style.display = 'grid';
+            empty.style.display = 'none';
+
+            const item = list[0];
             container.innerHTML = `
                 <div class="review-card">
                     <div class="preview-img-box">
                         <div class="badge-bar">
                             <span class="badge badge-green">🛡️ Trademark Clean</span>
-                            <span class="badge badge-gold">${item.seo_rank}</span>
+                            <span class="badge badge-gold">${item.seo_rank || 'Top Trend'}</span>
                         </div>
-                        <img src="assets/thumbs/thumb_28.jpg" alt="${item.title}">
+                        <img src="${item.thumb || 'assets/thumbs/thumb_28.jpg'}" alt="${item.title}">
                     </div>
                     <div class="card-body">
                         <div class="card-title">${item.title}</div>
@@ -259,7 +378,7 @@
                                 <div class="meta-val">${item.style}</div>
                             </div>
                             <div>
-                                <div class="meta-label">สินค้าแนะนำทำเงิน</div>
+                                <div class="meta-label">สินค้าทำเงิน</div>
                                 <div class="meta-val">${item.suggested_products}</div>
                             </div>
                         </div>
@@ -268,19 +387,65 @@
             `;
         }
 
-        function handleDecision(approved) {
-            const currentItem = pendingQueue[currentIndex];
-            if (approved) {
-                if (!approvedList.some(d => d.id === currentItem.id)) {
-                    approvedList.push(currentItem);
+        function handleDecision(action) {
+            const list = getActiveList();
+            if (list.length === 0) return;
+
+            const item = list.shift(); // remove current item from top
+            historyStack.push({ action, item, fromTab: currentTab });
+
+            if (action === 'approve') {
+                if (!approvedList.some(d => d.id === item.id)) {
+                    approvedList.push(item);
                     localStorage.setItem('nws_approved_designs', JSON.stringify(approvedList));
                 }
+                showToast('✅ อนุมัติลายนี้เรียบร้อย!');
+            } else if (action === 'hold') {
+                // วนไปต่อท้ายคิวเดิม หรือเก็บลง holdQueue
+                if (currentTab === 'pending') {
+                    holdQueue.push(item);
+                    localStorage.setItem('nws_hold_queue', JSON.stringify(holdQueue));
+                } else {
+                    list.push(item); // วนไปท้ายสุด
+                }
+                showToast('⏳ เก็บไว้ในคิวแล้ว (ไม่โดนตัดทิ้งแน่นอน!)');
+            } else if (action === 'discard') {
+                showToast('🗑️ ปฏิเสธลายนี้แล้ว');
             }
-            currentIndex++;
-            updateUI();
+
+            // Save updated queues
+            localStorage.setItem('nws_pending_queue', JSON.stringify(pendingQueue));
+            localStorage.setItem('nws_hold_queue', JSON.stringify(holdQueue));
+            renderCard();
         }
 
-        updateUI();
+        function handleUndo() {
+            if (historyStack.length === 0) return;
+            const last = historyStack.pop();
+            
+            if (last.action === 'approve') {
+                approvedList = approvedList.filter(d => d.id !== last.item.id);
+                localStorage.setItem('nws_approved_designs', JSON.stringify(approvedList));
+            } else if (last.action === 'hold') {
+                holdQueue = holdQueue.filter(d => d.id !== last.item.id);
+                localStorage.setItem('nws_hold_queue', JSON.stringify(holdQueue));
+            }
+            
+            // Put back into the original tab list at top
+            if (last.fromTab === 'pending') {
+                pendingQueue.unshift(last.item);
+                localStorage.setItem('nws_pending_queue', JSON.stringify(pendingQueue));
+            } else if (last.fromTab === 'hold') {
+                holdQueue.unshift(last.item);
+                localStorage.setItem('nws_hold_queue', JSON.stringify(holdQueue));
+            }
+
+            currentTab = last.fromTab;
+            switchTab(currentTab);
+            showToast('↩️ ย้อนกลับรายการสำเร็จ');
+        }
+
+        renderCard();
     </script>
 </body>
 </html>
