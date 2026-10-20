@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Newave Studio® — 1-Click Design Review</title>
+    <title>Newave Studio® — 1-Click Design Review v2.5</title>
     <style>
         :root {
             --bg: #0b0f19;
@@ -16,7 +16,6 @@
             --green: #10b981;
             --red: #ef4444;
             --gold: #f59e0b;
-            --purple: #a855f7;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body {
@@ -26,7 +25,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 14px 10px 70px;
+            padding: 12px 10px 80px;
         }
         .header {
             width: 100%;
@@ -34,8 +33,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 4px;
-            margin-bottom: 8px;
+            padding: 8px 4px;
+            margin-bottom: 6px;
         }
         .brand-logo {
             font-size: 1.05rem;
@@ -43,12 +42,25 @@
             letter-spacing: 0.5px;
             color: #fff;
         }
+        .sync-btn {
+            background: #1e293b;
+            color: var(--accent);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
         .tab-bar {
             display: flex;
             gap: 6px;
             width: 100%;
             max-width: 480px;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
         .tab-btn {
             flex: 1;
@@ -72,7 +84,7 @@
         .review-card-container {
             width: 100%;
             max-width: 480px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
         .review-card {
             background: var(--surface);
@@ -86,7 +98,7 @@
         }
         .preview-img-box {
             width: 100%;
-            height: 350px;
+            height: 360px;
             background: #0f172a;
             display: flex;
             align-items: center;
@@ -95,8 +107,8 @@
             overflow: hidden;
         }
         .preview-img-box img {
-            width: 90%;
-            height: 90%;
+            width: 92%;
+            height: 92%;
             object-fit: contain;
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
         }
@@ -245,7 +257,9 @@
 
     <div class="header">
         <div class="brand-logo">🌊 NEWAVE STUDIO®</div>
-        <div style="font-size: 0.8rem; color: var(--accent); font-weight: 700;">1-Click Review v2.0</div>
+        <button class="sync-btn" onclick="forceSyncServer()">
+            <span>🔄</span> ดึงลายใหม่ (<span id="totalServerCount">8</span>)
+        </button>
     </div>
 
     <!-- Status Tabs -->
@@ -278,11 +292,16 @@
         <div style="font-size: 2.8rem; margin-bottom: 10px;">🎉</div>
         <h2 style="font-size: 1.25rem; margin-bottom: 8px;" id="emptyTitle">ตรวจครบทุกแบบแล้ว!</h2>
         <p style="color: var(--text-sub); font-size: 0.85rem; margin-bottom: 20px;" id="emptySub">
-            ไม่มีรายการค้างตรวจในหมวดนี้แล้ว คุณสามารถไปดูคลังสินค้า หรือเปิดแท็บ 'เก็บไว้ก่อน' เพื่อตรวจซ้ำได้ครับ
+            ไม่มีรายการค้างตรวจในหมวดนี้แล้ว คุณสามารถกดปุ่ม "🔄 ดึงลายใหม่" หรือเปิดแท็บ 'เก็บไว้ก่อน' เพื่อตรวจซ้ำได้ครับ
         </p>
-        <a href="dashboard.html" style="display: inline-block; background: var(--accent); color: #0b0f19; font-weight: 800; padding: 12px 22px; border-radius: 12px; text-decoration: none; font-size: 0.9rem;">
-            ไปที่หน้า Upload Dashboard ➔
-        </a>
+        <div style="display:flex; gap:10px; justify-content:center;">
+            <button onclick="forceSyncServer(true)" style="background: var(--surface); color: var(--accent); border: 1px solid var(--accent); font-weight: 700; padding: 10px 18px; border-radius: 12px; cursor: pointer;">
+                🔄 รีเซ็ตคลังตรวจทั้งหมด
+            </button>
+            <a href="dashboard.html" style="background: var(--accent); color: #0b0f19; font-weight: 800; padding: 10px 18px; border-radius: 12px; text-decoration: none; font-size: 0.9rem;">
+                ไปที่ Upload Dashboard ➔
+            </a>
+        </div>
     </div>
 
     <div class="nav-links">
@@ -292,21 +311,62 @@
     </div>
 
     <script>
+        const SERVER_CATALOG = [{"id": "37", "title": "Emotional Support Iced Matcha", "category": "🍵 Kawaii Matcha & Cafe Aesthetic", "style": "Kawaii Pastel Chibi", "quote": "Emotional Support Iced Matcha", "thumb": "assets/thumbs/thumb_37.jpg", "trademark_safe": true, "seo_rank": "🔥 BATCH #37 TREND (MATCHA CAFE)", "suggested_products": "Iced Drink Tumbler, Kawaii Tee, Sticker"}, {"id": "36", "title": "My Favorite Outdoor Activity Is Going Back Inside", "category": "🏡 Cozy Homebody & Introvert Scandinavian", "style": "Minimalist Fine-Line Scandinavian", "quote": "My Favorite Outdoor Activity Is Going Back Inside", "thumb": "assets/thumbs/thumb_36.jpg", "trademark_safe": true, "seo_rank": "🔥 BATCH #36 TREND (COZY INTROVERT)", "suggested_products": "Minimalist Hoodie, Canvas Tote, Cozy Mug"}, {"id": "35", "title": "Per My Last Email (I Am Screaming)", "category": "💼 Corporate Burnout & Y2K Humor", "style": "90s Retro Y2K OS Pixel", "quote": "Per My Last Email (I Am Screaming Internally)", "thumb": "assets/thumbs/thumb_35.jpg", "trademark_safe": true, "seo_rank": "🔥 BATCH #35 TREND (OFFICE)", "suggested_products": "Office Ceramic Mug, Laptop Sticker, Desk Mat"}, {"id": "34", "title": "Howdy, I'm Overstimulated", "category": "🐸 Vintage Western & Mascot Humor", "style": "70s Western Mascot Retro", "quote": "Howdy, I'm Overstimulated", "thumb": "assets/thumbs/thumb_34.jpg", "trademark_safe": true, "seo_rank": "🔥 BATCH #34 TREND (WESTERN)", "suggested_products": "Camping Enamel Mug, Graphic Tee, Tumbler"}, {"id": "33", "title": "PARALLEL REALITY // ARCHIVE 02", "category": "🌊 Contemporary Streetwear [NWS]", "style": "Architectural Minimalist Typography", "quote": "NEWAVE® STUDIO // PARALLEL REALITY ARCHIVE", "thumb": "assets/thumbs/thumb_33.jpg", "trademark_safe": true, "seo_rank": "🔥 BATCH #33 HIGH-MARGIN", "suggested_products": "Heavyweight Boxy Tee, Dark Oversized Hoodie"}, {"id": "32", "title": "Just One More Chapter & More Coffee", "category": "📖 Bookworm & Caffeine Club", "style": "1930s Rubber-Hose Retro", "quote": "Just One More Chapter and More Coffee", "thumb": "assets/thumbs/thumb_32.jpg", "trademark_safe": true, "seo_rank": "🔥 BATCH #32 TREND", "suggested_products": "Ceramic Mug, Tote Bag, Reading Tee"}, {"id": "31", "title": "I Have No Desire to Be Perceived Today", "category": "🐱 Introvert Cat Club", "style": "Kawaii Pastel Chibi", "quote": "I Have No Desire to Be Perceived Today", "thumb": "assets/thumbs/thumb_31.jpg", "trademark_safe": true, "seo_rank": "🔥 BATCH #31 TREND", "suggested_products": "Oversized Hoodie, Ceramic Mug, Tote Bag"}, {"id": "30", "title": "Fueled by Iced Coffee & Mild Panic", "category": "☕ Coffee & Work Humor", "style": "70s Retro Groovy Mascot", "quote": "Fueled by Iced Coffee and Mild Panic", "thumb": "assets/thumbs/thumb_30.jpg", "trademark_safe": true, "seo_rank": "🔥 BATCH #30 TREND", "suggested_products": "Thermal Tumbler, T-Shirt, Laptop Sticker"}];
+
         let currentTab = 'pending';
         let pendingQueue = JSON.parse(localStorage.getItem('nws_pending_queue') || 'null');
-        if (!pendingQueue) {
-            pendingQueue = [{"id": "P01", "title": "Fueled by Iced Coffee and Mild Panic", "category": "☕ Coffee & Work Humor", "style": "Vintage 70s Groovy Mascot", "quote": "Fueled by Iced Coffee and Mild Panic", "thumb": "assets/thumbs/thumb_28.jpg", "trademark_safe": true, "seo_rank": "Top #1 SEO POD Trend", "suggested_products": "Thermal Tumbler, T-Shirt, Laptop Sticker"}, {"id": "P02", "title": "I Have No Desire to Be Perceived Today", "category": "🐱 Introvert Cat Club", "style": "Kawaii Pastel Chibi", "quote": "I Have No Desire to Be Perceived Today", "thumb": "assets/thumbs/thumb_28.jpg", "trademark_safe": true, "seo_rank": "Top #2 SEO POD Trend", "suggested_products": "Oversized Hoodie, Ceramic Mug, Tote Bag"}, {"id": "P03", "title": "SILENT PROTEST // DISCONNECTED", "category": "🌊 Contemporary Streetwear [NWS]", "style": "Brutalist Architectural Typography", "quote": "NEWAVE® STUDIO // ARCHIVE 02", "thumb": "assets/thumbs/thumb_25.jpg", "trademark_safe": true, "seo_rank": "Top #3 High-Margin Streetwear", "suggested_products": "Heavyweight Black Hoodie, Boxy Tee"}, {"id": "P04", "title": "Emotional Support Iced Matcha", "category": "🍵 Cozy Aesthetic", "style": "Minimalist Fine-Line Vector", "quote": "Emotional Support Matcha Latte", "thumb": "assets/thumbs/thumb_24.jpg", "trademark_safe": true, "seo_rank": "Top #4 Aesthetic Drink Trend", "suggested_products": "Tumbler, Canvas Tote, Sticker"}];
-            localStorage.setItem('nws_pending_queue', JSON.stringify(pendingQueue));
-        }
         let holdQueue = JSON.parse(localStorage.getItem('nws_hold_queue') || '[]');
         let approvedList = JSON.parse(localStorage.getItem('nws_approved_designs') || '[]');
+        let discardList = JSON.parse(localStorage.getItem('nws_discard_designs') || '[]');
         let historyStack = [];
+
+        // AUTO-SYNC: If user has old cache, automatically merge any new designs from server catalog!
+        function syncServerDesigns(silent = false) {
+            const seenIds = new Set([
+                ...(pendingQueue ? pendingQueue.map(x => x.id) : []),
+                ...holdQueue.map(x => x.id),
+                ...approvedList.map(x => x.id),
+                ...discardList.map(x => x.id)
+            ]);
+
+            const newFromRemote = SERVER_CATALOG.filter(item => !seenIds.has(item.id));
+            if (!pendingQueue) {
+                pendingQueue = [...SERVER_CATALOG];
+            } else if (newFromRemote.length > 0) {
+                // Prepend new designs to the front of the queue
+                pendingQueue = [...newFromRemote, ...pendingQueue];
+            }
+            localStorage.setItem('nws_pending_queue', JSON.stringify(pendingQueue));
+            if (!silent && newFromRemote.length > 0) {
+                showToast(`🔔 ดึงลายใหม่สำเร็จ ${newFromRemote.length} ลาย!`);
+            }
+            renderCard();
+        }
+
+        function forceSyncServer(resetAll = false) {
+            if (resetAll) {
+                if (confirm('คุณต้องการรีเซ็ตคลังตรวจทั้งหมดเพื่อเริ่มตรวจใหม่ใช่ไหม?')) {
+                    localStorage.removeItem('nws_pending_queue');
+                    localStorage.removeItem('nws_hold_queue');
+                    localStorage.removeItem('nws_discard_designs');
+                    pendingQueue = [...SERVER_CATALOG];
+                    holdQueue = [];
+                    localStorage.setItem('nws_pending_queue', JSON.stringify(pendingQueue));
+                    showToast('🔄 รีเซ็ตคลังตรวจกลับมาครบ 8 ลายแล้ว!');
+                    currentTab = 'pending';
+                    switchTab('pending');
+                }
+                return;
+            }
+            syncServerDesigns(false);
+            showToast('✅ ซิงค์คลังลายล่าสุดเรียบร้อย!');
+        }
 
         function showToast(msg) {
             const t = document.getElementById('toastNotice');
             t.innerText = msg;
             t.style.display = 'block';
-            setTimeout(() => { t.style.display = 'none'; }, 2200);
+            setTimeout(() => { t.style.display = 'none'; }, 2500);
         }
 
         function updateCounts() {
@@ -367,7 +427,7 @@
                             <span class="badge badge-green">🛡️ Trademark Clean</span>
                             <span class="badge badge-gold">${item.seo_rank || 'Top Trend'}</span>
                         </div>
-                        <img src="${item.thumb || 'assets/thumbs/thumb_28.jpg'}" alt="${item.title}">
+                        <img src="${item.thumb}" alt="${item.title}" onerror="this.src='assets/thumbs/thumb_28.jpg'">
                     </div>
                     <div class="card-body">
                         <div class="card-title">${item.title}</div>
@@ -391,7 +451,7 @@
             const list = getActiveList();
             if (list.length === 0) return;
 
-            const item = list.shift(); // remove current item from top
+            const item = list.shift();
             historyStack.push({ action, item, fromTab: currentTab });
 
             if (action === 'approve') {
@@ -401,19 +461,19 @@
                 }
                 showToast('✅ อนุมัติลายนี้เรียบร้อย!');
             } else if (action === 'hold') {
-                // วนไปต่อท้ายคิวเดิม หรือเก็บลง holdQueue
                 if (currentTab === 'pending') {
                     holdQueue.push(item);
                     localStorage.setItem('nws_hold_queue', JSON.stringify(holdQueue));
                 } else {
-                    list.push(item); // วนไปท้ายสุด
+                    list.push(item);
                 }
                 showToast('⏳ เก็บไว้ในคิวแล้ว (ไม่โดนตัดทิ้งแน่นอน!)');
             } else if (action === 'discard') {
+                discardList.push(item);
+                localStorage.setItem('nws_discard_designs', JSON.stringify(discardList));
                 showToast('🗑️ ปฏิเสธลายนี้แล้ว');
             }
 
-            // Save updated queues
             localStorage.setItem('nws_pending_queue', JSON.stringify(pendingQueue));
             localStorage.setItem('nws_hold_queue', JSON.stringify(holdQueue));
             renderCard();
@@ -429,9 +489,11 @@
             } else if (last.action === 'hold') {
                 holdQueue = holdQueue.filter(d => d.id !== last.item.id);
                 localStorage.setItem('nws_hold_queue', JSON.stringify(holdQueue));
+            } else if (last.action === 'discard') {
+                discardList = discardList.filter(d => d.id !== last.item.id);
+                localStorage.setItem('nws_discard_designs', JSON.stringify(discardList));
             }
             
-            // Put back into the original tab list at top
             if (last.fromTab === 'pending') {
                 pendingQueue.unshift(last.item);
                 localStorage.setItem('nws_pending_queue', JSON.stringify(pendingQueue));
@@ -445,7 +507,8 @@
             showToast('↩️ ย้อนกลับรายการสำเร็จ');
         }
 
-        renderCard();
+        // Run sync on page load
+        syncServerDesigns(true);
     </script>
 </body>
 </html>
