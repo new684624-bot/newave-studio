@@ -271,12 +271,235 @@
   .thumb-wrap {
     width: 110px; height: 130px; border-radius: 12px; overflow: hidden;
     flex-shrink: 0; background: #000; border: 1px solid #334155; position: relative;
-    cursor: pointer;
+    cursor: zoom-in;
   }
   .thumb-wrap img {
-    width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s;
+    width: 100%; height: 100%; object-fit: cover; transition: transform 0.25s ease;
   }
-  .thumb-wrap:hover img { transform: scale(1.05); }
+  .thumb-wrap:hover img { transform: scale(1.08); }
+  .thumb-wrap::after {
+    content: '🔍 ขยาย';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: rgba(15, 23, 42, 0.92);
+    color: #38bdf8;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 999px;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    opacity: 0;
+    transition: all 0.2s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+  }
+  .thumb-wrap:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Image Lightbox / Zoom Modal */
+  .lightbox-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(4, 7, 15, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+  .lightbox-modal.active {
+    display: flex;
+    opacity: 1;
+  }
+  .lightbox-content {
+    position: relative;
+    max-width: 94vw;
+    max-height: 94vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    animation: lbZoomIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes lbZoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .lightbox-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .lightbox-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+  .lightbox-badge {
+    background: #38bdf8;
+    color: #0b0f19;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .lightbox-title {
+    color: #fff;
+    font-size: 14.5px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 65vw;
+  }
+  .lightbox-btn-close {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.15s;
+    flex-shrink: 0;
+  }
+  .lightbox-btn-close:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+    transform: rotate(90deg);
+  }
+  .lightbox-img-wrap {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.85), 0 0 0 1px rgba(56, 189, 248, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0f172a;
+    transition: background 0.2s;
+    max-width: 90vw;
+    max-height: 72vh;
+  }
+  .lightbox-img-wrap.bg-dark {
+    background: #0a0d14;
+  }
+  .lightbox-img-wrap.bg-light {
+    background: #f8fafc;
+  }
+  .lightbox-img-wrap.bg-checker {
+    background-color: #1e293b;
+    background-image: linear-gradient(45deg, #0f172a 25%, transparent 25%),
+                      linear-gradient(-45deg, #0f172a 25%, transparent 25%),
+                      linear-gradient(45deg, transparent 75%, #0f172a 75%),
+                      linear-gradient(-45deg, transparent 75%, #0f172a 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+  .lightbox-img {
+    width: auto;
+    height: auto;
+    max-width: 88vw;
+    max-height: 70vh;
+    object-fit: contain;
+    display: block;
+  }
+  .lightbox-toolbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    border-radius: 12px;
+  }
+  .lightbox-bg-toggles {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .lb-bg-btn {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+  .lb-bg-btn.active, .lb-bg-btn:hover {
+    background: #38bdf8;
+    color: #0b0f19;
+    border-color: #38bdf8;
+  }
+  .lightbox-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-lb-download {
+    background: #10b981;
+    color: #0b0f19;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: 0.15s;
+  }
+  .btn-lb-download:hover {
+    background: #34d399;
+  }
+  .btn-lb-close-text {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .btn-lb-close-text:hover {
+    color: #fff;
+    border-color: #64748b;
+  }
+  @media (max-width: 600px) {
+    .lightbox-toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .lightbox-bg-toggles, .lightbox-actions {
+      justify-content: center;
+    }
+  }
   
   .meta { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; }
   .badge-row { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 6px; }
@@ -548,6 +771,37 @@
   </div>
 
   <div id="toast">✅ ก๊อปปี้ข้อความแล้ว!</div>
+
+  <!-- Image Zoom / Lightbox Modal -->
+  <div id="imageLightboxModal" class="lightbox-modal" onclick="handleLightboxBackdropClick(event)">
+    <div class="lightbox-content">
+      <div class="lightbox-header">
+        <div class="lightbox-title-wrap">
+          <span id="lbBadge" class="lightbox-badge">#--</span>
+          <span id="lbTitle" class="lightbox-title">Design Preview</span>
+        </div>
+        <button class="lightbox-btn-close" onclick="closeLightbox()" title="ปิดหน้าต่าง (Esc)">✕</button>
+      </div>
+
+      <div class="lightbox-img-wrap" id="lbImgContainer">
+        <img id="lbImg" class="lightbox-img" src="" alt="Design Preview">
+      </div>
+
+      <div class="lightbox-toolbar">
+        <div class="lightbox-bg-toggles">
+          <span style="font-size:11px; color:#94a3b8; font-weight:700;">พื้นหลัง:</span>
+          <button class="lb-bg-btn active" onclick="setLightboxBg('dark', this)" title="พื้นหลังมืด">⬛ มืด</button>
+          <button class="lb-bg-btn" onclick="setLightboxBg('light', this)" title="พื้นหลังสว่าง">⬜ สว่าง</button>
+          <button class="lb-bg-btn" onclick="setLightboxBg('checker', this)" title="ตารางหมากรุก (โปร่งใส)">🏁 โปร่งใส</button>
+        </div>
+        <div class="lightbox-actions">
+          <a id="lbDownloadBtn" href="#" download="" class="btn-lb-download">📥 ดาวน์โหลดรูปเต็ม</a>
+          <button class="btn-lb-close-text" onclick="closeLightbox()">✕ ปิด (Esc)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 <script>
 const COLLECTIONS = [{"cid": "kawaii", "icon": "🎀", "name": "Collection 1: Kawaii Pastel Chibi Club (เซ็ตแมวอ้วนพาสเทลสุดคิ้วท์)", "color": "#f472b6", "col_title": "Kawaii Pastel Chibi Cats & Cozy Aesthetic Gifts", "col_desc": "Adorably grumpy-cute kawaii pastel chibi cat illustrations, cozy matcha and coffee lovers art, and soft pastel aesthetic gifts by Newave® Studio on shirts, hoodies, mugs, tumblers, tote bags, and stickers.", "col_tags": "\"kawaii pastel cat\" \"chibi cat aesthetic\" \"cute grumpy cat\" \"kawaii cat mom gift\" \"pastel anime kitty\""}, {"cid": "streetwear", "icon": "🌊", "name": "Collection 2: Newave® Studio Streetwear Archive [NWS] (ขายได้ทั้งปี)", "color": "#38bdf8", "col_title": "Newave Studio Streetwear & Future Graphic Archive", "col_desc": "Contemporary minimalist streetwear, geometric emblems, and urban gorpcore graphic apparel from the official Newave® Studio [NWS] archive. Designed for heavyweight hoodies, tees, caps, and everyday essentials.", "col_tags": "\"minimalist streetwear\" \"newave studio\" \"urban graphic hoodie\" \"modern geometric logo\" \"gorpcore streetwear\""}, {"cid": "cats", "icon": "🐱", "name": "Collection 3: Funny Cat & Pet Lover Club (ทาสแมวกวนๆ & สัตว์เลี้ยง)", "color": "#fbbf24", "col_title": "Funny Sarcastic Cat Lover & Chaotic Pet Gifts", "col_desc": "Hilarious judgmental cats, unhinged internet meme kittens, 3D art toy cats, and festive pet puns by Newave® Studio. Perfect gifts for cat moms, cat dads, and pet lovers.", "col_tags": "\"funny cat lover\" \"sarcastic cat mom\" \"chaotic christmas cat\" \"judgmental cat meme\" \"funny pet gift\""}, {"cid": "introvert", "icon": "☕", "name": "Collection 4: Cozy Introvert & Iced Coffee Club (คนโลกส่วนตัวสูง & ทาสกาแฟเย็น)", "color": "#a78bfa", "col_title": "Cozy Introvert, Low Social Battery & Iced Coffee", "col_desc": "Relatable designs for homebodies, introverts with 1% social battery, and year-round iced coffee addicts. Featuring cozy winter aesthetics, lo-fi anime vibes, tarot cards, and cancelling plans humor.", "col_tags": "\"introvert humor\" \"low social battery\" \"iced coffee addict\" \"canceling plans\" \"cozy homebody gift\""}, {"cid": "office", "icon": "💼", "name": "Collection 5: Sarcastic Office & WFH Burnout (มุกประชดงาน & เพื่อนร่วมงาน)", "color": "#34d399", "col_title": "Sarcastic Office Humor, Coworker & WFH Gifts", "col_desc": "Witty corporate survival gear, passive-aggressive email humor, PTO countdowns, and mandatory office party icebreakers. Ideal for desk mugs, thermal tumblers, laptop stickers, and Secret Santa gifts for coworkers.", "col_tags": "\"sarcastic office humor\" \"funny coworker gift\" \"work from home mug\" \"per my last email\" \"secret santa office\""}];
@@ -874,16 +1128,17 @@ function renderCardHtml(d, approvedIds) {
   return `
     <div class="card" id="card-${d.id}" style="${isApproved ? 'border-color: rgba(16,185,129,0.5);' : ''}">
       <div class="card-top">
-        <div class="thumb-wrap" style="background:${d.bg || '#111'}">
+        <div class="thumb-wrap" style="background:${d.bg || '#111'}" onclick="openLightboxById('${d.id}')" title="🔍 คลิกเพื่อขยายดูรูปขนาดใหญ่">
           <img src="${thumb}" alt="${d.id}" loading="lazy" onerror="this.src='assets/logo.jpg'">
         </div>
         <div class="meta">
           <div class="badge-row">${badges}</div>
           <div class="card-title">${escapeHtml(d.title)}</div>
           <div class="card-subtext">📁 ${d.files ? d.files[0] : (d.img || '')}</div>
-          <div style="display:flex; gap:6px; align-items:center;">
+          <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+            <button onclick="openLightboxById('${d.id}')" class="btn-download-img" style="cursor:pointer; background:#1e293b; color:#38bdf8; border-color:#0284c7;">🔍 ขยายรูป</button>
             <a href="${thumb}" download="NewaveStudio_${d.id}.jpg" class="btn-download-img">📥 เซฟรูป</a>
-            ${isApproved ? '<span style="font-size:11px; color:#10b981; font-weight:700;">✨ Ready to Upload</span>' : ''}
+            ${isApproved ? '<span style="font-size:11px; color:#10b981; font-weight:700;">✨ Ready</span>' : ''}
           </div>
         </div>
       </div>
@@ -975,6 +1230,74 @@ function fallbackDirect(text, label) {
   document.body.removeChild(t);
   showToast('✅ ก๊อป ' + label + ' สำเร็จ!');
 }
+
+
+// ============================================================
+// IMAGE LIGHTBOX / ZOOM FUNCTIONS
+// ============================================================
+function openLightboxById(id) {
+  const d = DESIGNS.find(x => String(x.id) === String(id));
+  if (!d) return;
+  const thumb = d.web_thumb || ('assets/thumbs/thumb_' + d.id + '.jpg');
+  openLightbox(thumb, d.title, d.id, d.bg);
+}
+
+function openLightbox(imgSrc, title, id, bgHex) {
+  const modal = document.getElementById('imageLightboxModal');
+  const img = document.getElementById('lbImg');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbBadge = document.getElementById('lbBadge');
+  const dlBtn = document.getElementById('lbDownloadBtn');
+  const container = document.getElementById('lbImgContainer');
+
+  img.src = imgSrc;
+  lbTitle.innerText = title || 'Design Preview';
+  lbBadge.innerText = '#' + (id || '');
+  dlBtn.href = imgSrc;
+  dlBtn.download = 'NewaveStudio_' + (id || 'design') + '.jpg';
+
+  // Smart default background: light designs get light bg, dark get dark
+  if (bgHex && bgHex.toLowerCase() !== '#ffffff' && bgHex.toLowerCase() !== '#faf6f0' && bgHex.toLowerCase() !== '#fdf8f0' && bgHex.toLowerCase() !== '#f5f7fa') {
+    setLightboxBg('dark');
+  } else {
+    setLightboxBg('light');
+  }
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  const modal = document.getElementById('imageLightboxModal');
+  if (modal) modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function handleLightboxBackdropClick(e) {
+  if (e.target.id === 'imageLightboxModal') {
+    closeLightbox();
+  }
+}
+
+function setLightboxBg(type, btn) {
+  const container = document.getElementById('lbImgContainer');
+  if (!container) return;
+  container.className = 'lightbox-img-wrap bg-' + type;
+  document.querySelectorAll('.lb-bg-btn').forEach(b => {
+    b.classList.remove('active');
+    if (b.innerText.includes(type === 'dark' ? 'มืด' : (type === 'light' ? 'สว่าง' : 'โปร่งใส'))) {
+      b.classList.add('active');
+    }
+  });
+}
+
+// Global Keyboard listener for Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeLightbox();
+    closeTemplateModal();
+  }
+});
 
 renderAll();
 </script>
