@@ -1655,5 +1655,47 @@
     "rb_done": false,
     "tp_done": false,
     "zz_done": false
+  },
+  {
+    "id": "82",
+    "cid": "office",
+    "title": "Oh Snap Funny Broken Gingerbread Man Christmas",
+    "quote": "Oh Snap! I'm Crumbling Inside",
+    "main_tag": "christmas humor",
+    "supporting_tags": "oh snap gingerbread man, funny broken cookie, 70s retro groovy, christmas cookie pun, ugly christmas sweater, secret santa gift, funny holiday quote, holiday party shirt, newave studio",
+    "desc": "Oh Snap! I'm Crumbling Inside (Holiday Edition). The all-time #1 holiday bestseller featuring a delightfully shocked 70s retro gingerbread man with candy cane trim and a cleanly snapped-off leg with flying cookie crumbs. The ultimate funny Christmas gift for bakers, coworkers, and sweet tooth legends.",
+    "style": "70s Retro Groovy Mascot",
+    "season": "Holiday Q4 (ยอดขายอันดับ 1)",
+    "bg": "#FAF0E6",
+    "files": [
+      "82_OhSnap_GingerbreadMan_4500x5400.png"
+    ],
+    "img": "82_OhSnap_GingerbreadMan_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_82.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (มนุษย์ขนมปังขิงขาขาด ร้อง Oh Snap! เบสต์เซลเลอร์คริสต์มาส)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
+  },
+  {
+    "id": "83",
+    "cid": "introvert",
+    "title": "Dear Santa I Tried My Best Dont Ask Details Funny Christmas",
+    "quote": "Dear Santa, I Tried My Best (Don't Ask Details)",
+    "main_tag": "funny christmas",
+    "supporting_tags": "dear santa i tried my best, dont ask for details, funny tired santa, 70s retro groovy, exhausted santa coffee mug, holiday burnout humor, sarcastic christmas quote, secret santa coworker gift, newave studio",
+    "desc": "Dear Santa, I Tried My Best (Don't Ask For Details)! Bold 70s vintage Cooper Black typography featuring an unbothered, delightfully exhausted retro Santa relaxing on a cozy armchair with his boots kicked up, sipping from a Survivor coffee mug. Perfect holiday party icebreaker and gift for anyone surviving the holidays.",
+    "style": "70s Retro Groovy Mascot & Typography",
+    "season": "Holiday Q4 (ยอดขายอันดับ 1)",
+    "bg": "#FAF0E6",
+    "files": [
+      "83_DearSantaTriedMyBest_Santa_4500x5400.png"
+    ],
+    "img": "83_DearSantaTriedMyBest_Santa_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_83.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (ซานต้านอนหมดสภาพจิบกาแฟ พยายามเต็มที่แล้วอย่าถามรายละเอียด)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
   }
 ]
