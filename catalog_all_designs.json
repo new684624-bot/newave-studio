@@ -1445,5 +1445,47 @@
     "rb_done": false,
     "tp_done": false,
     "zz_done": false
+  },
+  {
+    "id": "72",
+    "cid": "cats",
+    "title": "Everything Is Terrible Having A Great Time Funny Possum",
+    "quote": "Everything Is Terrible And I'm Having A Great Time",
+    "main_tag": "funny possum",
+    "supporting_tags": "everything is terrible having a great time, funny possum shirt, 70s retro groovy, chaotic meme tee, feral opossum lover, unhinged animal humor, optimistic nihilism, funny pet shirt, relatable chaos mug, newave studio",
+    "desc": "Everything Is Terrible And I'm Having A Great Time! Featuring an unhinged, delightfully joyful retro cartoon opossum hanging upside down by its tail from a tree branch with wide manic eyes and a giant toothy grin. Surrounded by 70s groovy sunset rings and sparkles. Perfect for chaotic souls, feral animal lovers, and optimistic nihilists.",
+    "style": "70s Retro Groovy Mascot",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "bg": "#FAF0E6",
+    "files": [
+      "72_EverythingIsTerribleGreatTime_RetroPossum_4500x5400.png"
+    ],
+    "img": "72_EverythingIsTerribleGreatTime_RetroPossum_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_72.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (พอสซัมห้อยหัวยิ้มแฉ่ง ทุกอย่างพังหมดแต่กุฟินมาก)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
+  },
+  {
+    "id": "73",
+    "cid": "office",
+    "title": "That Meeting Could Have Been An Email Funny Office Coffee Cup",
+    "quote": "That Meeting Could Have Been An Email",
+    "main_tag": "office humor",
+    "supporting_tags": "that meeting could have been an email, funny coworker mug, sarcastic quote shirt, 70s retro groovy, corporate humor gift, work from home sticker, deadpan coffee cup, passive aggressive email, secret santa coworker, witty comeback, newave studio",
+    "desc": "That Meeting Could Have Been An Email (And That Email Could Have Been Unsent)! Bold 70s vintage Cooper Black typography featuring an exhausted takeout paper coffee cup character with a deadpan stare and an urgent red notification envelope. The ultimate funny gift for coworkers, desk mugs, and remote workers surviving corporate life.",
+    "style": "70s Retro Groovy Typography & Mascot",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "bg": "#FAF0E6",
+    "files": [
+      "73_MeetingCouldHaveBeenEmail_RetroCoffee_4500x5400.png"
+    ],
+    "img": "73_MeetingCouldHaveBeenEmail_RetroCoffee_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_73.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (แก้วกาแฟหน้าตาย มุกประชุมนี้น่าจะส่งแค่อีเมล)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
   }
 ]
