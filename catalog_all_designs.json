@@ -1319,5 +1319,47 @@
     "rb_done": false,
     "tp_done": false,
     "zz_done": false
+  },
+  {
+    "id": "66",
+    "cid": "cats",
+    "title": "Im Not Lazy Im On Energy Saving Mode Funny Sarcastic Retro Cat",
+    "quote": "I'm Not Lazy, I'm On Energy Saving Mode",
+    "main_tag": "funny cat",
+    "supporting_tags": "im not lazy im on energy saving mode, funny cat lover, low battery cat, 70s retro groovy cat, sarcastic cat mom, tired introvert gift, sleeping cat puddle, lazy cat meme, funny pet shirt, deadpan humor mug, newave studio",
+    "desc": "I'm Not Lazy, I'm On Energy Saving Mode! Featuring an adorably unbothered retro cartoon cat lying completely flat like a fluffy puddle on a 1% low battery charging pad with a sleeping mask and groovy 70s sparkles. The ultimate relatable t-shirt, coffee mug, and sticker for introverts, cat lovers, and chronically exhausted humans.",
+    "style": "70s Retro Groovy Mascot",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "bg": "#FAF0E6",
+    "files": [
+      "66_EnergySavingMode_RetroCat_4500x5400.png"
+    ],
+    "img": "66_EnergySavingMode_RetroCat_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_66.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (แมวแบต 1% โหมดประหยัดพลังงาน)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
+  },
+  {
+    "id": "67",
+    "cid": "office",
+    "title": "My Level Of Sarcasm Depends On Your Level Of Stupidity Funny Quote",
+    "quote": "My Level Of Sarcasm Depends On Your Level Of Stupidity",
+    "main_tag": "sarcastic",
+    "supporting_tags": "my level of sarcasm depends on your level of stupidity, funny coworker mug, sarcastic quote shirt, 70s retro groovy typography, office humor gift, witty comeback tee, deadpan gauge meter, passive aggressive work, newave studio",
+    "desc": "My Level Of Sarcasm Depends On Your Level Of Stupidity! Bold 70s vintage Cooper Black typography featuring a deadpan retro gauge meter dial pointing straight to MAXIMUM SARCASM with heavy side-eye eyelids. The ultimate witty comeback shirt, desk mug, and sticker for coworkers and sarcastic legends.",
+    "style": "70s Retro Groovy Typography & Mascot",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "bg": "#FAF0E6",
+    "files": [
+      "67_LevelOfSarcasmStupidity_RetroSarcasm_4500x5400.png"
+    ],
+    "img": "67_LevelOfSarcasmStupidity_RetroSarcasm_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_67.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (มุกหน้าปัดวัดระดับความกวนส้น)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
   }
 ]
