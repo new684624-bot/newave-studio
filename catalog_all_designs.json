@@ -1529,5 +1529,47 @@
     "rb_done": false,
     "tp_done": false,
     "zz_done": false
+  },
+  {
+    "id": "76",
+    "cid": "introvert",
+    "title": "Sorry Im Late I Didnt Want To Come Funny Sarcastic Cat",
+    "quote": "Sorry I'm Late, I Didn't Want To Come",
+    "main_tag": "introvert",
+    "supporting_tags": "sorry im late i didnt want to come, funny sarcastic cat shirt, 70s retro groovy, cool cat sunglasses, antisocial introvert gift, coffee lover meme, unbothered cat tee, relatable funny quote, newave studio",
+    "desc": "Sorry I'm Late, I Didn't Want To Come! Featuring an unbothered retro cartoon orange cat wearing vintage 70s aviator sunglasses and holding a ceramic coffee mug that says 'NOPE'. Framed by warm groovy sunset rings and retro sparkles. Perfect for introverts, party skippers, and anyone who values their peace.",
+    "style": "70s Retro Groovy Mascot",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "bg": "#FAF0E6",
+    "files": [
+      "76_SorryImLateDidntWantToCome_RetroCat_4500x5400.png"
+    ],
+    "img": "76_SorryImLateDidntWantToCome_RetroCat_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_76.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (แมวส้มใส่แว่นกันแดดถือแก้วกาแฟ ขอโทษที่มาช้าเพราะไม่อยากมา)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
+  },
+  {
+    "id": "77",
+    "cid": "sarcasm",
+    "title": "I Would Agree With You But Then Wed Both Be Wrong Sarcastic Raccoon",
+    "quote": "I Would Agree With You But Then We'd Both Be Wrong",
+    "main_tag": "sarcasm",
+    "supporting_tags": "i would agree with you but then wed both be wrong, funny sarcastic raccoon, 70s retro groovy, tea cup raccoon pinky up, smug debate shirt, workplace sarcasm, coworker humor mug, funny quote sticker, newave studio",
+    "desc": "I Would Agree With You But Then We'd Both Be Wrong! Bold 70s vintage Cooper Black typography featuring a deliciously smug retro raccoon wearing a floral bandana, daintily sipping from a vintage teacup with pinky extended. The ultimate hilarious gift for smart alecks, debate champs, and witty coworkers.",
+    "style": "70s Retro Groovy Mascot & Typography",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "bg": "#FAF0E6",
+    "files": [
+      "77_BothBeWrong_RetroRaccoon_4500x5400.png"
+    ],
+    "img": "77_BothBeWrong_RetroRaccoon_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_77.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (แรคคูนจิบชาชูนิ้วก้อย เห็นด้วยก้ผิดกันพอดีสิ)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
   }
 ]
