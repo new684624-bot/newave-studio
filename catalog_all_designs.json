@@ -1613,5 +1613,47 @@
     "rb_done": false,
     "tp_done": false,
     "zz_done": false
+  },
+  {
+    "id": "80",
+    "cid": "cats",
+    "title": "Im Not Procrastinating Im Doing Side Quests Funny Cat",
+    "quote": "I'm Not Procrastinating, I'm Doing Side Quests",
+    "main_tag": "funny cat",
+    "supporting_tags": "im not procrastinating im doing side quests, funny gamer cat, 70s retro groovy, adhd humor shirt, distracted explorer cat, butterfly cat meme, relatable quote tee, cute cat lover gift, newave studio",
+    "desc": "I'm Not Procrastinating, I'm Doing Side Quests! Adorable 70s vintage groovy cartoon cat wearing an adventurer bandana happily watching a glowing retro butterfly instead of doing adult responsibilities. Perfect gift for gamers, ADHD multitaskers, and distracted cat lovers.",
+    "style": "70s Retro Groovy Mascot",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "bg": "#FAF0E6",
+    "files": [
+      "80_DoingSideQuests_RetroCat_4500x5400.png"
+    ],
+    "img": "80_DoingSideQuests_RetroCat_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_80.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (แมวสวมผ้าพันคอนักสำรวจ ไม่ได้ผลัดวันแต่กำลังทำไซด์เควสต์)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
+  },
+  {
+    "id": "81",
+    "cid": "sarcasm",
+    "title": "Neither The Patience Nor The Caffeine Sarcastic Possum",
+    "quote": "I Have Neither The Patience Nor The Caffeine For This",
+    "main_tag": "sarcasm",
+    "supporting_tags": "neither the patience nor the caffeine, funny sarcastic possum, 70s retro groovy, empty coffee mug possum, workplace sarcasm, coworker humor mug, monday morning mood, funny office shirt, newave studio",
+    "desc": "I Have Neither The Patience Nor The Caffeine For This! Bold 70s vintage Cooper Black typography featuring a deliciously deadpan retro cartoon opossum peering over the rim of an empty giant ceramic coffee mug. The ultimate hilarious gift for burnt-out coworkers, exhausted coffee addicts, and sarcastic legends.",
+    "style": "70s Retro Groovy Mascot & Typography",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "bg": "#FAF0E6",
+    "files": [
+      "81_NeitherPatienceNorCaffeine_RetroPossum_4500x5400.png"
+    ],
+    "img": "81_NeitherPatienceNorCaffeine_RetroPossum_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_81.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (พอสซั่มแอบในแก้วกาแฟว่างเปล่า ความอดทนและคาเฟอีนไม่พอสำหรับเรื่องนี้)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
   }
 ]
