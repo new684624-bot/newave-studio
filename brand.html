@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Newave Studio® — Official Brand Identity Kit (Minimal, Holiday, Sarcasm)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #090a0f;
+    --card: #131722;
+    --border: #232a3b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --green: #10b981;
+    --red: #ef4444;
+    --gold: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg); color: var(--text);
+    padding: 0 0 80px; line-height: 1.5;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 16px 20px; }
+  
+  /* Top Bar */
+  .top-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(9, 10, 15, 0.94); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border); padding: 14px 20px;
+  }
+  .top-bar-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .brand-title {
+    font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700;
+    display: flex; align-items: center; gap: 8px; color: #fff; text-decoration: none;
+  }
+  .nav-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .btn-nav {
+    background: #1e293b; color: #e2e8f0; border: 1px solid #334155;
+    padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: 0.15s;
+  }
+  .btn-nav:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-nav.highlight { background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.4); }
+
+  /* Header Intro */
+  .intro-box {
+    margin: 24px 0 32px;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 20px;
+    padding: 22px 26px;
+  }
+  .intro-box h1 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+  .intro-box p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+  /* Version Section Card */
+  .version-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 24px; padding: 24px; margin-bottom: 36px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+  .version-header {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px; margin-bottom: 20px; padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .v-title-group h2 { font-size: 18px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .v-title-group p { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+  .tag-pill {
+    font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 8px;
+    background: #1e293b; color: var(--accent);
+  }
+
+  /* Banner Showcase Box */
+  .asset-label { font-size: 12.5px; font-weight: 700; color: #cbd5e1; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .banner-preview-box {
+    width: 100%; border-radius: 14px; overflow: hidden;
+    border: 1px solid #334155; margin-bottom: 14px; background: #000;
+    aspect-ratio: 4 / 1; display: flex; align-items: center; justify-content: center;
+  }
+  .banner-preview-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Logo + Download Actions Grid */
+  .detail-grid {
+    display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: start;
+  }
+  @media (max-width: 720px) {
+    .detail-grid { grid-template-columns: 1fr; }
+  }
+
+  .logo-preview-box {
+    width: 100%; max-width: 220px; aspect-ratio: 1 / 1; border-radius: 16px;
+    overflow: hidden; border: 1px solid #334155; background: #000;
+  }
+  .logo-preview-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .actions-list {
+    display: flex; flex-direction: column; gap: 12px; justify-content: center; height: 100%;
+  }
+  .btn-download-action {
+    background: #161b26; border: 1px solid #2d3748; color: #f8fafc;
+    padding: 12px 18px; border-radius: 12px; font-size: 13px; font-weight: 700;
+    text-decoration: none; display: flex; align-items: center; justify-content: space-between;
+    transition: all 0.15s;
+  }
+  .btn-download-action:hover {
+    border-color: var(--accent); background: #1e293b; color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .btn-download-action.primary {
+    background: #2563eb; color: #fff; border-color: #3b82f6;
+  }
+  .btn-download-action.primary:hover {
+    background: #1d4ed8; color: #fff;
+  }
+  .btn-download-action.green {
+    background: #059669; color: #fff; border-color: #10b981;
+  }
+  .btn-download-action.green:hover {
+    background: #047857; color: #fff;
+  }
+  .btn-download-action.sarcasm {
+    background: #ea580c; color: #fff; border-color: #f97316;
+  }
+  .btn-download-action.sarcasm:hover {
+    background: #c2410c; color: #fff;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <a href="index.html" class="brand-title">
+        <span>🌊</span>
+        <span>NEWAVE® STUDIO — BRAND KIT</span>
+      </a>
+      <div class="nav-group">
+        <a href="dashboard.html" class="btn-nav">📱 Upload Dashboard</a>
+        <a href="review.html" class="btn-nav highlight">✨ 1-Click Review</a>
+        <a href="marketing.html" class="btn-nav">🚀 Marketing Hub</a>
+        <a href="index.html" class="btn-nav">🌐 เว็บไซต์</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="intro-box">
+      <h1>🌊 Newave Studio® Official Brand Identity Kit (3 Versions)</h1>
+      <p>
+        ชุดแบนเนอร์และโลโก้ทางการ 3 สไตล์ ปรับแก้ตามสั่งโดยมี <b>เฉพาะสัญลักษณ์คลื่นและชื่อแบรนด์ Newave Studio®</b> อย่างสะอาดตา ตัดข้อความยิบย่อยออกทั้งหมด ครบทั้ง 3 ซีรีส์: <b>Minimal (เรียบหรูคลาสสิก)</b>, <b>Holiday (คริสต์มาสและเทศกาลวันหยุด)</b>, และ <b>Sarcasm (มุกประชดวินเทจแก้วกาแฟ)</b> พร้อมขนาดมาตรฐาน 2400x600 px (สำหรับ Redbubble, TeePublic, Zazzle) และ 1000x1000 px สำหรับโลโก้โปรไฟล์ร้าน
+      </p>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- VERSION 1: MINIMAL -->
+    <!-- ======================================================== -->
+    <div class="version-card">
+      <div class="version-header">
+        <div class="v-title-group">
+          <h2><span>✨</span> 1. Minimal Version (เรียบหรู มินิมอล ร่วมสมัย)</h2>
+          <p>คลื่นคู่ Twin-Wave + "Newave Studio®" ล้วนๆ ไร้ขอบตัวอักษรกวนใจ เหมาะสำหรับใช้เป็นแบรนด์สากลตลอดทั้งปี</p>
+        </div>
+        <span class="tag-pill">EVERGREEN • ALL PLATFORMS</span>
+      </div>
+
+      <div class="asset-label">🖼️ Store Header Banner (2400 x 600 px - Light Studio):</div>
+      <div class="banner-preview-box">
+        <img src="assets/brand/NewaveStudio_Banner_Minimal_Light_2400x600.jpg" alt="Minimal Banner Light">
+      </div>
+
+      <div class="asset-label">🌙 Store Header Banner (2400 x 600 px - Dark Studio):</div>
+      <div class="banner-preview-box" style="border-color:#1e293b;">
+        <img src="assets/brand/NewaveStudio_Banner_Minimal_Dark_2400x600.jpg" alt="Minimal Banner Dark">
+      </div>
+
+      <div class="detail-grid" style="margin-top:20px;">
+        <div>
+          <div class="asset-label">🔘 Logo / Store Avatar (1000 x 1000 px):</div>
+          <div class="logo-preview-box">
+            <img src="assets/brand/NewaveStudio_Logo_Minimal_Light_1000x1000.jpg" alt="Minimal Logo">
+          </div>
+        </div>
+        <div class="actions-list">
+          <a href="assets/brand/NewaveStudio_Banner_Minimal_Light_2400x600.png" download="NewaveStudio_Banner_Minimal_Light_2400x600.png" class="btn-download-action primary">
+            <span>📥 โหลด Banner Minimal (Light - 2400x600 PNG)</span>
+            <span>➔</span>
+          </a>
+          <a href="assets/brand/NewaveStudio_Banner_Minimal_Dark_2400x600.png" download="NewaveStudio_Banner_Minimal_Dark_2400x600.png" class="btn-download-action">
+            <span>📥 โหลด Banner Minimal (Dark - 2400x600 PNG)</span>
+            <span>➔</span>
+          </a>
+          <a href="assets/brand/NewaveStudio_Logo_Minimal_Light_1000x1000.png" download="NewaveStudio_Logo_Minimal_Light_1000x1000.png" class="btn-download-action">
+            <span>📥 โหลด Logo Minimal (Light - 1000x1000 PNG)</span>
+            <span>➔</span>
+          </a>
+          <a href="assets/brand/NewaveStudio_Logo_Minimal_Dark_1000x1000.png" download="NewaveStudio_Logo_Minimal_Dark_1000x1000.png" class="btn-download-action">
+            <span>📥 โหลด Logo Minimal (Dark - 1000x1000 PNG)</span>
+            <span>➔</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- VERSION 2: HOLIDAY -->
+    <!-- ======================================================== -->
+    <div class="version-card">
+      <div class="version-header">
+        <div class="v-title-group">
+          <h2><span>🎄</span> 2. Holiday Version (คริสต์มาส & เทศกาลส่งท้ายปี)</h2>
+          <p>คลื่นคู่สวมหมวกซานต้าสีแดงกำมะหยี่ พร้อมช่อใบฮอลลี่และผลเบอร์รี่สีแดง สดใส เหมาะสำหรับเปิดร้านรับซีซั่น Q4</p>
+        </div>
+        <span class="tag-pill" style="color:#f87171;">HOLIDAY Q4 SPECIAL</span>
+      </div>
+
+      <div class="asset-label">🖼️ Holiday Store Header Banner (2400 x 600 px - Warm Cozy Cream):</div>
+      <div class="banner-preview-box">
+        <img src="assets/brand/NewaveStudio_Banner_Holiday_Light_2400x600.jpg" alt="Holiday Banner Light">
+      </div>
+
+      <div class="asset-label">🌙 Holiday Store Header Banner (2400 x 600 px - Midnight Forest Dark):</div>
+      <div class="banner-preview-box" style="border-color:#1e293b;">
+        <img src="assets/brand/NewaveStudio_Banner_Holiday_Dark_2400x600.jpg" alt="Holiday Banner Dark">
+      </div>
+
+      <div class="detail-grid" style="margin-top:20px;">
+        <div>
+          <div class="asset-label">🔘 Holiday Logo / Avatar (1000 x 1000 px):</div>
+          <div class="logo-preview-box">
+            <img src="assets/brand/NewaveStudio_Logo_Holiday_Light_1000x1000.jpg" alt="Holiday Logo">
+          </div>
+        </div>
+        <div class="actions-list">
+          <a href="assets/brand/NewaveStudio_Banner_Holiday_Light_2400x600.png" download="NewaveStudio_Banner_Holiday_Light_2400x600.png" class="btn-download-action green">
+            <span>📥 โหลด Banner Holiday (Light - 2400x600 PNG)</span>
+            <span>➔</span>
+          </a>
+          <a href="assets/brand/NewaveStudio_Banner_Holiday_Dark_2400x600.png" download="NewaveStudio_Banner_Holiday_Dark_2400x600.png" class="btn-download-action">
+            <span>📥 โหลด Banner Holiday (Dark - 2400x600 PNG)</span>
+            <span>➔</span>
+          </a>
+          <a href="assets/brand/NewaveStudio_Logo_Holiday_Light_1000x1000.png" download="NewaveStudio_Logo_Holiday_Light_1000x1000.png" class="btn-download-action">
+            <span>📥 โหลด Logo Holiday (Light - 1000x1000 PNG)</span>
+            <span>➔</span>
+          </a>
+          <a href="assets/brand/NewaveStudio_Logo_Holiday_Dark_1000x1000.png" download="NewaveStudio_Logo_Holiday_Dark_1000x1000.png" class="btn-download-action">
+            <span>📥 โหลด Logo Holiday (Dark - 1000x1000 PNG)</span>
+            <span>➔</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- VERSION 3: SARCASM -->
+    <!-- ======================================================== -->
+    <div class="version-card">
+      <div class="version-header">
+        <div class="v-title-group">
+          <h2><span>☕</span> 3. Sarcasm Version (มุกประชดวินเทจ & กาแฟหน้าตาย)</h2>
+          <p>คลื่นคู่ใส่ตากวนๆ มองบน/มองค้อน (Side-Eye Deadpan) พร้อมแก้วกาแฟวินเทจมีควันฉุย บ่งบอกความเป็นแบรนด์มุกตลกกวนประสาท</p>
+        </div>
+        <span class="tag-pill" style="color:#fb923c;">SARCASM & RETRO HUMOR</span>
+      </div>
+
+      <div class="asset-label">🖼️ Sarcasm Store Header Banner (2400 x 600 px - Vintage Cream):</div>
+      <div class="banner-preview-box">
+        <img src="assets/brand/NewaveStudio_Banner_Sarcasm_Light_2400x600.jpg" alt="Sarcasm Banner Light">
+      </div>
+
+      <div class="asset-label">🌙 Sarcasm Store Header Banner (2400 x 600 px - Espresso Charcoal Dark):</div>
+      <div class="banner-preview-box" style="border-color:#1e293b;">
+        <img src="assets/brand/NewaveStudio_Banner_Sarcasm_Dark_2400x600.jpg" alt="Sarcasm Banner Dark">
+      </div>
+
+      <div class="detail-grid" style="margin-top:20px;">
+        <div>
+          <div class="asset-label">🔘 Sarcasm Logo / Avatar (1000 x 1000 px):</div>
+          <div class="logo-preview-box">
+            <img src="assets/brand/NewaveStudio_Logo_Sarcasm_Light_1000x1000.jpg" alt="Sarcasm Logo">
+          </div>
+        </div>
+        <div class="actions-list">
+          <a href="assets/brand/NewaveStudio_Banner_Sarcasm_Light_2400x600.png" download="NewaveStudio_Banner_Sarcasm_Light_2400x600.png" class="btn-download-action sarcasm">
+            <span>📥 โหลด Banner Sarcasm (Light - 2400x600 PNG)</span>
+            <span>➔</span>
+          </a>
+          <a href="assets/brand/NewaveStudio_Banner_Sarcasm_Dark_2400x600.png" download="NewaveStudio_Banner_Sarcasm_Dark_2400x600.png" class="btn-download-action">
+            <span>📥 โหลด Banner Sarcasm (Dark - 2400x600 PNG)</span>
+            <span>➔</span>
+          </a>
+          <a href="assets/brand/NewaveStudio_Logo_Sarcasm_Light_1000x1000.png" download="NewaveStudio_Logo_Sarcasm_Light_1000x1000.png" class="btn-download-action">
+            <span>📥 โหลด Logo Sarcasm (Light - 1000x1000 PNG)</span>
+            <span>➔</span>
+          </a>
+          <a href="assets/brand/NewaveStudio_Logo_Sarcasm_Dark_1000x1000.png" download="NewaveStudio_Logo_Sarcasm_Dark_1000x1000.png" class="btn-download-action">
+            <span>📥 โหลด Logo Sarcasm (Dark - 1000x1000 PNG)</span>
+            <span>➔</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
