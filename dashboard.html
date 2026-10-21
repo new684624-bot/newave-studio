@@ -464,6 +464,19 @@
     </div>
 
     <!-- Filter Pills -->
+        <!-- Quick Search & Sort Bar -->
+    <div style="margin-bottom:14px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+      <div style="position:relative; flex:1; min-width:240px;">
+        <input type="text" id="searchInput" placeholder="🔍 ค้นหาชื่อลาย หรือรหัส ID (เช่น 61, dumpling, cat, coffee)..." 
+          style="width:100%; padding:11px 16px 11px 40px; background:#161b26; border:1px solid #2a3449; border-radius:12px; color:#fff; font-size:13.5px; outline:none; font-weight:600;"
+          oninput="onSearchChange(this.value)">
+        <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:15px; opacity:0.6;">🔍</span>
+      </div>
+      <button onclick="toggleSortOrder()" id="btnSort" style="background:#1e293b; color:#38bdf8; border:1px solid rgba(56,189,248,0.3); padding:10px 16px; border-radius:12px; font-size:12.5px; font-weight:700; cursor:pointer; white-space:nowrap; display:flex; align-items:center; gap:6px;">
+        <span>⚡</span> <span id="sortLabel">เรียง: ล่าสุดขึ้นก่อน (Newest)</span>
+      </button>
+    </div>
+
     <div class="filter-scroll" id="filterBar"></div>
 
     <!-- Cards Container -->
@@ -719,40 +732,71 @@ function renderFilterBar() {
   `).join('');
 }
 
+
+let SEARCH_QUERY = '';
+let SORT_ORDER = 'newest'; // 'newest' by default so latest designs like 61, 60, 59 are right on top!
+
+function onSearchChange(val) {
+  SEARCH_QUERY = (val || '').trim().toLowerCase();
+  renderAll();
+}
+
+function toggleSortOrder() {
+  SORT_ORDER = (SORT_ORDER === 'newest') ? 'collection' : 'newest';
+  const label = document.getElementById('sortLabel');
+  if (label) {
+    label.innerText = (SORT_ORDER === 'newest') ? 'เรียง: ล่าสุดขึ้นก่อน (Newest)' : 'เรียง: ตามคอลเลกชัน (Collection)';
+  }
+  renderAll();
+}
+
 function renderAll() {
   renderFilterBar();
   const container = document.getElementById('cardsContainer');
   const approvedIds = getApprovedIds();
 
-  // Special Filter: Only Approved Designs
-  if (ACTIVE_FILTER === 'approved') {
-    const approvedItems = DESIGNS.filter(d => approvedIds.has(String(d.id)));
-    if (!approvedItems.length) {
+  // If user searched OR sorted by Newest: render unified flat list
+  if (SEARCH_QUERY || SORT_ORDER === 'newest') {
+    let pool = DESIGNS.slice();
+    if (ACTIVE_FILTER === 'approved') {
+      pool = pool.filter(d => approvedIds.has(String(d.id)));
+    } else if (ACTIVE_FILTER !== 'all') {
+      pool = pool.filter(d => d.cid === ACTIVE_FILTER);
+    }
+
+    if (SEARCH_QUERY) {
+      pool = pool.filter(d => {
+        const text = [d.id, d.title, d.main_tag, d.supporting_tags, d.desc].filter(Boolean).join(' ').toLowerCase();
+        return text.includes(SEARCH_QUERY);
+      });
+    }
+
+    if (SORT_ORDER === 'newest') {
+      pool.sort((a, b) => {
+        const idA = parseInt(String(a.id).replace(/\D/g, '')) || 0;
+        const idB = parseInt(String(b.id).replace(/\D/g, '')) || 0;
+        return idB - idA;
+      });
+    }
+
+    if (!pool.length) {
       container.innerHTML = `
         <div style="text-align:center; padding:50px 20px; background:#111521; border:1px dashed #334155; border-radius:20px; margin:20px 0;">
-          <div style="font-size:42px; margin-bottom:12px;">🔍</div>
-          <h3 style="font-size:18px; color:#fff; margin-bottom:8px;">ยังไม่มีลายที่กดอนุมัติในระบบ</h3>
-          <p style="color:var(--muted); font-size:13px; max-width:480px; margin:0 auto 20px;">
-            เมื่อคุณเข้าหน้า <b>1-Click Review</b> แล้วกดปุ่ม <b>✅ เอาลายนี้ (APPROVE)</b> ลายจะถูกบันทึกและแสดงที่นี่อัตโนมัติทันที
-          </p>
-          <a href="review.html" class="btn-site-link highlight" style="font-size:14px; padding:10px 20px;">
-            ✨ ไปที่หน้า 1-Click Review เพื่อตรวจลาย ➔
-          </a>
+          <div style="font-size:38px; margin-bottom:12px;">🔍</div>
+          <h3 style="font-size:17px; color:#fff; margin-bottom:6px;">ไม่พบลายที่ตรงกับคำค้นหา "${escapeHtml(SEARCH_QUERY)}"</h3>
+          <p style="color:var(--muted); font-size:13px;">ลองค้นด้วยคำอื่น เช่น dumpling, 61, cat, coffee หรือกดล้างช่องค้นหา</p>
         </div>
       `;
       return;
     }
 
-    const cardsHtml = approvedItems.map(d => renderCardHtml(d, approvedIds)).join('');
+    const cardsHtml = pool.map(d => renderCardHtml(d, approvedIds)).join('');
     container.innerHTML = `
       <div style="margin-bottom:28px;">
-        <div class="col-banner" style="border-color:rgba(16,185,129,0.4); background:rgba(16,185,129,0.06);">
+        <div class="col-banner" style="background:#131824; border-color:#2a364f;">
           <div class="col-banner-info">
-            <h2>🟢 รายการลายที่อนุมัติแล้ว (${approvedItems.length} ลาย)</h2>
-            <p>ทุกลายในหมวดนี้ผ่านการตรวจความถูกต้องและพร้อมนำไปก็อปปี้ข้อมูลเพื่ออัปโหลดลง Store ทันที</p>
-          </div>
-          <div style="display:flex; gap:10px; align-items:center;">
-            <a href="review.html" class="btn-site-link" style="color:#38bdf8; border-color:#38bdf8;">✨ ตรวจลายเพิ่ม</a>
+            <h2>⚡ แสดงผล ${pool.length} ลาย ${SORT_ORDER === 'newest' ? '(เรียงลำดับล่าสุดขึ้นก่อน)' : ''} ${SEARCH_QUERY ? '• ค้นหา: "' + escapeHtml(SEARCH_QUERY) + '"' : ''}</h2>
+            <p style="color:#94a3b8; font-size:12.5px;">ทุกลายพร้อมข้อมูล Title, Description, Tags สำหรับก๊อปปี้ไปวางใน Redbubble, TeePublic, Zazzle ได้ทันที</p>
           </div>
         </div>
         <div class="cards-grid">
@@ -763,10 +807,11 @@ function renderAll() {
     return;
   }
 
+  // Classic Grouping by Collection
   const visibleCols = ACTIVE_FILTER === 'all' ? COLLECTIONS : COLLECTIONS.filter(c => c.cid === ACTIVE_FILTER);
 
   container.innerHTML = visibleCols.map(col => {
-    const items = DESIGNS.filter(d => d.cid === col.cid);
+    let items = DESIGNS.filter(d => d.cid === col.cid);
     if (!items.length) return '';
 
     const cardsHtml = items.map(d => renderCardHtml(d, approvedIds)).join('');
