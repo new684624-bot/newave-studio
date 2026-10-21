@@ -1319,5 +1319,245 @@
     "rb_done": false,
     "tp_done": false,
     "zz_done": false
+  },
+  {
+    "id": "01b",
+    "cid": "cats",
+    "files": [
+      "01b_CatJudge_Grok_Evergreen_4500x5400.png"
+    ],
+    "img": "01b_CatJudge_Grok_Evergreen_4500x5400.png",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "style": "Retro Groovy Cat (Grok Version)",
+    "bg": "#FAF6F0",
+    "rb_done": true,
+    "tp_done": false,
+    "zz_done": true,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "My Cat And I Silently Judge Everyone Funny Retro Cat Grok Version",
+    "main_tag": "funny cat",
+    "supporting_tags": "judgmental cat, my cat is judging you, sarcastic cat mom, funny cat dad gift, deadpan cat humor, vintage 70s cat art, black cat coffee, cat banner meme, retro groovy cat",
+    "desc": "My Cat And I Silently Judge Everyone! Featuring an unbothered retro black cat sitting with a floral coffee mug and banner with botanical leaves. The exact live design on Zazzle for shirts, mugs, tumblers, and stickers.",
+    "web_thumb": "assets/thumbs/thumb_01b.jpg"
+  },
+  {
+    "id": "02b",
+    "cid": "cats",
+    "files": [
+      "02b_CatChristmas_Grok_Holiday_4500x5400.png"
+    ],
+    "img": "02b_CatChristmas_Grok_Holiday_4500x5400.png",
+    "season": "Holiday Q4",
+    "style": "Retro Groovy Cat (Grok Version)",
+    "bg": "#FAF6F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "Silent Night Not With This Cat Funny Christmas Cat Grok Version",
+    "main_tag": "christmas cat",
+    "supporting_tags": "silent night not with this cat, funny christmas cat, naughty cat christmas, chaotic cat holiday, cat tangled in lights, retro cat holiday, sarcastic cat mom, holiday pet gift",
+    "desc": "Silent Night? Not With This Cat! Hilarious mischievous retro cat tangled in colorful glowing Christmas lights with festive ornaments. Perfect holiday apparel, mugs, and stickers for cat lovers.",
+    "web_thumb": "assets/thumbs/thumb_02b.jpg"
+  },
+  {
+    "id": "03b",
+    "cid": "office",
+    "files": [
+      "03b_AvoidHR_Modern_Holiday_4500x5400.png"
+    ],
+    "img": "03b_AvoidHR_Modern_Holiday_4500x5400.png",
+    "season": "Holiday Q4",
+    "style": "Modern Cocktail Holiday Party",
+    "bg": "#FAF6F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "Im Only Here To Avoid HR Modern Holiday Office Party Cocktail",
+    "main_tag": "office humor",
+    "supporting_tags": "im only here to avoid hr, office christmas party, sarcastic coworker gift, corporate party humor, secret santa gift, holiday drink tumbler, funny work party shirt, hr office humor",
+    "desc": "My Goal For The Office Holiday Party: Avoid HR! Featuring a stylish festive holiday cocktail martini glass with mistletoe and classy typography. The ultimate sarcastic Secret Santa gift for coworkers.",
+    "web_thumb": "assets/thumbs/thumb_03b.jpg"
+  },
+  {
+    "id": "04b",
+    "cid": "cats",
+    "files": [
+      "04b_Dachshund_Grok_Holiday_4500x5400.png"
+    ],
+    "img": "04b_Dachshund_Grok_Holiday_4500x5400.png",
+    "season": "Holiday Q4",
+    "style": "Retro Wiener Dog (Grok Version)",
+    "bg": "#FAF6F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "Dachshund Through The Snow Very Slowly Funny Wiener Dog Holiday",
+    "main_tag": "dachshund christmas",
+    "supporting_tags": "dachshund through the snow, wiener dog christmas, sausage dog holiday, funny doxie gift, dachshund mom, cute winter dog, retro dog lover, holiday pet apparel",
+    "desc": "Dachshund Through The Snow (Very Slowly / Short Legs)! Adorable retro dachshund puppy wearing a cozy knit holiday sweater trotting through falling snow. Perfect for dachshund moms and dog lovers.",
+    "web_thumb": "assets/thumbs/thumb_04b.jpg"
+  },
+  {
+    "id": "05b",
+    "cid": "office",
+    "files": [
+      "05b_PerMyLastEmail_Spill_Evergreen_4500x5400.png"
+    ],
+    "img": "05b_PerMyLastEmail_Spill_Evergreen_4500x5400.png",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "style": "Y2K Retro Pixel OS Spilling Coffee",
+    "bg": "#FAF6F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "Per My Last Email Please Do Not Perceive Me Spilling Coffee OS",
+    "main_tag": "office humor",
+    "supporting_tags": "per my last email, please do not perceive me, funny coworker mug, retro pixel art, work from home humor, tired employee gift, corporate sarcasm, spilling coffee, y2k computer error",
+    "desc": "Per My Last Email: Please Do Not Perceive Me! Featuring an exhausted retro pixel purple coffee mug spilling hot coffee inside a classic OS error popup window. Perfect gift for coworkers and remote workers.",
+    "web_thumb": "assets/thumbs/thumb_05b.jpg"
+  },
+  {
+    "id": "09",
+    "cid": "introvert",
+    "files": [
+      "09_CancelingPlans_RetroCat_Holiday_4500x5400.png"
+    ],
+    "img": "09_CancelingPlans_RetroCat_Holiday_4500x5400.png",
+    "season": "Holiday Q4",
+    "style": "70s Retro Groovy Cat",
+    "bg": "#FAF6F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "My Favorite Holiday Tradition Is Canceling Plans Retro Groovy Cat",
+    "main_tag": "introvert",
+    "supporting_tags": "canceling plans, my favorite holiday tradition, introvert christmas, retro cat holiday, staying home christmas, anti social holiday, funny introvert gift, homebody christmas, low social battery",
+    "desc": "My Favorite Holiday Tradition Is Canceling Plans! Bold 70s retro groovy cartoon cat snug in a cozy blanket holding a warm drink. The ultimate relatable holiday shirt, mug, and sticker for introverts.",
+    "web_thumb": "assets/thumbs/thumb_09.jpg"
+  },
+  {
+    "id": "09A",
+    "cid": "introvert",
+    "files": [
+      "Batch2_Minimal_Holiday_NanoBanana/09A_CancelingPlans_CatBurrito_NanoBanana_4500x5400.png"
+    ],
+    "img": "Batch2_Minimal_Holiday_NanoBanana/09A_CancelingPlans_CatBurrito_NanoBanana_4500x5400.png",
+    "season": "Holiday Q4",
+    "style": "Minimalist Fine-Line Cat Burrito",
+    "bg": "#FAF6F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "My Favorite Holiday Tradition Is Canceling Plans Cat Burrito",
+    "main_tag": "introvert",
+    "supporting_tags": "canceling plans, cat burrito, cozy introvert, minimalist holiday art, staying home christmas, introvert gift, homebody hoodie, low social battery cat",
+    "desc": "My Favorite Holiday Tradition Is Canceling Plans! Cute minimalist fine-line sleeping cat rolled up tightly into a warm holiday blanket burrito. Perfect gift for introverts, homebodies, and winter hibernators.",
+    "web_thumb": "assets/thumbs/thumb_09A.jpg"
+  },
+  {
+    "id": "23",
+    "cid": "kawaii",
+    "files": [
+      "23A_ChristmasTreeAskingForIt_KawaiiPastelChibi_LightShirt_4500x5400.png"
+    ],
+    "img": "23A_ChristmasTreeAskingForIt_KawaiiPastelChibi_LightShirt_4500x5400.png",
+    "season": "Holiday Q4",
+    "style": "Kawaii Pastel Chibi Cat",
+    "bg": "#FAF6F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "The Christmas Tree Was Asking For It Kawaii Pastel Chibi Cat In Tree",
+    "main_tag": "christmas cat",
+    "supporting_tags": "the christmas tree was asking for it, kawaii christmas cat, chibi calico cat, naughty cat christmas, cat in christmas tree, cute grumpy cat, pastel holiday aesthetic, kawaii cat sticker",
+    "desc": "The Christmas Tree Was Asking For It! Adorable grumpy-cute kawaii pastel chibi calico cat nestled happily among glowing Christmas tree branches with festive ornaments and twinkle lights.",
+    "web_thumb": "assets/thumbs/thumb_23.jpg"
+  },
+  {
+    "id": "27",
+    "cid": "streetwear",
+    "files": [
+      "27A_NewaveStudio_TwinWaveLogo_BlackInk_4500x5400.png"
+    ],
+    "img": "27A_NewaveStudio_TwinWaveLogo_BlackInk_4500x5400.png",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "style": "Contemporary Minimalist Streetwear Logo",
+    "bg": "#FFFFFF",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "Newave Studio Twin Wave Logo Minimalist Modern Streetwear Emblem",
+    "main_tag": "streetwear",
+    "supporting_tags": "newave studio, twin wave logo, minimalist streetwear, modern geometric logo, contemporary graphic tee, monochrome apparel, brand emblem, streetwear hoodie",
+    "desc": "Newave Studio® Official Twin Wave Emblem. Clean horizontal twin-wave graphic symbol engineered for contemporary architectural streetwear hoodies, heavyweight tees, and caps.",
+    "web_thumb": "assets/thumbs/thumb_27.jpg"
+  },
+  {
+    "id": "10_Style2",
+    "cid": "cats",
+    "files": [
+      "10_Style2_1930sRubberHose_FestiveExhausted_4500x5400.png"
+    ],
+    "img": "10_Style2_1930sRubberHose_FestiveExhausted_4500x5400.png",
+    "season": "Holiday Q4",
+    "style": "1930s Vintage Rubber Hose",
+    "bg": "#FAF6F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "Festive On The Outside Exhausted On The Inside 1930s Rubber Hose Cat",
+    "main_tag": "christmas cat",
+    "supporting_tags": "festive on the outside exhausted on the inside, 1930s cartoon cat, rubber hose mascot, vintage christmas cat, cuphead aesthetic, tired holiday cat, retro holiday apparel",
+    "desc": "Festive On The Outside, Exhausted On The Inside! Classic 1930s vintage rubber-hose cartoon cat wearing a Santa hat while holding a coffee mug with tired eyes. Timeless retro holiday aesthetic.",
+    "web_thumb": "assets/thumbs/thumb_10_style2.jpg"
+  },
+  {
+    "id": "10_Style4",
+    "cid": "cats",
+    "files": [
+      "10_Style4_Y2KRetroOS_User_FestiveExhausted_4500x5400.png"
+    ],
+    "img": "10_Style4_Y2KRetroOS_User_FestiveExhausted_4500x5400.png",
+    "season": "Holiday Q4",
+    "style": "Y2K Retro OS Window Cat",
+    "bg": "#FAF6F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "Festive On The Outside Exhausted On The Inside Y2K Retro OS Cat",
+    "main_tag": "christmas cat",
+    "supporting_tags": "festive on the outside exhausted on the inside, y2k retro os, pixel cat holiday, 90s computer error, low battery holiday cat, nostalgic tech apparel, funny holiday sticker",
+    "desc": "Festive On The Outside, Exhausted On The Inside! Y2K computer system window featuring a sleepy pixel cat in a Santa hat with Low Battery and Energy Level indicators. Unique nostalgic tech holiday gift.",
+    "web_thumb": "assets/thumbs/thumb_10_style4.jpg"
+  },
+  {
+    "id": "10_Style6",
+    "cid": "cats",
+    "files": [
+      "10_Style6_VintageSunsetBadge_FestiveExhausted_4500x5400.png"
+    ],
+    "img": "10_Style6_VintageSunsetBadge_FestiveExhausted_4500x5400.png",
+    "season": "Holiday Q4",
+    "style": "Vintage Sunset Badge Cat",
+    "bg": "#FAF6F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "Festive On The Outside Exhausted On The Inside Vintage Sunset Badge",
+    "main_tag": "christmas cat",
+    "supporting_tags": "festive on the outside exhausted on the inside, vintage sunset cat, retro circular badge, 70s stripes christmas cat, tired holiday cat, sarcastic christmas gift",
+    "desc": "Festive On The Outside, Exhausted On The Inside! Retro 70s circular sunset stripe badge featuring a deliciously deadpan cat wearing a holiday party hat. Perfect outdoor aesthetic holiday tee and tumbler.",
+    "web_thumb": "assets/thumbs/thumb_10_style6.jpg"
   }
 ]
