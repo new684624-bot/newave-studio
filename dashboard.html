@@ -1436,7 +1436,7 @@ function renderCardHtml(d, approvedIds) {
                 <span style="font-size: 0.72rem; color: #fca5a5; font-weight: 700;">📌 1. Pin Title</span>
                 <button class="btn-copy-action" style="border-color: #e60023; color: #fff; background: #e60023; padding: 2px 8px; font-size: 0.7rem;" onclick="copyFromInput('in_pintitle_${d.id}', 'Pin Title', this)">📋 คัดลอก</button>
               </div>
-              <input type="text" readonly class="field-input" id="in_pintitle_${d.id}" value="${escapeHtml(d.title + ' - Funny Graphic Apparel & Gifts | Newave Studio')}" onclick="this.select()">
+              <input type="text" readonly class="field-input" id="in_pintitle_${d.id}" value="${escapeHtml(formatPinTitle(d.title))}" onclick="this.select()">
             </div>
 
             <!-- Destination Link -->
