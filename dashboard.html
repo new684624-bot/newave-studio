@@ -1052,6 +1052,26 @@ function makeZazzle10Tags(mainTag, supportingStr) {
   return all10.map(t => t.includes(' ') ? `"${t}"` : t).join(' ');
 }
 
+function formatPinTitle(title) {
+  if (!title) return "Graphic Apparel & Gifts | Newave Studio";
+  let t = String(title).trim();
+  // If title is long, cut cleanly before 60 chars
+  if (t.length > 60) {
+    let sub = t.slice(0, 60);
+    let lastSpace = sub.lastIndexOf(' ');
+    if (lastSpace > 30) {
+      t = sub.slice(0, lastSpace);
+    } else {
+      t = sub;
+    }
+  }
+  let res = t + " | Newave Studio";
+  if (res.length > 80) {
+    res = res.slice(0, 77) + "...";
+  }
+  return res;
+}
+
 function escapeHtml(str) {
   if (!str) return '';
   return String(str)
