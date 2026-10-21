@@ -1277,5 +1277,47 @@
     "rb_done": false,
     "tp_done": false,
     "zz_done": false
+  },
+  {
+    "id": "64",
+    "cid": "introvert",
+    "title": "I Will Be Of No Assistance Today Funny Sarcastic Retro Cat Burrito",
+    "quote": "I Will Be Of No Assistance Today",
+    "main_tag": "introvert",
+    "supporting_tags": "i will be of no assistance today, funny sarcastic cat, cozy cat burrito, zero social battery, 70s retro groovy, deadpan coffee mug, tired cat lover gift, homebody hoodie, introvert aesthetic, unbothered cat sticker, relatable mood, newave studio",
+    "desc": "I Will Be Of No Assistance Today! Featuring an adorably unbothered, deliciously deadpan retro cartoon orange cat rolled up like a cozy burrito in a vintage blanket, clutching a coffee mug with zero social battery. Perfect for introverts, homebodies, and tired coffee addicts on hoodies, mugs, and stickers.",
+    "style": "70s Retro Groovy Mascot",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "bg": "#FAF0E6",
+    "files": [
+      "64_NoAssistanceToday_RetroCat_4500x5400.png"
+    ],
+    "img": "64_NoAssistanceToday_RetroCat_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_64.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (แมวห่อผ้าห่มแบตหมด 0%)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
+  },
+  {
+    "id": "65",
+    "cid": "office",
+    "title": "Please Cancel My Subscription To Your Issues Funny Sarcastic Quote",
+    "quote": "Please Cancel My Subscription To Your Issues",
+    "main_tag": "sarcastic",
+    "supporting_tags": "please cancel my subscription to your issues, funny coworker mug, sarcastic quote shirt, 70s retro groovy, corporate drama humor, work from home sticker, passive aggressive office, deadpan ticket stub, funny employee gift, witty comeback, newave studio",
+    "desc": "Please Cancel My Subscription To Your Issues! Bold 70s vintage Cooper Black typography featuring a retro expired ticket stub with an unbothered side-eye glance and groovy sparkles. The ultimate witty comeback shirt, coffee mug, and laptop decal for coworkers and everyday drama.",
+    "style": "70s Retro Groovy Typography & Mascot",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "bg": "#FAF0E6",
+    "files": [
+      "65_CancelSubscriptionIssues_RetroSarcasm_4500x5400.png"
+    ],
+    "img": "65_CancelSubscriptionIssues_RetroSarcasm_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_65.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (มุกประชดดราม่าเพื่อนร่วมงาน)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
   }
 ]
