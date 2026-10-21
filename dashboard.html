@@ -1154,7 +1154,8 @@ function renderCardHtml(d, approvedIds) {
           </div>
           <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
             <button onclick="openLightboxById('${d.id}')" class="btn-download-img" style="cursor:pointer; background:#1e293b; color:#38bdf8; border-color:#0284c7;">🔍 ขยายรูป</button>
-            <a href="${thumb}" download="NewaveStudio_${d.id}.jpg" class="btn-download-img">📥 เซฟรูป</a>
+            <a href="${thumb}" download="NewaveStudio_${d.id}.jpg" class="btn-download-img">🖼️ พรีวิว</a>
+            <a href="https://github.com/new684624-bot/newave-studio/releases/download/v1.0-print-ready/${d.files ? d.files[0] : (d.img || '')}" target="_blank" download="${d.files ? d.files[0] : (d.img || '')}" class="btn-download-img" style="background:#065f46; color:#a7f3d0; border-color:#10b981; font-weight:800;" title="ดาวน์โหลดไฟล์พิมพ์ 4500x5400 คมชัดสูงสำหรับสกรีนเสื้อ">⚡ โหลดไฟล์พิมพ์ (4500x5400)</a>
             <a href="https://github.com/new684624-bot/newave-studio" target="_blank" class="btn-download-img" style="background:#161b26; color:#e2e8f0; border-color:#475569;" title="เปิดดูโค้ดและแคตตาล็อกสินค้าบน GitHub">🐙 GitHub</a>
             <a href="https://drive.google.com/drive/folders/0B23wTS8TZ_xnc1ByVFRSVTB6dnM?resourcekey=0-vfPecK-mMQq1XPnKopQdJQ" target="_blank" class="btn-download-img" style="background:#161b26; color:#34d399; border-color:rgba(16,185,129,0.3);" title="เปิดโฟลเดอร์ Google Drive">📁 Drive</a>
             ${isApproved ? '<span style="font-size:11px; color:#10b981; font-weight:700;">✨ Ready</span>' : ''}
