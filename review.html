@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Newave Studio® — 1-Click Design Review v2.5</title>
@@ -686,6 +689,26 @@
         let approvedList = JSON.parse(localStorage.getItem('nws_approved_designs') || '[]');
         let discardList = JSON.parse(localStorage.getItem('nws_discard_designs') || '[]');
         let historyStack = [];
+
+        // AUTO-SANITY: Clean up purged geometric designs (66 to 83) from browser localStorage
+        const PURGED_IDS = new Set(['66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83']);
+        if (approvedList && approvedList.length > 0) {
+            approvedList = approvedList.filter(x => !PURGED_IDS.has(String(x.id)));
+            localStorage.setItem('nws_approved_designs', JSON.stringify(approvedList));
+        }
+        if (pendingQueue && pendingQueue.length > 0) {
+            pendingQueue = pendingQueue.filter(x => !PURGED_IDS.has(String(x.id)));
+            localStorage.setItem('nws_pending_queue', JSON.stringify(pendingQueue));
+        }
+        if (holdQueue && holdQueue.length > 0) {
+            holdQueue = holdQueue.filter(x => !PURGED_IDS.has(String(x.id)));
+            localStorage.setItem('nws_hold_queue', JSON.stringify(holdQueue));
+        }
+        if (discardList && discardList.length > 0) {
+            discardList = discardList.filter(x => !PURGED_IDS.has(String(x.id)));
+            localStorage.setItem('nws_discard_designs', JSON.stringify(discardList));
+        }
+
 
         // AUTO-SYNC: Fetches fresh remote pending_queue.json AND merges with local catalog
         async function syncServerDesigns(silent = false) {
