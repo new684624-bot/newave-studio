@@ -1235,5 +1235,47 @@
     "supporting_tags": "emotional support dumpling, kawaii dim sum cat, cute gyoza kitten, bamboo steamer basket, asian food lover gift, cute foodie tote bag, xiaolongbao cat, funny emotional support, kawaii sticker, pastel aesthetic hoodie, newave studio",
     "desc": "Emotional Support Dumpling! An adorably chubby pastel calico chibi kitten curled up sleeping cozily inside a mini bamboo steamer basket like a warm soup dumpling. The sweetest gift for dim sum addicts, gyoza lovers, and kawaii foodie fans on tote bags, mugs, and tees.",
     "web_thumb": "assets/thumbs/thumb_61.jpg"
+  },
+  {
+    "id": "62",
+    "cid": "introvert",
+    "title": "Im Not For Everyone Im Barely For Myself Funny Sarcastic Retro Possum",
+    "quote": "I'm Not For Everyone, I'm Barely For Myself",
+    "main_tag": "sarcastic",
+    "supporting_tags": "im not for everyone, im barely for myself, funny sarcastic shirt, retro possum meme, 70s groovy cartoon, feral but polite, introvert humor, deadpan coffee mug, unhinged animal meme, low social battery, relatable quote, funny opossum sticker, newave studio",
+    "desc": "I'm Not For Everyone (I'm Barely For Myself)! Featuring a delightfully unbothered, deliciously sarcastic 70s retro cartoon Virginia opossum in vintage sunglasses lounging with a coffee mug. The ultimate relatable graphic for introverts, overthinkers, and sarcasm lovers on t-shirts, mugs, tumblers, and stickers.",
+    "style": "70s Retro Groovy Mascot",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "bg": "#FAF0E6",
+    "files": [
+      "62_NotForEveryoneBarelyForMyself_RetroPossum_4500x5400.png"
+    ],
+    "img": "62_NotForEveryoneBarelyForMyself_RetroPossum_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_62.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (สายกวนประชด & พอสซัมสุดฮิต)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
+  },
+  {
+    "id": "63",
+    "cid": "office",
+    "title": "I Would Agree With You But Then Wed Both Be Wrong Funny Sarcastic",
+    "quote": "I Would Agree With You But Then We'd Both Be Wrong",
+    "main_tag": "sarcastic",
+    "supporting_tags": "i would agree with you, but then wed both be wrong, funny coworker mug, sarcastic quote shirt, 70s retro groovy, deadpan coffee mug, corporate sarcasm, work from home humor, passive aggressive office, witty comeback, sarcastic employee gift, newave studio",
+    "desc": "I Would Agree With You, But Then We'd Both Be Wrong! Bold 70s retro groovy Cooper Black typography featuring a deadpan unbothered coffee cup with side-eye glance and retro sparkles. Perfect everyday witty humor for office mugs, laptop stickers, and sarcastic t-shirts.",
+    "style": "70s Retro Groovy Typography & Mascot",
+    "season": "Evergreen (ขายทั้งปี 365 วัน)",
+    "bg": "#FAF0E6",
+    "files": [
+      "63_WouldAgreeBothBeWrong_SarcasticRetro_4500x5400.png"
+    ],
+    "img": "63_WouldAgreeBothBeWrong_SarcasticRetro_4500x5400.png",
+    "web_thumb": "assets/thumbs/thumb_63.jpg",
+    "status_note": "⏳ พร้อมอัปโหลด (มุกประชดเพื่อนร่วมงานตัวท็อป)",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false
   }
 ]
