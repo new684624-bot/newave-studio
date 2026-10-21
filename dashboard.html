@@ -109,11 +109,14 @@
     background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.4);
   }
 
-  /* Quick Actions (Upload Links + Template Link) */
+  /* Quick Actions (Upload Links + Cloud Storage & Product Links) */
   .quick-links {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 16px;
   }
-  @media (max-width: 680px) {
+  @media (max-width: 992px) {
+    .quick-links { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 640px) {
     .quick-links { grid-template-columns: repeat(2, 1fr); }
   }
   body.force-mobile .quick-links {
@@ -123,15 +126,18 @@
   .link-pill {
     background: var(--card); border: 1px solid var(--border);
     border-radius: 14px; padding: 12px 10px; text-align: center;
-    text-decoration: none; font-size: 12.5px; font-weight: 700;
+    text-decoration: none; font-size: 12px; font-weight: 700;
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-    transition: transform 0.15s, border-color 0.15s;
+    transition: transform 0.15s, border-color 0.15s, background 0.15s;
   }
   .link-pill:hover { transform: translateY(-2px); }
   .link-pill.tp { color: #60a5fa; border-color: #3b82f655; }
   .link-pill.zz { color: #c084fc; border-color: #a855f755; }
   .link-pill.rb { color: #f87171; border-color: #ef444455; }
-  .link-pill.tpl { color: #34d399; border-color: #10b98155; }
+  .link-pill.gdrive, .link-pill.tpl { color: #34d399; border-color: #10b98155; }
+  .link-pill.gh { color: #f1f5f9; border-color: #94a3b855; }
+  .link-pill.gh:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
+  .link-pill.gdrive:hover { border-color: #34d399; background: rgba(16,185,129,0.08); }
 
   /* Product Template Guide Banner */
   .template-banner {
@@ -643,6 +649,8 @@
         <button class="btn-site-link" onclick="openTemplateModal()" style="color:#34d399; border-color:rgba(16,185,129,0.4);">
           📐 ไซส์ Template สินค้า
         </button>
+        <a href="https://drive.google.com/drive/folders/0B23wTS8TZ_xnc1ByVFRSVTB6dnM?resourcekey=0-vfPecK-mMQq1XPnKopQdJQ" target="_blank" class="btn-site-link" style="color:#34d399; border-color:rgba(16,185,129,0.4);" title="เปิดโฟลเดอร์ Product Templates บน Google Drive">📁 Google Drive</a>
+        <a href="https://github.com/new684624-bot/newave-studio" target="_blank" class="btn-site-link" style="color:#f1f5f9; border-color:rgba(255,255,255,0.3);" title="เปิด GitHub Repository สำหรับ Product และโค้ด">🐙 GitHub</a>
         <a href="review.html" class="btn-site-link highlight">✨ 1-Click Review</a>
         <a href="marketing.html" class="btn-site-link">🚀 Marketing Hub</a>
         <a href="index.html" class="btn-site-link">🌐 เว็บไซต์</a>
@@ -666,22 +674,29 @@
         <span style="font-size:16px;">🔴</span>
         <span>อัป Redbubble</span>
       </a>
-      <a href="https://drive.google.com/drive/folders/0B23wTS8TZ_xnc1ByVFRSVTB6dnM?resourcekey=0-vfPecK-mMQq1XPnKopQdJQ" target="_blank" class="link-pill tpl">
+      <a href="https://drive.google.com/drive/folders/0B23wTS8TZ_xnc1ByVFRSVTB6dnM?resourcekey=0-vfPecK-mMQq1XPnKopQdJQ" target="_blank" class="link-pill gdrive">
         <span style="font-size:16px;">📁</span>
-        <span>Redbubble Templates ➔</span>
+        <span>Google Drive (Product) ➔</span>
+      </a>
+      <a href="https://github.com/new684624-bot/newave-studio" target="_blank" class="link-pill gh">
+        <span style="font-size:16px;">🐙</span>
+        <span>GitHub (Product Repo) ➔</span>
       </a>
     </div>
 
-    <!-- Redbubble Product Template Drive Quick Access Banner -->
+    <!-- Product Assets & Cloud Storage (Google Drive & GitHub) Banner -->
     <div class="template-banner">
       <div class="template-info">
-        <h3>📁 Redbubble Official Product Templates (Google Drive)</h3>
-        <p>โฟลเดอร์เทมเพลตทางการสำหรับพิมพ์สินค้า เช่น เสื้อยืด, กระเป๋าเป้, แก้วน้ำ, เคสมือถือ และของแต่งบ้าน (ไฟล์ Newave Studio® ทุกชิ้นเป็น 4500x5400 px มาตรฐานพิมพ์ได้คมชัด 100%)</p>
+        <h3>📦 Product Hub & Cloud Storage (Google Drive & GitHub)</h3>
+        <p>ศูนย์รวมไฟล์สินค้า Newave Studio®: ดาวน์โหลดเทมเพลตสำหรับพิมพ์สินค้าทุกชิ้นบน Google Drive และเข้าถึงคลังโค้ด แคตตาล็อก Metadata และไฟล์งาน 4500x5400 px บน GitHub</p>
       </div>
       <div class="template-actions">
         <button class="btn-template-sheet" onclick="openTemplateModal()">📐 ดูสเปกขนาดพิกเซล</button>
         <a href="https://drive.google.com/drive/folders/0B23wTS8TZ_xnc1ByVFRSVTB6dnM?resourcekey=0-vfPecK-mMQq1XPnKopQdJQ" target="_blank" class="btn-template-drive">
-          เปิด Google Drive โฟลเดอร์ ➔
+          📁 เปิด Google Drive ➔
+        </a>
+        <a href="https://github.com/new684624-bot/newave-studio" target="_blank" class="btn-template-drive" style="background:#1e293b; color:#f1f5f9; border:1px solid #475569;">
+          🐙 เปิด GitHub Repository ➔
         </a>
       </div>
     </div>
@@ -1134,10 +1149,14 @@ function renderCardHtml(d, approvedIds) {
         <div class="meta">
           <div class="badge-row">${badges}</div>
           <div class="card-title">${escapeHtml(d.title)}</div>
-          <div class="card-subtext">📁 ${d.files ? d.files[0] : (d.img || '')}</div>
+          <div class="card-subtext">
+            <span>📁 ${d.files ? d.files[0] : (d.img || '')}</span>
+          </div>
           <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
             <button onclick="openLightboxById('${d.id}')" class="btn-download-img" style="cursor:pointer; background:#1e293b; color:#38bdf8; border-color:#0284c7;">🔍 ขยายรูป</button>
             <a href="${thumb}" download="NewaveStudio_${d.id}.jpg" class="btn-download-img">📥 เซฟรูป</a>
+            <a href="https://github.com/new684624-bot/newave-studio" target="_blank" class="btn-download-img" style="background:#161b26; color:#e2e8f0; border-color:#475569;" title="เปิดดูโค้ดและแคตตาล็อกสินค้าบน GitHub">🐙 GitHub</a>
+            <a href="https://drive.google.com/drive/folders/0B23wTS8TZ_xnc1ByVFRSVTB6dnM?resourcekey=0-vfPecK-mMQq1XPnKopQdJQ" target="_blank" class="btn-download-img" style="background:#161b26; color:#34d399; border-color:rgba(16,185,129,0.3);" title="เปิดโฟลเดอร์ Google Drive">📁 Drive</a>
             ${isApproved ? '<span style="font-size:11px; color:#10b981; font-weight:700;">✨ Ready</span>' : ''}
           </div>
         </div>
