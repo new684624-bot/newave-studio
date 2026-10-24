@@ -1824,5 +1824,89 @@
     "supporting_tags": "i ate santas cookies, id do it again cat, funny naughty cat christmas, sarcastic holiday cat shirt, mischievous cat mom gift, pet holiday humor",
     "desc": "I Ate Santa's Cookies (And I'd Do It Again)! Smug, unapologetic retro cartoon cat licking its lips next to an empty plate of crumbs and a glass of milk. Hilarious Christmas holiday gift for mischievous cat lovers.",
     "web_thumb": "assets/thumbs/thumb_89.jpg"
+  },
+  {
+    "id": "90",
+    "cid": "cats",
+    "files": [
+      "90_NotLazyEnergySavingMode_RetroCat_4500x5400.png"
+    ],
+    "img": "90_NotLazyEnergySavingMode_RetroCat_4500x5400.png",
+    "season": "Evergreen & Holiday Q4",
+    "style": "70s Retro Groovy Mascot",
+    "bg": "#FAF6F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "Not Lazy Just On Energy Saving Mode 70s Retro Cat Coffee Mug",
+    "pin_title": "Not Lazy Just On Energy Saving Mode Retro Cat Coffee Mug Shirt",
+    "main_tag": "sarcastic cat shirt",
+    "supporting_tags": "not lazy just on energy saving mode, funny low battery cat, retro cat coffee mug, introverted sarcastic cat, cute sleepy kitten tee, humorous cat lover gift",
+    "desc": "Not Lazy, Just On Energy-Saving Mode! Adorable sleepy retro cartoon cat resting inside a warm ceramic coffee mug with a cute sleep mask and low battery icon. Perfect gift for introverts, coffee addicts, and chronic procrastinators.",
+    "web_thumb": "assets/thumbs/thumb_90.jpg"
+  },
+  {
+    "id": "91",
+    "cid": "introvert",
+    "files": [
+      "91_CoolCaffeinatedAndCozy_RetroSnowman_4500x5400.png"
+    ],
+    "img": "91_CoolCaffeinatedAndCozy_RetroSnowman_4500x5400.png",
+    "season": "Holiday Q4",
+    "style": "70s Retro Groovy Mascot",
+    "bg": "#FAF6F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "Cool Caffeinated And Cozy 70s Retro Snowman Iced Coffee",
+    "pin_title": "Cool Caffeinated And Cozy 70s Retro Groovy Snowman Shirt",
+    "main_tag": "retro holiday coffee",
+    "supporting_tags": "cool caffeinated and cozy, 70s retro snowman, iced coffee lover winter shirt, groovy holiday coffee tee, funny winter barista gift, peace sign snowman",
+    "desc": "Cool, Caffeinated & Cozy! 70s retro vintage snowman rocking sunglasses, warm winter scarf, flashing a peace sign, and holding a tall iced coffee with candy cane straw. Ideal winter holiday gift for iced coffee lovers and baristas.",
+    "web_thumb": "assets/thumbs/thumb_91.jpg"
+  },
+  {
+    "id": "92",
+    "cid": "kawaii",
+    "files": [
+      "92_DoNotPerceiveMeToday_KawaiiCat_4500x5400.png"
+    ],
+    "img": "92_DoNotPerceiveMeToday_KawaiiCat_4500x5400.png",
+    "season": "Evergreen & Holiday Q4",
+    "style": "Kawaii Pastel Chibi",
+    "bg": "#FFF8F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "Please Do Not Perceive Me Today Kawaii Chibi Calico Cat Burrito",
+    "pin_title": "Please Do Not Perceive Me Today Cute Kawaii Cat Burrito Shirt",
+    "main_tag": "kawaii introvert cat",
+    "supporting_tags": "please do not perceive me today, cute cat burrito blanket, kawaii chibi kitten matcha, introverted antisocial cat, funny anxiety cat gift, pastel aesthetic tee",
+    "desc": "Please Do Not Perceive Me Today! Adorably chunky kawaii calico chibi kitten bundled up tight in a warm blanket burrito, clutching an iced matcha latte with wide deadpan eyes. The ultimate cute gift for introverts and social battery recharge days.",
+    "web_thumb": "assets/thumbs/thumb_92.jpg"
+  },
+  {
+    "id": "93",
+    "cid": "cats",
+    "files": [
+      "93_FestiveAndBurntOut_RetroCat_4500x5400.png"
+    ],
+    "img": "93_FestiveAndBurntOut_RetroCat_4500x5400.png",
+    "season": "Holiday Q4",
+    "style": "70s Retro Holiday Mascot",
+    "bg": "#FAF6F0",
+    "rb_done": false,
+    "tp_done": false,
+    "zz_done": false,
+    "status_note": "⏳ พร้อมอัปโหลด",
+    "title": "Festive And Burnt Out 70s Retro Christmas Cat In Coffee Mug",
+    "pin_title": "Festive And Burnt Out Sarcastic Retro Christmas Cat Mug Shirt",
+    "main_tag": "funny christmas cat",
+    "supporting_tags": "festive and burnt out, sarcastic holiday cat shirt, retro christmas coffee mug, exhausted cat holiday humor, tired corporate holiday gift, burnt out introvert tee",
+    "desc": "Festive & Burnt Out! Thoroughly exhausted retro vintage cartoon cat slouching inside a giant ceramic holiday coffee mug wrapped in festive string lights. The most relatable Christmas holiday shirt for tired corporate workers, parents, and introverts.",
+    "web_thumb": "assets/thumbs/thumb_93.jpg"
   }
 ]
