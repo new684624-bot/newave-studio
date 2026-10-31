@@ -274,7 +274,7 @@ function renderVideos() {
     card.innerHTML = `
       <div class="player-box">
         <video controls playsinline preload="metadata">
-          <source src="${v.file}?v=20261031_v4" type="video/mp4">
+          <source src="${v.file}?v=20261031_v5" type="video/mp4">
           บราวเซอร์ของคุณไม่รองรับการเล่นวิดีโอ
         </video>
       </div>
@@ -310,7 +310,7 @@ function renderVideos() {
           <button class="btn-action btn-approve ${isApp ? 'approved-state' : ''}" onclick="toggleApprove('${v.id}')">
             ${isApp ? '↩️ ปลดเป็นรอตรวจ' : '✅ อนุมัติคลิปนี้'}
           </button>
-          <a href="${v.file}?v=20261031_v4" download="NewaveStudio_Short_${v.id}.mp4" class="btn-action btn-download" title="ดาวน์โหลดไฟล์ MP4 คุณภาพสูง">
+          <a href="${v.file}?v=20261031_v5" download="NewaveStudio_Short_${v.id}.mp4" class="btn-action btn-download" title="ดาวน์โหลดไฟล์ MP4 คุณภาพสูง">
             ⬇️ โหลด MP4
           </a>
         </div>
