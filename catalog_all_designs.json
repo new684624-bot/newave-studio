@@ -2304,5 +2304,45 @@
     "img": "108_RestIsProductive_SelfCareCapybara_IP_FLAGGED_4500x5400.png",
     "web_thumb": "assets/thumbs/108_RestIsProductive_SelfCareCapybara_IP_FLAGGED_thumb.jpg",
     "status_note": "⏳ พร้อมอัปโหลด"
+  },
+  {
+    "id": "109",
+    "title": "The Christmas Tree Was Defective - Architectural Failure Cat",
+    "slogan": "THE CHRISTMAS TREE WAS DEFECTIVE / ARCHITECTURAL FAILURE",
+    "category": "Holiday Sarcasm",
+    "style": "70s Vintage Retro",
+    "image": "assets/thumbs/109_ChristmasTreeDefective_RetroCat_thumb.png",
+    "file_master": "01_FINAL_PRINT_READY_DESIGNS/109_ChristmasTreeDefective_RetroCat_4500x5400.png",
+    "date_added": "2026-11-01"
+  },
+  {
+    "id": "110",
+    "title": "Dear Santa Define Good - Lets Not Get Technical Tuxedo Cat",
+    "slogan": "DEAR SANTA, DEFINE 'GOOD' / LET'S NOT GET TECHNICAL",
+    "category": "Holiday Sarcasm",
+    "style": "70s Vintage Retro",
+    "image": "assets/thumbs/110_DearSantaDefineGood_TuxedoCat_thumb.png",
+    "file_master": "01_FINAL_PRINT_READY_DESIGNS/110_DearSantaDefineGood_TuxedoCat_4500x5400.png",
+    "date_added": "2026-11-01"
+  },
+  {
+    "id": "111",
+    "title": "Silent Night I Wish - 90 Percent Coffee And 10 Percent Spite Cat",
+    "slogan": "SILENT NIGHT? I WISH. / 90% COFFEE AND 10% SPITE",
+    "category": "Holiday Sarcasm",
+    "style": "70s Vintage Retro",
+    "image": "assets/thumbs/111_SilentNightCoffeeAndSpite_RetroCat_thumb.png",
+    "file_master": "01_FINAL_PRINT_READY_DESIGNS/111_SilentNightCoffeeAndSpite_RetroCat_4500x5400.png",
+    "date_added": "2026-11-01"
+  },
+  {
+    "id": "112",
+    "title": "Wrapped In Lights - Still Emotionally Unavailable Raccoon",
+    "slogan": "WRAPPED IN LIGHTS / STILL EMOTIONALLY UNAVAILABLE",
+    "category": "Holiday Sarcasm",
+    "style": "70s Vintage Retro",
+    "image": "assets/thumbs/112_WrappedInLights_RetroRaccoon_thumb.png",
+    "file_master": "01_FINAL_PRINT_READY_DESIGNS/112_WrappedInLights_RetroRaccoon_4500x5400.png",
+    "date_added": "2026-11-01"
   }
 ]
