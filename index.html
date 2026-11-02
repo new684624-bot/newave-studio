@@ -3,12 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>NEWAVE STUDIO® — Official Streetwear & Lifestyle Storefront</title>
-  <meta name="description" content="Official Flagship Store of Newave Studio®. Unbothered couture, deadpan humor & premium apparel for the emotionally unavailable. Worldwide delivery via Spreadshirt & Zazzle.">
+  <title>NEWAVE STUDIO® — Official Streetwear, Mugs & 2026 Holiday Gift Guide</title>
+  <meta name="description" content="Official Flagship Store of Newave Studio®. Unbothered couture, deadpan humor, heavyweight hoodies & ceramic mugs for introverts, coffee addicts & exhausted coworkers. Worldwide delivery via Spreadshirt & Zazzle.">
   <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
   
   <!-- Pinterest Domain Verification -->
   <meta name="p:domain_verify" content="93778b4f702021e78b7e80698ca79fd3"/>
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:title" content="NEWAVE STUDIO® — Unbothered Couture & 2026 Holiday Gift Guide">
+  <meta property="og:description" content="Try our 32 live designs on Heavyweight Hoodies & Ceramic Mugs. Take the 3-second Social Battery Quiz or shop the Brutally Honest Holiday Gift Guide.">
+  <meta property="og:image" content="https://thenewavestudio.vercel.app/assets/pin_holiday_gift_guide_2026.jpg">
+  <meta property="og:url" content="https://thenewavestudio.vercel.app">
+  <meta property="og:type" content="website">
+
+  <!-- Structured Data Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Newave Studio",
+    "url": "https://thenewavestudio.vercel.app",
+    "logo": "https://thenewavestudio.vercel.app/assets/logo.jpg",
+    "sameAs": [
+      "https://www.tiktok.com/@newave.studio",
+      "https://www.instagram.com/thenewave.studio",
+      "https://www.pinterest.com/thenewavestudio",
+      "https://newave-studio.myspreadshop.com",
+      "https://www.zazzle.com/store/newavestudio"
+    ]
+  }
+  </script>
   
   <!-- Google Analytics GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G79TXLTCLB"></script>
@@ -19,11 +44,13 @@
     gtag('config', 'G-G79TXLTCLB');
     
     function trackOutbound(platform, productId, productName) {
-      gtag('event', 'outbound_store_click', {
-        'platform': platform,
-        'product_id': productId,
-        'product_name': productName
-      });
+      if (typeof gtag === 'function') {
+        gtag('event', 'outbound_store_click', {
+          'platform': platform,
+          'product_id': productId,
+          'product_name': productName
+        });
+      }
     }
   </script>
 
@@ -39,7 +66,7 @@
       --card-bg: #131720;
       --card-hover: #1a202c;
       --border: #232936;
-      --border-glow: rgba(255, 85, 0, 0.4);
+      --border-glow: rgba(255, 85, 0, 0.45);
       --text: #f8fafc;
       --text-muted: #94a3b8;
       --accent: #ff5500;
@@ -54,6 +81,7 @@
       margin: 0; padding: 0; box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
     }
+    html { scroll-behavior: smooth; }
 
     body {
       background-color: var(--bg);
@@ -66,7 +94,7 @@
 
     /* Global Marquee Ticker */
     .marquee-bar {
-      background: #000;
+      background: linear-gradient(90deg, #090b10 0%, #1a0f0a 50%, #090b10 100%);
       border-bottom: 1px solid var(--border);
       padding: 8px 0;
       overflow: hidden;
@@ -75,7 +103,7 @@
       font-family: var(--font-heading);
       font-size: 11.5px;
       letter-spacing: 1.5px;
-      color: #cbd5e1;
+      color: #f1f5f9;
       text-transform: uppercase;
     }
     .marquee-track {
@@ -92,14 +120,16 @@
       position: sticky;
       top: 0;
       z-index: 900;
-      background: rgba(7, 8, 11, 0.88);
+      background: rgba(7, 8, 11, 0.90);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
-      padding: 16px 24px;
+      padding: 14px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
     }
     .brand-lockup {
       display: flex;
@@ -120,6 +150,28 @@
       font-size: 19px;
       font-weight: 700;
       letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .nav-pill {
+      text-decoration: none;
+      color: #cbd5e1;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: all 0.2s;
+    }
+    .nav-pill:hover, .nav-pill.highlight {
+      color: #fff;
+      border-color: var(--accent);
+      background: rgba(255, 85, 0, 0.15);
     }
     .status-pill {
       display: inline-flex;
@@ -148,9 +200,9 @@
 
     /* Hero Editorial Section */
     .hero {
-      padding: 64px 20px 48px;
+      padding: 52px 20px 36px;
       text-align: center;
-      max-width: 900px;
+      max-width: 1020px;
       margin: 0 auto;
       position: relative;
     }
@@ -163,66 +215,142 @@
       font-weight: 700;
       margin-bottom: 16px;
       display: inline-block;
-      background: rgba(255, 85, 0, 0.1);
-      padding: 6px 14px;
+      background: rgba(255, 85, 0, 0.12);
+      padding: 6px 16px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 85, 0, 0.3);
+      border: 1px solid rgba(255, 85, 0, 0.35);
     }
     .hero-title {
       font-family: var(--font-heading);
-      font-size: clamp(32px, 6vw, 56px);
+      font-size: clamp(32px, 5.5vw, 56px);
       font-weight: 700;
-      line-height: 1.1;
+      line-height: 1.08;
       letter-spacing: -1.5px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .hero-title span {
       color: transparent;
-      background: linear-gradient(135deg, #fff 40%, #94a3b8 100%);
+      background: linear-gradient(135deg, #ff7b00 0%, #ff3366 60%, #a855f7 100%);
       -webkit-background-clip: text;
     }
     .hero-desc {
       font-size: clamp(15px, 2vw, 17px);
       color: var(--text-muted);
-      max-width: 640px;
-      margin: 0 auto 32px;
+      max-width: 660px;
+      margin: 0 auto 28px;
     }
 
-    /* Platform Trust Badges */
-    .trust-badges {
+    .hero-cta-row {
       display: flex;
       justify-content: center;
-      gap: 16px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
     }
-    .badge-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 10px 18px;
+    .hero-btn {
+      padding: 13px 24px;
       border-radius: 12px;
-      font-size: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .hero-btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(255, 85, 0, 0.35);
+    }
+    .hero-btn-primary:hover {
+      transform: translateY(-2px);
+      background: #ff6a1a;
+    }
+    .hero-btn-secondary {
+      background: var(--surface);
+      color: #fff;
+      border-color: var(--border);
+    }
+    .hero-btn-secondary:hover {
+      border-color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* Interactive Preview Mode Switcher Bar (รูปแบบที่ 2) */
+    .preview-mode-bar {
+      max-width: 780px;
+      margin: 0 auto 28px;
+      background: #10141d;
+      border: 1px solid rgba(255, 85, 0, 0.35);
+      border-radius: 16px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .pm-label {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      color: #f8fafc;
       display: flex;
       align-items: center;
       gap: 8px;
+    }
+    .pm-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .pm-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pm-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 4px 14px rgba(255, 85, 0, 0.35);
+    }
+    .pm-btn:hover:not(.active) {
+      color: #fff;
+      border-color: #64748b;
     }
 
     /* Filter Bar */
     .filters-wrap {
       max-width: 1280px;
-      margin: 0 auto 32px;
+      margin: 0 auto 28px;
       padding: 0 20px;
       display: flex;
       gap: 10px;
       overflow-x: auto;
       scrollbar-width: none;
+      justify-content: center;
+      flex-wrap: wrap;
     }
     .filters-wrap::-webkit-scrollbar { display: none; }
     .f-btn {
       background: var(--surface);
       border: 1px solid var(--border);
       color: var(--text-muted);
-      padding: 10px 20px;
+      padding: 9px 18px;
       border-radius: 999px;
       font-size: 13px;
       font-weight: 600;
@@ -241,9 +369,9 @@
     .product-grid {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 20px 80px;
+      padding: 0 20px 64px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
       gap: 24px;
     }
 
@@ -259,13 +387,13 @@
     }
     .product-card:hover {
       transform: translateY(-5px);
-      border-color: rgba(255, 85, 0, 0.4);
-      box-shadow: 0 16px 36px rgba(0,0,0,0.45);
+      border-color: rgba(255, 85, 0, 0.45);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.5);
     }
 
     .card-thumb-wrap {
       position: relative;
-      background: #11141c;
+      background: #10131a;
       aspect-ratio: 1 / 1;
       overflow: hidden;
       cursor: pointer;
@@ -276,17 +404,113 @@
     .card-thumb {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
+      object-fit: contain;
+      padding: 12px;
+      transition: all 0.35s ease;
     }
     .product-card:hover .card-thumb {
-      transform: scale(1.05);
+      transform: scale(1.04);
+    }
+
+    /* Dynamic Garment Mockup Overlays (Hoodie & Mug Mode) */
+    .mockup-stage {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 40%, #1e2433 0%, #0b0d13 100%);
+    }
+    /* Hoodie Silhouette Stage */
+    .hoodie-silhouette {
+      width: 88%;
+      height: 88%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hoodie-svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 14px 24px rgba(0,0,0,0.65));
+    }
+    .hoodie-print-overlay {
+      position: absolute;
+      width: 38%;
+      height: 38%;
+      top: 31%;
+      left: 31%;
+      object-fit: contain;
+      filter: contrast(1.04) brightness(0.96);
+      border-radius: 4px;
+      transition: transform 0.3s ease;
+    }
+    .product-card:hover .hoodie-print-overlay {
+      transform: scale(1.08);
+    }
+
+    /* Mug Silhouette Stage */
+    .mug-silhouette {
+      width: 84%;
+      height: 84%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mug-svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 14px 22px rgba(0,0,0,0.65));
+    }
+    .mug-print-overlay {
+      position: absolute;
+      width: 39%;
+      height: 42%;
+      top: 31%;
+      left: 23.5%;
+      object-fit: contain;
+      border-radius: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    /* Mini Per-Card Mode Switcher Pills */
+    .card-mode-tabs {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      z-index: 5;
+      display: flex;
+      gap: 4px;
+      background: rgba(7, 8, 11, 0.85);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 4px;
+      border-radius: 9px;
+      backdrop-filter: blur(8px);
+    }
+    .cm-tab {
+      border: none;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .cm-tab.active, .cm-tab:hover {
+      background: var(--accent);
+      color: #fff;
     }
 
     .card-badge {
       position: absolute;
-      top: 14px;
-      left: 14px;
+      top: 12px;
+      left: 12px;
+      z-index: 5;
       background: rgba(0,0,0,0.85);
       border: 1px solid rgba(255,255,255,0.2);
       backdrop-filter: blur(8px);
@@ -300,23 +524,23 @@
     }
 
     .card-body {
-      padding: 20px;
+      padding: 18px 20px 20px;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
     .card-title {
       font-family: var(--font-heading);
-      font-size: 17px;
+      font-size: 16.5px;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       line-height: 1.3;
     }
     .card-tagline {
       font-size: 12.5px;
       color: var(--text-muted);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       flex: 1;
     }
 
@@ -330,7 +554,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 11px 16px;
+      padding: 11px 15px;
       border-radius: 10px;
       font-size: 12.5px;
       font-weight: 700;
@@ -348,7 +572,6 @@
       color: #000;
       border-color: #10b981;
     }
-
     .btn-zazzle {
       background: #25163b;
       color: #d8b4fe;
@@ -358,6 +581,177 @@
       background: #a855f7;
       color: #fff;
       border-color: #a855f7;
+    }
+
+    /* =====================================================
+       INTERACTIVE SOCIAL BATTERY & SARCASM QUIZ (รูปแบบที่ 2)
+       ===================================================== */
+    .quiz-section {
+      max-width: 1140px;
+      margin: 0 auto 72px;
+      padding: 0 20px;
+    }
+    .quiz-box {
+      background: linear-gradient(145deg, #121622 0%, #0b0e16 100%);
+      border: 1px solid rgba(255, 85, 0, 0.4);
+      border-radius: 24px;
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .quiz-title {
+      font-family: var(--font-heading);
+      font-size: clamp(24px, 4vw, 34px);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .quiz-sub {
+      color: var(--text-muted);
+      font-size: 14.5px;
+      max-width: 580px;
+      margin: 0 auto 24px;
+    }
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      max-width: 920px;
+      margin: 0 auto 24px;
+    }
+    .q-opt {
+      background: #171c29;
+      border: 1px solid #2b3346;
+      color: #f1f5f9;
+      padding: 16px 18px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .q-opt:hover, .q-opt.selected {
+      background: rgba(255, 85, 0, 0.16);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 85, 0, 0.2);
+    }
+    .q-opt-emoji {
+      font-size: 24px;
+    }
+    .quiz-result {
+      display: none;
+      margin-top: 26px;
+      padding-top: 26px;
+      border-top: 1px solid var(--border);
+      text-align: left;
+    }
+    .quiz-result.show {
+      display: block;
+      animation: fadeIn 0.35s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .diagnosis-banner {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .diagnosis-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: #34d399;
+    }
+
+    /* =====================================================
+       2026 HOLIDAY GIFT GUIDE & LOOKBOOK (รูปแบบที่ 3)
+       ===================================================== */
+    .gift-guide-section {
+      max-width: 1280px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+    }
+    .gg-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .gg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .gg-card {
+      background: linear-gradient(180deg, #151924 0%, #0d1017 100%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s;
+    }
+    .gg-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+    .gg-img-wrap {
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      position: relative;
+      background: #0a0c10;
+    }
+    .gg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .gg-card:hover .gg-img {
+      transform: scale(1.04);
+    }
+    .gg-persona-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(255, 85, 0, 0.92);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .gg-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .gg-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .gg-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      flex: 1;
     }
 
     /* Footer */
@@ -386,7 +780,8 @@
     .social-links {
       display: flex;
       justify-content: center;
-      gap: 16px;
+      gap: 12px;
+      flex-wrap: wrap;
       margin-bottom: 32px;
     }
     .social-link {
@@ -415,7 +810,7 @@
   <!-- Top Announcement Ticker -->
   <div class="marquee-bar">
     <div class="marquee-track">
-      &nbsp; ⚡ NEWAVE STUDIO® OFFICIALLY LIVE &nbsp; • &nbsp; 34 ACTIVE CURATED DROPS &nbsp; • &nbsp; WORLDWIDE DELIVERY ACROSS US & EUROPE &nbsp; • &nbsp; 100% ORIGINAL CREATIVE CONSTITUTION &nbsp; • &nbsp; DEADPAN APPAREL & GIFTS &nbsp; • &nbsp; ⚡ NEWAVE STUDIO® OFFICIALLY LIVE &nbsp; • &nbsp; 34 ACTIVE CURATED DROPS &nbsp; • &nbsp; WORLDWIDE DELIVERY ACROSS US & EUROPE &nbsp; • &nbsp; 100% ORIGINAL CREATIVE CONSTITUTION
+      &nbsp; 🎄 2026 HOLIDAY GIFT GUIDE NOW LIVE &nbsp; • &nbsp; TRY ANY DESIGN ON HEAVYWEIGHT HOODIES & CERAMIC MUGS BELOW &nbsp; • &nbsp; WORLDWIDE EXPRESS DELIVERY VIA SPREADSHIRT & ZAZZLE USA &nbsp; • &nbsp; 100% ORIGINAL SARCASM CONSTITUTION &nbsp; • &nbsp; 🎄 2026 HOLIDAY GIFT GUIDE NOW LIVE &nbsp; • &nbsp; TRY ANY DESIGN ON HEAVYWEIGHT HOODIES & CERAMIC MUGS BELOW
     </div>
   </div>
 
@@ -425,38 +820,45 @@
       <img src="assets/logo.jpg" alt="Newave Studio" class="brand-logo" onerror="this.style.display='none'">
       <span class="brand-name">NEWAVE STUDIO®</span>
     </a>
+    <nav class="nav-links">
+      <a href="#catalog" class="nav-pill">👕 All 32 Drops</a>
+      <a href="#quiz" class="nav-pill highlight">⚡ 3-Sec Vibe Quiz</a>
+      <a href="#gift-guide" class="nav-pill highlight">🎄 2026 Gift Guide</a>
+    </nav>
     <div class="status-pill">
       <span class="status-dot"></span>
-      <span>STORE LIVE & DISPATCHING</span>
+      <span>US & EU FULFILLMENT ACTIVE</span>
     </div>
   </header>
 
   <!-- Editorial Hero -->
   <section class="hero">
-    <div class="hero-eyebrow">Autumn / Winter '26 Collection</div>
+    <div class="hero-eyebrow">Autumn / Winter '26 Flagship Storefront</div>
     <h1 class="hero-title">Unbothered Couture For The <span>Emotionally Unavailable.</span></h1>
-    <p class="hero-desc">Heavyweight Graphic Hoodies, Ringspun Tees & Ceramic Drinkware designed for introverts, coffee addicts, and chronic overthinkers.</p>
+    <p class="hero-desc">Heavyweight Graphic Hoodies, Ringspun Tees, Ceramic Mugs & Holiday Gifts engineered for introverts, coffee addicts, and chronic overthinkers.</p>
 
-    <!-- Trust Badges -->
-    <div class="trust-badges">
-      <div class="badge-card">
-        <span>👕</span>
-        <span><b>Apparel Hub:</b> Spreadshirt Express</span>
+    <div class="hero-cta-row">
+      <a href="#gift-guide" class="hero-btn hero-btn-primary">🎄 Explore 2026 Holiday Gift Guide</a>
+      <a href="#quiz" class="hero-btn hero-btn-secondary">⚡ Take 3-Second Social Battery Quiz</a>
+    </div>
+
+    <!-- Interactive Real Product Preview Mode Switcher (รูปแบบที่ 2) -->
+    <div class="preview-mode-bar" id="catalog">
+      <div class="pm-label">
+        <span>✨ LIVE PRODUCT STUDIO:</span>
+        <span style="color:var(--text-muted);font-weight:500;">Preview all 32 designs on real merch</span>
       </div>
-      <div class="badge-card">
-        <span>☕</span>
-        <span><b>Mugs & Gifts:</b> Zazzle USA</span>
-      </div>
-      <div class="badge-card">
-        <span>🔒</span>
-        <span><b>Zero IP Risk:</b> 100% Original Creations</span>
+      <div class="pm-buttons">
+        <button class="pm-btn active" id="modeBtn-art" onclick="setGlobalMode('art')">🎨 Artwork</button>
+        <button class="pm-btn" id="modeBtn-hoodie" onclick="setGlobalMode('hoodie')">👕 On Hoodie</button>
+        <button class="pm-btn" id="modeBtn-mug" onclick="setGlobalMode('mug')">☕ On Mug</button>
       </div>
     </div>
   </section>
 
   <!-- Filter Buttons -->
   <div class="filters-wrap">
-    <button class="f-btn active" onclick="filterCategory('All', this)">✨ All Live Drops (31)</button>
+    <button class="f-btn active" onclick="filterCategory('All', this)">✨ All Live Drops (32)</button>
     <button class="f-btn" onclick="filterCategory('Holiday Sarcasm', this)">🎄 Holiday Sarcasm</button>
     <button class="f-btn" onclick="filterCategory('Cozy Introvert', this)">☕ Cozy Introvert & Coffee</button>
     <button class="f-btn" onclick="filterCategory('Streetwear Archive', this)">🏛️ Streetwear Archive</button>
@@ -467,11 +869,157 @@
   <main class="product-grid" id="productGrid">
   </main>
 
+  <!-- =====================================================
+       INTERACTIVE 3-SECOND SOCIAL BATTERY QUIZ (รูปแบบที่ 2)
+       ===================================================== -->
+  <section class="quiz-section" id="quiz">
+    <div class="quiz-box">
+      <div class="hero-eyebrow">Interactive Merch Matcher</div>
+      <h2 class="quiz-title">⚡ Check Your Social Battery (3-Second Quiz)</h2>
+      <p class="quiz-sub">Tap your current state of mind below and our algorithm will prescribe your exact spirit animal Hoodie & Office Mug.</p>
+
+      <div class="quiz-options">
+        <button class="q-opt" onclick="runQuiz('coffee', this)">
+          <span class="q-opt-emoji">☕</span>
+          <div>
+            <div>90% Coffee & 10% Spite</div>
+            <div style="font-size:11.5px;color:var(--text-muted);font-weight:500;">Surviving meetings on pure caffeine</div>
+          </div>
+        </button>
+        <button class="q-opt" onclick="runQuiz('holiday', this)">
+          <span class="q-opt-emoji">🎄</span>
+          <div>
+            <div>Festive Outside, Exhausted Inside</div>
+            <div style="font-size:11.5px;color:var(--text-muted);font-weight:500;">Tangled in lights & overstimulated</div>
+          </div>
+        </button>
+        <button class="q-opt" onclick="runQuiz('introvert', this)">
+          <span class="q-opt-emoji">🔋</span>
+          <div>
+            <div>Please Do Not Perceive Me</div>
+            <div style="font-size:11.5px;color:var(--text-muted);font-weight:500;">Social battery at critical 1%</div>
+          </div>
+        </button>
+        <button class="q-opt" onclick="runQuiz('chaos', this)">
+          <span class="q-opt-emoji">😼</span>
+          <div>
+            <div>Unapologetic Cat Chaos</div>
+            <div style="font-size:11.5px;color:var(--text-muted);font-weight:500;">The Christmas tree was defective</div>
+          </div>
+        </button>
+      </div>
+
+      <div class="quiz-result" id="quizResult">
+        <div class="diagnosis-banner">
+          <div>
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#cbd5e1;">Official Prescription</div>
+            <div class="diagnosis-title" id="quizDiagTitle">Diagnosis: Certified Caffeine-Powered Survivor</div>
+          </div>
+          <button class="pm-btn active" onclick="setGlobalMode('hoodie'); document.getElementById('quizGrid').scrollIntoView({behavior:'smooth'});">👕 Preview Prescription on Hoodies</button>
+        </div>
+        <div class="product-grid" id="quizGrid" style="padding:0;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       THE BRUTALLY HONEST 2026 HOLIDAY GIFT GUIDE (รูปแบบที่ 3)
+       ===================================================== -->
+  <section class="gift-guide-section" id="gift-guide">
+    <div class="gg-header">
+      <div class="hero-eyebrow">2026 Curated Lookbook & Gift Guide</div>
+      <h2 class="quiz-title">🎁 The Brutally Honest Holiday Gift Guide</h2>
+      <p class="quiz-sub">Real streetwear lookbook previews paired with the highest-converting holiday gifts for coworkers, cat parents, and introverts.</p>
+    </div>
+
+    <div class="gg-grid">
+      <!-- Lookbook Card 1 -->
+      <article class="gg-card">
+        <div class="gg-img-wrap">
+          <span class="gg-persona-tag">🔥 #1 For Exhausted Coworkers</span>
+          <img src="assets/lookbook_111.jpg" alt="90% Coffee & 10% Spite Streetwear Hoodie Lookbook" class="gg-img" loading="lazy">
+        </div>
+        <div class="gg-body">
+          <h3 class="gg-title">Silent Night? 90% Coffee & 10% Spite (#111)</h3>
+          <p class="gg-desc">Shown on our matte-black heavyweight pullover hoodie & matching espresso mug. The ultimate armor for December morning standups.</p>
+          <div class="btn-stack">
+            <a href="https://newave-studio.myspreadshop.com" target="_blank" class="btn-buy btn-spread" onclick="trackOutbound('spreadshirt_giftguide', '111', 'Silent Night Coffee Spite')">
+              <span>👕 Shop Hoodie & Tee</span><span>Spreadshirt ↗</span>
+            </a>
+            <a href="https://www.zazzle.com/store/newavestudio" target="_blank" class="btn-buy btn-zazzle" onclick="trackOutbound('zazzle_giftguide', '111', 'Silent Night Coffee Spite')">
+              <span>☕ Shop Mug & Ornament</span><span>Zazzle ↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Lookbook Card 2 -->
+      <article class="gg-card">
+        <div class="gg-img-wrap">
+          <span class="gg-persona-tag">🎄 For Cat Parents in Denial</span>
+          <img src="assets/lookbook_109.jpg" alt="The Christmas Tree Was Defective Hoodie Lookbook" class="gg-img" loading="lazy">
+        </div>
+        <div class="gg-body">
+          <h3 class="gg-title">The Christmas Tree Was Defective (#109)</h3>
+          <p class="gg-desc">"Architectural Failure." A courtroom-ready defense for every household whose cat has already toppled the holiday tree twice.</p>
+          <div class="btn-stack">
+            <a href="https://newave-studio.myspreadshop.com" target="_blank" class="btn-buy btn-spread" onclick="trackOutbound('spreadshirt_giftguide', '109', 'Christmas Tree Defective')">
+              <span>👕 Shop Hoodie & Tee</span><span>Spreadshirt ↗</span>
+            </a>
+            <a href="https://www.zazzle.com/store/newavestudio" target="_blank" class="btn-buy btn-zazzle" onclick="trackOutbound('zazzle_giftguide', '109', 'Christmas Tree Defective')">
+              <span>☕ Shop Mug & Ornament</span><span>Zazzle ↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Lookbook Card 3 -->
+      <article class="gg-card">
+        <div class="gg-img-wrap">
+          <span class="gg-persona-tag">🍪 For Naughty List Regulars</span>
+          <img src="assets/lookbook_110.jpg" alt="Dear Santa Define Good Hoodie Lookbook" class="gg-img" loading="lazy">
+        </div>
+        <div class="gg-body">
+          <h3 class="gg-title">Dear Santa, Define 'Good' (#110)</h3>
+          <p class="gg-desc">"Let's Not Get Technical." Tuxedo cat caught mid-bite with a gingerbread man. Best-selling Secret Santa gift under $25.</p>
+          <div class="btn-stack">
+            <a href="https://newave-studio.myspreadshop.com" target="_blank" class="btn-buy btn-spread" onclick="trackOutbound('spreadshirt_giftguide', '110', 'Dear Santa Define Good')">
+              <span>👕 Shop Hoodie & Tee</span><span>Spreadshirt ↗</span>
+            </a>
+            <a href="https://www.zazzle.com/store/newavestudio" target="_blank" class="btn-buy btn-zazzle" onclick="trackOutbound('zazzle_giftguide', '110', 'Dear Santa Define Good')">
+              <span>☕ Shop Mug & Stickers</span><span>Zazzle ↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Lookbook Card 4 -->
+      <article class="gg-card">
+        <div class="gg-img-wrap">
+          <span class="gg-persona-tag">🦝 For Introverts & Trash Pandas</span>
+          <img src="assets/lookbook_112.jpg" alt="Wrapped In Lights Still Emotionally Unavailable Hoodie Lookbook" class="gg-img" loading="lazy">
+        </div>
+        <div class="gg-body">
+          <h3 class="gg-title">Wrapped In Lights, Emotionally Unavailable (#112)</h3>
+          <p class="gg-desc">Vintage 70s raccoon tangled in Christmas fairy lights with zero regrets. Ideal for anyone skipping the office holiday party.</p>
+          <div class="btn-stack">
+            <a href="https://newave-studio.myspreadshop.com" target="_blank" class="btn-buy btn-spread" onclick="trackOutbound('spreadshirt_giftguide', '112', 'Wrapped In Lights Raccoon')">
+              <span>👕 Shop Hoodie & Tee</span><span>Spreadshirt ↗</span>
+            </a>
+            <a href="https://www.zazzle.com/store/newavestudio" target="_blank" class="btn-buy btn-zazzle" onclick="trackOutbound('zazzle_giftguide', '112', 'Wrapped In Lights Raccoon')">
+              <span>☕ Shop Mug & Tote</span><span>Zazzle ↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer>
     <div class="footer-content">
       <div class="footer-logo">NEWAVE STUDIO®</div>
-      <p class="footer-desc">Independent lifestyle label creating high-contrast deadpan graphics and apparel. Every item is produced on-demand to eliminate fast-fashion waste.</p>
+      <p class="footer-desc">Independent lifestyle label creating high-contrast deadpan graphics and apparel. Every item is produced on-demand in the US & EU to eliminate fast-fashion waste.</p>
       
       <div class="social-links">
         <a href="https://www.tiktok.com/@newave.studio" target="_blank" class="social-link">🎵 TikTok</a>
@@ -488,15 +1036,92 @@
   </footer>
 
   <script>
-    const PRODUCTS = [{"id": "110", "title": "Dear Santa Define Good Lets Not Get Technical Tuxedo Cat", "tagline": "Dear Santa, Define 'Good' (Let's Not Get Technical)", "badge": "HOLIDAY TOP PICK", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/110_DearSantaDefineGood_TuxedoCat_thumb.png", "desc": "Dear Santa, Define 'Good'... Let's Not Get Technical! Chubby, deadpan tuxedo cat in a floppy Santa hat happily munching on a half-eaten gingerbread man. Perfect sarcastic holiday humor for cat parents! Available on Hoodies, Tees, Mugs & Stickers at Spreadshirt & Zazzle.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "109", "title": "The Christmas Tree Was Defective Architectural Failure Cat", "tagline": "The Christmas Tree Was Defective / Architectural Failure", "badge": "VIRAL HOLIDAY", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/109_ChristmasTreeDefective_RetroCat_thumb.png", "desc": "The Christmas Tree Was Defective (Architectural Failure)! Innocent-faced retro 70s cat sitting atop a toppled Christmas tree holding a single ornament. Clearly gravity and structural failure are to blame! Available on Hoodies, Tees, Mugs & Stickers at Spreadshirt & Zazzle.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "112", "title": "Wrapped In Lights Still Emotionally Unavailable Retro Raccoon", "tagline": "Wrapped In Lights / Still Emotionally Unavailable", "badge": "NEW DROP", "category": "Cozy Introvert", "thumb": "assets/thumbs/112_WrappedInLights_RetroRaccoon_thumb.png", "desc": "Wrapped In Lights, Still Emotionally Unavailable! Adorably exhausted vintage 70s raccoon tangled up in glowing Christmas fairy lights while holding a single bulb with complete deadpan apathy. Perfect sarcastic holiday humor! Available on Spreadshirt & Zazzle.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "99", "title": "I Came I Saw The Eggnog Sucks Funny Christmas Cat", "tagline": "I Came, I Saw, The Eggnog Sucks", "badge": "HOLIDAY SARCASTIC", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/99_ICameISawTheEggnogSucks_RetroCat_thumb.jpg", "desc": "I Came. I Saw. The Eggnog Sucks! Featuring an ultra-cool vintage black cat wearing dark aviator sunglasses and a crooked Santa hat, holding a festive punch cup with zero enthusiasm. The ultimate sarcastic holiday party survival shirt for introverts and cat lovers. Available on Spreadshirt & Zazzle via link in bio!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "101", "title": "Running On 1 Percent Pure Spite Funny Sarcastic Cat", "tagline": "Running On 1% Pure Spite", "badge": "WORKPLACE ESSENTIAL", "category": "Cozy Introvert", "thumb": "assets/thumbs/101_RunningOn1PercentPureSpite_RetroCat_thumb.jpg", "desc": "Running On 1% Pure Spite! An unbothered, chubby vintage retro cat lying down calmly clutching a drained battery indicator. Perfect sarcastic streetwear for tired overachievers, introverts, and anyone powered purely by spite and caffeine. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "108", "title": "Self Care Club Overstimulated Capybara In Onsen Tub", "tagline": "Chill Capybara In Wooden Onsen Bath", "badge": "SELF-CARE CLUB", "category": "Cozy Introvert", "thumb": "assets/thumbs/108_RestIsProductive_SelfCareCapybara_IP_FLAGGED_thumb.jpg", "desc": "Official Member of the Self-Care Club! An unbothered, zen Capybara soaking in a steaming wooden onsen bath with a yuzu orange balanced on its head. Note: Slogan audited for trademark safety. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "100", "title": "Dear Santa It Was A Set-Up Funny Mischievous Christmas Cat", "tagline": "Dear Santa, It Was A Set-Up", "badge": "HOLIDAY MEME", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/100_DearSantaItWasASetup_RetroCat_thumb.jpg", "desc": "Dear Santa: It Was A Set-Up! Adorable chubby orange tabby cat caught red-handed with cookie crumbs next to Santa's empty plate. Hilarious vintage retro Christmas apparel for cat owners, pet lovers, and unapologetic dessert enthusiasts. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "104", "title": "Freshly Baked And Emotionally Unstable Cute Kawaii Croissant", "tagline": "Freshly Baked & Emotionally Unstable", "badge": "COMFORT FOOD", "category": "Cozy Introvert", "thumb": "assets/thumbs/104_FreshlyBakedEmotionallyUnstable_KawaiiCroissant_thumb.jpg", "desc": "Freshly Baked & Emotionally Unstable! An adorably stressed kawaii chibi croissant clutching a steaming cup of espresso with tiny teary eyes. The most adorable dark-humor pastry graphic for bakers, coffee addicts, and overstimulated adults. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "102", "title": "I Came I Saw I Decided It Sucks Streetwear Introvert Cat", "tagline": "I Came. I Saw. I Decided It Sucks.", "badge": "NWS STREETWEAR", "category": "Streetwear Archive", "thumb": "assets/thumbs/102_ICameISawIDecidedItSucks_StreetwearCat_thumb.jpg", "desc": "I Came. I Saw. I Decided It Sucks. Clean, sharp monochrome streetwear featuring a cool cat in an oversized hoodie walking away from the crowd with hands in pockets. The ultimate anti-social introvert uniform for social battery conservation. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "103", "title": "Midnight Overthinkers Society Vintage Coffee Cat", "tagline": "Midnight Overthinkers Society", "badge": "NIGHT OWL CLUB", "category": "Streetwear Archive", "thumb": "assets/thumbs/103_MidnightOverthinkersSociety_VintageCat_thumb.jpg", "desc": "Midnight Overthinkers Society: Serving existential thoughts and double espressos since 3 AM. Classy vintage noir fine-line artwork of a dapper cat sipping coffee alone at a midnight bar stool. Sophisticated, dark, and highly relatable. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "106", "title": "Holiday Mode Insert Peppermint Mocha Pixel Christmas Cat", "tagline": "Holiday Mode: Insert Coffee", "badge": "RETRO PIXEL TOY", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/106_HolidayModeInsertCoffee_PixelCat_thumb.jpg", "desc": "Holiday Mode: Insert Peppermint Mocha To Continue! An adorable 8-bit retro arcade aesthetic featuring a pixel kitten in a Santa hat running on empty festive battery. The ultimate holiday gift for gamers, coffee enthusiasts, and holiday survivors. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "105", "title": "Critical Error Social Battery Not Found Retro Pixel Cat", "tagline": "Critical Error: Social Battery Not Found", "badge": "Y2K RETRO OS", "category": "Cozy Introvert", "thumb": "assets/thumbs/105_SocialBatteryNotFound_PixelCat_thumb.jpg", "desc": "Critical Error 404: Social Battery Not Found! Nostalgic 90s desktop dialog box with a sleepy chibi pixel kitten napping soundly across the cancel button. Classic retro computing humor for developers, gamers, and exhausted introverts. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "91", "title": "Cool Caffeinated And Cozy 70s Retro Snowman Iced Coffee", "tagline": "Cool, Caffeinated & Cozy Retro Snowman", "badge": "ICED COFFEE CLUB", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_91.jpg", "desc": "Cool, Caffeinated & Cozy! 70s retro vintage snowman rocking sunglasses, warm winter scarf, flashing a peace sign, and holding a tall iced coffee with candy cane straw. Ideal winter holiday gift for iced coffee lovers and baristas.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "01", "title": "My Cat And I Silently Judge Everyone Funny Retro Cat Lover", "tagline": "My Cat & I Silently Judge Everyone", "badge": "ALL-TIME BESTSELLER", "category": "Deadpan Pets", "thumb": "assets/thumbs/thumb_01.jpg", "desc": "My Cat And I Silently Judge Everyone! Featuring an unbothered chubby retro cat holding a coffee mug with the ultimate judgmental stare. Perfect everyday sarcastic gift for cat moms, cat dads, and introverts.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "89", "title": "I Ate Santas Cookies And Id Do It Again Sarcastic Christmas Cat", "tagline": "I Ate Santa's Cookies (And I'd Do It Again)", "badge": "HOLIDAY CLASSIC", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_89.jpg", "desc": "I Ate Santa's Cookies (And I'd Do It Again)! Smug, unapologetic retro cartoon cat licking its lips next to an empty plate of crumbs and a glass of milk. Hilarious Christmas holiday gift for mischievous cat lovers.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "61", "title": "Emotional Support Dumpling Cute Kawaii Dim Sum Chibi Cat", "tagline": "Emotional Support Dumpling", "badge": "KAWAII FAVORITE", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_61.jpg", "desc": "Emotional Support Dumpling! An adorably chubby pastel calico chibi kitten curled up sleeping cozily inside a mini bamboo steamer basket like a warm soup dumpling. The sweetest gift for dim sum addicts, gyoza lovers, and kawaii foodie fans on tote bags, mugs, and tees.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "10", "title": "Festive On The Outside Exhausted On The Inside Funny Tired Holiday Cat", "tagline": "Festive On The Outside, Exhausted On The Inside", "badge": "HOLIDAY BURNOUT", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_10.jpg", "desc": "Festive On The Outside, Exhausted On The Inside! The ultimate relatable holiday mood for anyone running on 1% social battery and iced coffee this December.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "94", "title": "Not Angry Just Festively Overstimulated Kawaii Christmas Cat", "tagline": "Not Angry, Just Festively Overstimulated", "badge": "INTROVERT HOLIDAY", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_94.jpg", "desc": "Not Angry, Just Festively Overstimulated! Adorable pastel calico chibi kitten tangled up in glowing Christmas fairy lights while clutching an iced coffee with a deadpan stare. The perfect relatable holiday gift for introverts, cat moms, and holiday season survivors.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "98", "title": "Technically Gravity Broke It 70s Retro Christmas Tree Cat", "tagline": "Technically, Gravity Broke It", "badge": "CAT LAW EDITION", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_98.jpg", "desc": "Technically Gravity Broke It! Sarcastic innocent retro orange cat peeking out from the Christmas tree in a Santa hat, pointing at a shattered bauble. Hilarious holiday pet defense shirt for cat moms and dads.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "93", "title": "Festive And Burnt Out 70s Retro Christmas Cat In Coffee Mug", "tagline": "Festive & Burnt Out (Coffee Mug Cat)", "badge": "TODAY'S FEATURED", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_93.jpg", "desc": "Festive & Burnt Out! Thoroughly exhausted retro vintage cartoon cat slouching inside a giant ceramic holiday coffee mug wrapped in festive string lights. The most relatable Christmas holiday shirt for tired corporate workers, parents, and introverts.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "54", "title": "Its Too Peopley Outside Funny Sarcastic Retro Burrito Cat", "tagline": "It's Too Peopley Outside", "badge": "HOMEBODY SHIELD", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_54.jpg", "desc": "It's Too Peopley Outside! A delightfully chubby retro orange tabby bundled up tightly in a warm patterned blanket like a cozy burrito, clutching a steaming coffee mug with a deadpan stare. The ultimate hoodie, mug, and doormat for introverts.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "88", "title": "Feelin Groovy This Christmas 70s Retro Psychedelic Snowman", "tagline": "Feelin' Groovy This Christmas Snowman", "badge": "70S RETRO DISCO", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_88.jpg", "desc": "Feelin' Groovy This Christmas! Psychedelic 70s retro snowman rocking cool shades, funky bucket hat, and bell-bottom vibes surrounded by retro daisy sparkles. The ultimate festive vintage statement tee.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "87", "title": "My Christmas Spirit Is 90% Caffeine Kawaii Cat Iced Coffee", "tagline": "My Christmas Spirit Is 90% Caffeine", "badge": "COFFEE ADDICT", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_87.jpg", "desc": "My Christmas Spirit Is 90% Caffeine! Adorable chubby kawaii chibi kitten blissfully snoozing on top of a giant iced holiday coffee cup with festive peppermint straw. Perfect cute aesthetic gift for cat and cold brew lovers.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "92", "title": "Please Do Not Perceive Me Today Kawaii Chibi Calico Cat Burrito", "tagline": "Please Do Not Perceive Me Today", "badge": "MATCHA BLANKET", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_92.jpg", "desc": "Please Do Not Perceive Me Today! Adorably chunky kawaii calico chibi kitten bundled up tight in a warm blanket burrito, clutching an iced matcha latte with wide deadpan eyes. The ultimate cute gift for introverts and social battery recharge days.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "86", "title": "Merry & Bright Mostly Caffeinated 70s Retro Holiday Coffee", "tagline": "Merry & Bright, Mostly Caffeinated", "badge": "GINGERBREAD MUG", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_86.jpg", "desc": "Merry & Bright, Mostly Caffeinated! Vintage 70s retro holiday ceramic coffee mug wearing a Santa hat flanked by joyful mini gingerbread men. Ideal holiday gift for coffee snobs, teachers, nurses, and caffeine addicts.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "05", "title": "Per My Last Email Please Do Not Perceive Me Retro Computer Error", "tagline": "Per My Last Email: Please Do Not Perceive Me", "badge": "OFFICE SURVIVAL", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_05.jpg", "desc": "Per My Last Email — Please Do Not Perceive Me! A nostalgic 90s retro computer error window featuring an exhausted coffee mug character. Ideal for office mugs, laptop stickers, work-from-home t-shirts, and gifts for your favorite coworker.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "09", "title": "My Favorite Holiday Tradition Is Canceling Plans Retro Groovy Cat", "tagline": "My Favorite Holiday Tradition Is Canceling Plans", "badge": "INTROVERT HOLIDAY", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_09.jpg", "desc": "My Favorite Holiday Tradition Is Canceling Plans! Bold 70s retro groovy cartoon cat snug in a cozy blanket holding a warm drink. The ultimate relatable holiday shirt, mug, and sticker for introverts.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "38", "title": "I Was Told There Would Be Snacks Funny Retro Grumpy Orange Cat", "tagline": "I Was Told There Would Be Snacks", "badge": "SNACK PROMISE", "category": "Deadpan Pets", "thumb": "assets/thumbs/thumb_38.jpg", "desc": "I Was Told There Would Be Snacks! A delightfully chunky and expectant retro orange tabby sitting cross-legged beside an empty ceramic bowl, giving the ultimate deadpan stare. The perfect funny gift for food lovers, party attendees, and cat lovers.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "42", "title": "Running On 1 Percent Please Do Not Tap On Glass Retro Pixel Virtual Pet", "tagline": "Running On 1% (Please Do Not Tap On Glass)", "badge": "TAMAGOTCHI Y2K", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_42.jpg", "desc": "Running On 1% (Please Do Not Tap On Glass). Designed as a nostalgic 90s handheld virtual pet device with an exhausted pixel kitty sleeping on the LCD screen alongside a blinking 1% battery icon. The perfect nostalgic gift for 90s kids, gamers, and tired introverts.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "24", "title": "The Christmas Tree Was Asking For It Signed The Cat Kawaii Pastel Chibi Cat", "tagline": "The Christmas Tree Was Asking For It", "badge": "CHIBI CAT CRIME", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_24.jpg", "desc": "The Christmas Tree Was Asking For It (Signed, The Cat)! An adorably grumpy-cute kawaii pastel chibi calico cat sitting triumphantly tangled inside a pastel mint Christmas tree with fairy lights and ornaments. Perfect for cat moms, kawaii aesthetic lovers, stickers, mugs, and cozy holiday hoodies!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "21", "title": "Its Fine Im Fine Everything Is Festive Chaotic Meme Cat Burning Christmas Tree", "tagline": "It's Fine. I'm Fine. Everything Is Festive.", "badge": "UNHINGED MEME", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_21.jpg", "desc": "It's Fine. I'm Fine. Everything Is Festive! A hilarious chaotic internet meme doodle featuring a wide-eyed derpy cat in a Santa hat calmly sipping iced coffee while a Christmas tree burns in the background. The ultimate relatable holiday stress t-shirt, coffee mug, tote bag, and sticker.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}];
+    const PRODUCTS = [{"id": "111", "title": "Silent Night I Wish 90% Coffee And 10% Spite Retro Cat", "tagline": "Silent Night? I Wish. (90% Coffee & 10% Spite)", "badge": "🔥 #1 HOLIDAY DROP", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/111_SilentNightCoffeeAndSpite_RetroCat_thumb.png", "lookbook": "assets/lookbook_111.jpg", "desc": "Silent Night? I Wish. Running on 90% Coffee & 10% Spite! Grumpy vintage tabby cat in earmuffs and ugly Christmas sweater clutching a hot coffee mug. Available on Heavyweight Hoodies, Tees, Mugs & Holiday Ornaments at Spreadshirt & Zazzle.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "110", "title": "Dear Santa Define Good Lets Not Get Technical Tuxedo Cat", "tagline": "Dear Santa, Define 'Good' (Let's Not Get Technical)", "badge": "HOLIDAY TOP PICK", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/110_DearSantaDefineGood_TuxedoCat_thumb.png", "desc": "Dear Santa, Define 'Good'... Let's Not Get Technical! Chubby, deadpan tuxedo cat in a floppy Santa hat happily munching on a half-eaten gingerbread man. Perfect sarcastic holiday humor for cat parents! Available on Hoodies, Tees, Mugs & Stickers at Spreadshirt & Zazzle.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio", "lookbook": "assets/lookbook_110.jpg"}, {"id": "109", "title": "The Christmas Tree Was Defective Architectural Failure Cat", "tagline": "The Christmas Tree Was Defective / Architectural Failure", "badge": "VIRAL HOLIDAY", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/109_ChristmasTreeDefective_RetroCat_thumb.png", "desc": "The Christmas Tree Was Defective (Architectural Failure)! Innocent-faced retro 70s cat sitting atop a toppled Christmas tree holding a single ornament. Clearly gravity and structural failure are to blame! Available on Hoodies, Tees, Mugs & Stickers at Spreadshirt & Zazzle.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio", "lookbook": "assets/lookbook_109.jpg"}, {"id": "112", "title": "Wrapped In Lights Still Emotionally Unavailable Retro Raccoon", "tagline": "Wrapped In Lights / Still Emotionally Unavailable", "badge": "NEW DROP", "category": "Cozy Introvert", "thumb": "assets/thumbs/112_WrappedInLights_RetroRaccoon_thumb.png", "desc": "Wrapped In Lights, Still Emotionally Unavailable! Adorably exhausted vintage 70s raccoon tangled up in glowing Christmas fairy lights while holding a single bulb with complete deadpan apathy. Perfect sarcastic holiday humor! Available on Spreadshirt & Zazzle.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio", "lookbook": "assets/lookbook_112.jpg"}, {"id": "99", "title": "I Came I Saw The Eggnog Sucks Funny Christmas Cat", "tagline": "I Came, I Saw, The Eggnog Sucks", "badge": "HOLIDAY SARCASTIC", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/99_ICameISawTheEggnogSucks_RetroCat_thumb.jpg", "desc": "I Came. I Saw. The Eggnog Sucks! Featuring an ultra-cool vintage black cat wearing dark aviator sunglasses and a crooked Santa hat, holding a festive punch cup with zero enthusiasm. The ultimate sarcastic holiday party survival shirt for introverts and cat lovers. Available on Spreadshirt & Zazzle via link in bio!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "101", "title": "Running On 1 Percent Pure Spite Funny Sarcastic Cat", "tagline": "Running On 1% Pure Spite", "badge": "WORKPLACE ESSENTIAL", "category": "Cozy Introvert", "thumb": "assets/thumbs/101_RunningOn1PercentPureSpite_RetroCat_thumb.jpg", "desc": "Running On 1% Pure Spite! An unbothered, chubby vintage retro cat lying down calmly clutching a drained battery indicator. Perfect sarcastic streetwear for tired overachievers, introverts, and anyone powered purely by spite and caffeine. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "108", "title": "Self Care Club Overstimulated Capybara In Onsen Tub", "tagline": "Chill Capybara In Wooden Onsen Bath", "badge": "SELF-CARE CLUB", "category": "Cozy Introvert", "thumb": "assets/thumbs/108_RestIsProductive_SelfCareCapybara_IP_FLAGGED_thumb.jpg", "desc": "Official Member of the Self-Care Club! An unbothered, zen Capybara soaking in a steaming wooden onsen bath with a yuzu orange balanced on its head. Note: Slogan audited for trademark safety. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "100", "title": "Dear Santa It Was A Set-Up Funny Mischievous Christmas Cat", "tagline": "Dear Santa, It Was A Set-Up", "badge": "HOLIDAY MEME", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/100_DearSantaItWasASetup_RetroCat_thumb.jpg", "desc": "Dear Santa: It Was A Set-Up! Adorable chubby orange tabby cat caught red-handed with cookie crumbs next to Santa's empty plate. Hilarious vintage retro Christmas apparel for cat owners, pet lovers, and unapologetic dessert enthusiasts. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "104", "title": "Freshly Baked And Emotionally Unstable Cute Kawaii Croissant", "tagline": "Freshly Baked & Emotionally Unstable", "badge": "COMFORT FOOD", "category": "Cozy Introvert", "thumb": "assets/thumbs/104_FreshlyBakedEmotionallyUnstable_KawaiiCroissant_thumb.jpg", "desc": "Freshly Baked & Emotionally Unstable! An adorably stressed kawaii chibi croissant clutching a steaming cup of espresso with tiny teary eyes. The most adorable dark-humor pastry graphic for bakers, coffee addicts, and overstimulated adults. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "102", "title": "I Came I Saw I Decided It Sucks Streetwear Introvert Cat", "tagline": "I Came. I Saw. I Decided It Sucks.", "badge": "NWS STREETWEAR", "category": "Streetwear Archive", "thumb": "assets/thumbs/102_ICameISawIDecidedItSucks_StreetwearCat_thumb.jpg", "desc": "I Came. I Saw. I Decided It Sucks. Clean, sharp monochrome streetwear featuring a cool cat in an oversized hoodie walking away from the crowd with hands in pockets. The ultimate anti-social introvert uniform for social battery conservation. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "103", "title": "Midnight Overthinkers Society Vintage Coffee Cat", "tagline": "Midnight Overthinkers Society", "badge": "NIGHT OWL CLUB", "category": "Streetwear Archive", "thumb": "assets/thumbs/103_MidnightOverthinkersSociety_VintageCat_thumb.jpg", "desc": "Midnight Overthinkers Society: Serving existential thoughts and double espressos since 3 AM. Classy vintage noir fine-line artwork of a dapper cat sipping coffee alone at a midnight bar stool. Sophisticated, dark, and highly relatable. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "106", "title": "Holiday Mode Insert Peppermint Mocha Pixel Christmas Cat", "tagline": "Holiday Mode: Insert Coffee", "badge": "RETRO PIXEL TOY", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/106_HolidayModeInsertCoffee_PixelCat_thumb.jpg", "desc": "Holiday Mode: Insert Peppermint Mocha To Continue! An adorable 8-bit retro arcade aesthetic featuring a pixel kitten in a Santa hat running on empty festive battery. The ultimate holiday gift for gamers, coffee enthusiasts, and holiday survivors. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "105", "title": "Critical Error Social Battery Not Found Retro Pixel Cat", "tagline": "Critical Error: Social Battery Not Found", "badge": "Y2K RETRO OS", "category": "Cozy Introvert", "thumb": "assets/thumbs/105_SocialBatteryNotFound_PixelCat_thumb.jpg", "desc": "Critical Error 404: Social Battery Not Found! Nostalgic 90s desktop dialog box with a sleepy chibi pixel kitten napping soundly across the cancel button. Classic retro computing humor for developers, gamers, and exhausted introverts. Available on Spreadshirt & Zazzle!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "91", "title": "Cool Caffeinated And Cozy 70s Retro Snowman Iced Coffee", "tagline": "Cool, Caffeinated & Cozy Retro Snowman", "badge": "ICED COFFEE CLUB", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_91.jpg", "desc": "Cool, Caffeinated & Cozy! 70s retro vintage snowman rocking sunglasses, warm winter scarf, flashing a peace sign, and holding a tall iced coffee with candy cane straw. Ideal winter holiday gift for iced coffee lovers and baristas.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "01", "title": "My Cat And I Silently Judge Everyone Funny Retro Cat Lover", "tagline": "My Cat & I Silently Judge Everyone", "badge": "ALL-TIME BESTSELLER", "category": "Deadpan Pets", "thumb": "assets/thumbs/thumb_01.jpg", "desc": "My Cat And I Silently Judge Everyone! Featuring an unbothered chubby retro cat holding a coffee mug with the ultimate judgmental stare. Perfect everyday sarcastic gift for cat moms, cat dads, and introverts.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "89", "title": "I Ate Santas Cookies And Id Do It Again Sarcastic Christmas Cat", "tagline": "I Ate Santa's Cookies (And I'd Do It Again)", "badge": "HOLIDAY CLASSIC", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_89.jpg", "desc": "I Ate Santa's Cookies (And I'd Do It Again)! Smug, unapologetic retro cartoon cat licking its lips next to an empty plate of crumbs and a glass of milk. Hilarious Christmas holiday gift for mischievous cat lovers.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "61", "title": "Emotional Support Dumpling Cute Kawaii Dim Sum Chibi Cat", "tagline": "Emotional Support Dumpling", "badge": "KAWAII FAVORITE", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_61.jpg", "desc": "Emotional Support Dumpling! An adorably chubby pastel calico chibi kitten curled up sleeping cozily inside a mini bamboo steamer basket like a warm soup dumpling. The sweetest gift for dim sum addicts, gyoza lovers, and kawaii foodie fans on tote bags, mugs, and tees.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "10", "title": "Festive On The Outside Exhausted On The Inside Funny Tired Holiday Cat", "tagline": "Festive On The Outside, Exhausted On The Inside", "badge": "HOLIDAY BURNOUT", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_10.jpg", "desc": "Festive On The Outside, Exhausted On The Inside! The ultimate relatable holiday mood for anyone running on 1% social battery and iced coffee this December.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "94", "title": "Not Angry Just Festively Overstimulated Kawaii Christmas Cat", "tagline": "Not Angry, Just Festively Overstimulated", "badge": "INTROVERT HOLIDAY", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_94.jpg", "desc": "Not Angry, Just Festively Overstimulated! Adorable pastel calico chibi kitten tangled up in glowing Christmas fairy lights while clutching an iced coffee with a deadpan stare. The perfect relatable holiday gift for introverts, cat moms, and holiday season survivors.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "98", "title": "Technically Gravity Broke It 70s Retro Christmas Tree Cat", "tagline": "Technically, Gravity Broke It", "badge": "CAT LAW EDITION", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_98.jpg", "desc": "Technically Gravity Broke It! Sarcastic innocent retro orange cat peeking out from the Christmas tree in a Santa hat, pointing at a shattered bauble. Hilarious holiday pet defense shirt for cat moms and dads.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "93", "title": "Festive And Burnt Out 70s Retro Christmas Cat In Coffee Mug", "tagline": "Festive & Burnt Out (Coffee Mug Cat)", "badge": "TODAY'S FEATURED", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_93.jpg", "desc": "Festive & Burnt Out! Thoroughly exhausted retro vintage cartoon cat slouching inside a giant ceramic holiday coffee mug wrapped in festive string lights. The most relatable Christmas holiday shirt for tired corporate workers, parents, and introverts.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "54", "title": "Its Too Peopley Outside Funny Sarcastic Retro Burrito Cat", "tagline": "It's Too Peopley Outside", "badge": "HOMEBODY SHIELD", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_54.jpg", "desc": "It's Too Peopley Outside! A delightfully chubby retro orange tabby bundled up tightly in a warm patterned blanket like a cozy burrito, clutching a steaming coffee mug with a deadpan stare. The ultimate hoodie, mug, and doormat for introverts.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "88", "title": "Feelin Groovy This Christmas 70s Retro Psychedelic Snowman", "tagline": "Feelin' Groovy This Christmas Snowman", "badge": "70S RETRO DISCO", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_88.jpg", "desc": "Feelin' Groovy This Christmas! Psychedelic 70s retro snowman rocking cool shades, funky bucket hat, and bell-bottom vibes surrounded by retro daisy sparkles. The ultimate festive vintage statement tee.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "87", "title": "My Christmas Spirit Is 90% Caffeine Kawaii Cat Iced Coffee", "tagline": "My Christmas Spirit Is 90% Caffeine", "badge": "COFFEE ADDICT", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_87.jpg", "desc": "My Christmas Spirit Is 90% Caffeine! Adorable chubby kawaii chibi kitten blissfully snoozing on top of a giant iced holiday coffee cup with festive peppermint straw. Perfect cute aesthetic gift for cat and cold brew lovers.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "92", "title": "Please Do Not Perceive Me Today Kawaii Chibi Calico Cat Burrito", "tagline": "Please Do Not Perceive Me Today", "badge": "MATCHA BLANKET", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_92.jpg", "desc": "Please Do Not Perceive Me Today! Adorably chunky kawaii calico chibi kitten bundled up tight in a warm blanket burrito, clutching an iced matcha latte with wide deadpan eyes. The ultimate cute gift for introverts and social battery recharge days.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "86", "title": "Merry & Bright Mostly Caffeinated 70s Retro Holiday Coffee", "tagline": "Merry & Bright, Mostly Caffeinated", "badge": "GINGERBREAD MUG", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_86.jpg", "desc": "Merry & Bright, Mostly Caffeinated! Vintage 70s retro holiday ceramic coffee mug wearing a Santa hat flanked by joyful mini gingerbread men. Ideal holiday gift for coffee snobs, teachers, nurses, and caffeine addicts.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "05", "title": "Per My Last Email Please Do Not Perceive Me Retro Computer Error", "tagline": "Per My Last Email: Please Do Not Perceive Me", "badge": "OFFICE SURVIVAL", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_05.jpg", "desc": "Per My Last Email — Please Do Not Perceive Me! A nostalgic 90s retro computer error window featuring an exhausted coffee mug character. Ideal for office mugs, laptop stickers, work-from-home t-shirts, and gifts for your favorite coworker.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "09", "title": "My Favorite Holiday Tradition Is Canceling Plans Retro Groovy Cat", "tagline": "My Favorite Holiday Tradition Is Canceling Plans", "badge": "INTROVERT HOLIDAY", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_09.jpg", "desc": "My Favorite Holiday Tradition Is Canceling Plans! Bold 70s retro groovy cartoon cat snug in a cozy blanket holding a warm drink. The ultimate relatable holiday shirt, mug, and sticker for introverts.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "38", "title": "I Was Told There Would Be Snacks Funny Retro Grumpy Orange Cat", "tagline": "I Was Told There Would Be Snacks", "badge": "SNACK PROMISE", "category": "Deadpan Pets", "thumb": "assets/thumbs/thumb_38.jpg", "desc": "I Was Told There Would Be Snacks! A delightfully chunky and expectant retro orange tabby sitting cross-legged beside an empty ceramic bowl, giving the ultimate deadpan stare. The perfect funny gift for food lovers, party attendees, and cat lovers.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "42", "title": "Running On 1 Percent Please Do Not Tap On Glass Retro Pixel Virtual Pet", "tagline": "Running On 1% (Please Do Not Tap On Glass)", "badge": "TAMAGOTCHI Y2K", "category": "Cozy Introvert", "thumb": "assets/thumbs/thumb_42.jpg", "desc": "Running On 1% (Please Do Not Tap On Glass). Designed as a nostalgic 90s handheld virtual pet device with an exhausted pixel kitty sleeping on the LCD screen alongside a blinking 1% battery icon. The perfect nostalgic gift for 90s kids, gamers, and tired introverts.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "24", "title": "The Christmas Tree Was Asking For It Signed The Cat Kawaii Pastel Chibi Cat", "tagline": "The Christmas Tree Was Asking For It", "badge": "CHIBI CAT CRIME", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_24.jpg", "desc": "The Christmas Tree Was Asking For It (Signed, The Cat)! An adorably grumpy-cute kawaii pastel chibi calico cat sitting triumphantly tangled inside a pastel mint Christmas tree with fairy lights and ornaments. Perfect for cat moms, kawaii aesthetic lovers, stickers, mugs, and cozy holiday hoodies!", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}, {"id": "21", "title": "Its Fine Im Fine Everything Is Festive Chaotic Meme Cat Burning Christmas Tree", "tagline": "It's Fine. I'm Fine. Everything Is Festive.", "badge": "UNHINGED MEME", "category": "Holiday Sarcasm", "thumb": "assets/thumbs/thumb_21.jpg", "desc": "It's Fine. I'm Fine. Everything Is Festive! A hilarious chaotic internet meme doodle featuring a wide-eyed derpy cat in a Santa hat calmly sipping iced coffee while a Christmas tree burns in the background. The ultimate relatable holiday stress t-shirt, coffee mug, tote bag, and sticker.", "spread_url": "https://newave-studio.myspreadshop.com", "zazzle_url": "https://www.zazzle.com/store/newavestudio"}];
+    let GLOBAL_MODE = 'art'; // 'art' | 'hoodie' | 'mug'
+    let CURRENT_CAT = 'All';
 
-    function renderProducts(items) {
-      const grid = document.getElementById('productGrid');
-      grid.innerHTML = items.map(p => `
+    function getHoodieStageHTML(thumb, title) {
+      return `
+        <div class="mockup-stage">
+          <div class="hoodie-silhouette">
+            <svg class="hoodie-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="hoodieGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#1e222d"/>
+                  <stop offset="50%" stop-color="#12151e"/>
+                  <stop offset="100%" stop-color="#0a0c12"/>
+                </linearGradient>
+              </defs>
+              <!-- Hood -->
+              <path d="M68,36 C68,14 132,14 132,36 C138,44 126,52 100,52 C74,52 62,44 68,36 Z" fill="#161922" stroke="#2d3548" stroke-width="1.5"/>
+              <!-- Body & Sleeves -->
+              <path d="M58,42 L22,68 L12,148 L38,154 L48,88 L48,176 L152,176 L152,88 L162,154 L188,148 L178,68 L142,42 C128,50 72,50 58,42 Z" fill="url(#hoodieGrad)" stroke="#2d3548" stroke-width="1.5" stroke-linejoin="round"/>
+              <!-- Kangaroo Pocket -->
+              <path d="M64,136 L136,136 L142,168 L58,168 Z" fill="#0f121a" stroke="#252c3d" stroke-width="1.2"/>
+              <!-- Drawstrings -->
+              <line x1="91" y1="48" x2="91" y2="82" stroke="#334155" stroke-width="2" stroke-linecap="round"/>
+              <line x1="109" y1="48" x2="109" y2="82" stroke="#334155" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <img src="${thumb}" alt="${title} on Hoodie" class="hoodie-print-overlay" loading="lazy">
+          </div>
+        </div>
+      `;
+    }
+
+    function getMugStageHTML(thumb, title) {
+      return `
+        <div class="mockup-stage">
+          <div class="mug-silhouette">
+            <svg class="mug-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="mugGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#222736"/>
+                  <stop offset="35%" stop-color="#151924"/>
+                  <stop offset="85%" stop-color="#0d1018"/>
+                  <stop offset="100%" stop-color="#1e2433"/>
+                </linearGradient>
+              </defs>
+              <!-- Mug Handle -->
+              <path d="M138,68 C174,68 174,142 138,142" fill="none" stroke="#1e2433" stroke-width="14" stroke-linecap="round"/>
+              <path d="M138,68 C174,68 174,142 138,142" fill="none" stroke="#334155" stroke-width="2"/>
+              <!-- Mug Cylinder Body -->
+              <rect x="34" y="46" width="108" height="122" rx="12" fill="url(#mugGrad)" stroke="#334155" stroke-width="1.5"/>
+              <!-- Mug Top Rim -->
+              <ellipse cx="88" cy="46" rx="54" ry="10" fill="#090b10" stroke="#475569" stroke-width="1.5"/>
+            </svg>
+            <img src="${thumb}" alt="${title} on Ceramic Mug" class="mug-print-overlay" loading="lazy">
+          </div>
+        </div>
+      `;
+    }
+
+    function getStageContent(p, mode) {
+      if (mode === 'hoodie') {
+        if (p.lookbook) {
+          return `<img src="${p.lookbook}" alt="${p.title} Streetwear Lookbook" class="card-thumb" style="padding:0;object-fit:cover;" loading="lazy">`;
+        }
+        return getHoodieStageHTML(p.thumb, p.title);
+      }
+      if (mode === 'mug') {
+        return getMugStageHTML(p.thumb, p.title);
+      }
+      return `<img src="${p.thumb}" alt="${p.title}" class="card-thumb" loading="lazy" onerror="this.src='assets/logo.jpg'">`;
+    }
+
+    function renderCardHTML(p, mode, prefix='main') {
+      const stageId = `stage-${prefix}-${p.id}`;
+      return `
         <article class="product-card" data-category="${p.category}">
-          <div class="card-thumb-wrap">
+          <div class="card-thumb-wrap" onclick="cycleCardMode('${p.id}', '${prefix}')">
             <span class="card-badge">${p.badge}</span>
-            <img src="${p.thumb}" alt="${p.title}" class="card-thumb" loading="lazy" onerror="this.src='assets/logo.jpg'">
+            <div id="${stageId}" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+              ${getStageContent(p, mode)}
+            </div>
+            <div class="card-mode-tabs" onclick="event.stopPropagation();">
+              <button class="cm-tab ${mode==='art'?'active':''}" id="tab-${prefix}-${p.id}-art" onclick="setCardMode('${p.id}','art','${prefix}')">🎨 Art</button>
+              <button class="cm-tab ${mode==='hoodie'?'active':''}" id="tab-${prefix}-${p.id}-hoodie" onclick="setCardMode('${p.id}','hoodie','${prefix}')">👕 Hoodie</button>
+              <button class="cm-tab ${mode==='mug'?'active':''}" id="tab-${prefix}-${p.id}-mug" onclick="setCardMode('${p.id}','mug','${prefix}')">☕ Mug</button>
+            </div>
           </div>
           <div class="card-body">
             <h2 class="card-title">${p.title}</h2>
@@ -513,19 +1138,86 @@
             </div>
           </div>
         </article>
-      `).join('');
+      `;
+    }
+
+    function setCardMode(id, mode, prefix='main') {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      const stage = document.getElementById(`stage-${prefix}-${id}`);
+      if (stage) stage.innerHTML = getStageContent(p, mode);
+      ['art', 'hoodie', 'mug'].forEach(m => {
+        const btn = document.getElementById(`tab-${prefix}-${id}-${m}`);
+        if (btn) btn.classList.toggle('active', m === mode);
+      });
+    }
+
+    const CARD_MODES = {};
+    function cycleCardMode(id, prefix='main') {
+      const key = `${prefix}-${id}`;
+      const cur = CARD_MODES[key] || GLOBAL_MODE;
+      const next = cur === 'art' ? 'hoodie' : (cur === 'hoodie' ? 'mug' : 'art');
+      CARD_MODES[key] = next;
+      setCardMode(id, next, prefix);
+    }
+
+    function setGlobalMode(mode) {
+      GLOBAL_MODE = mode;
+      ['art', 'hoodie', 'mug'].forEach(m => {
+        const b = document.getElementById(`modeBtn-${m}`);
+        if (b) b.classList.toggle('active', m === mode);
+      });
+      filterCategory(CURRENT_CAT, null);
+    }
+
+    function renderProducts(items) {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = items.map(p => renderCardHTML(p, GLOBAL_MODE, 'main')).join('');
     }
 
     function filterCategory(cat, btn) {
-      document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-
+      CURRENT_CAT = cat;
+      if (btn) {
+        document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
       if (cat === 'All') {
         renderProducts(PRODUCTS);
       } else {
         const filtered = PRODUCTS.filter(p => p.category === cat);
         renderProducts(filtered);
       }
+    }
+
+    const QUIZ_MAP = {
+      'coffee': {
+        title: 'Diagnosis: 90% Caffeine & 10% Pure Spite (Certified Survivor)',
+        ids: ['111', '101', '103']
+      },
+      'holiday': {
+        title: 'Diagnosis: Festively Overstimulated & Emotionally Unavailable',
+        ids: ['112', '93', '94']
+      },
+      'introvert': {
+        title: 'Diagnosis: Critical Error 404 — Social Battery Not Found',
+        ids: ['105', '92', '05']
+      },
+      'chaos': {
+        title: 'Diagnosis: Agent of Holiday Chaos (The Tree Was Defective)',
+        ids: ['109', '110', '98']
+      }
+    };
+
+    function runQuiz(key, btn) {
+      document.querySelectorAll('.q-opt').forEach(b => b.classList.remove('selected'));
+      if (btn) btn.classList.add('selected');
+      const data = QUIZ_MAP[key] || QUIZ_MAP['coffee'];
+      document.getElementById('quizDiagTitle').textContent = data.title;
+      const items = data.ids.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
+      const qGrid = document.getElementById('quizGrid');
+      qGrid.innerHTML = items.map(p => renderCardHTML(p, 'hoodie', 'quiz')).join('');
+      const resBox = document.getElementById('quizResult');
+      resBox.classList.add('show');
     }
 
     // Initial render
