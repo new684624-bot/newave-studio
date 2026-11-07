@@ -1,0 +1,7 @@
+# Environment variables & API secrets (NEVER COMMIT)
+.env
+.env.*
+*.env
+!.env.example
+__pycache__/
+*.log
